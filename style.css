@@ -1,0 +1,33 @@
+body {
+    font-family: "DejaVu Sans Mono", "serif";
+    background-color: #d5ccba;
+    color: #20111b;
+
+    display: grid;
+
+    margin-top: 4em;
+    margin-left: 6em;
+    margin-right: auto;
+}
+
+body section {
+    width: 30em;
+    float: left;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+    color: #212121;
+    padding-bottom: 1em;
+}
+
+nav {
+    float: right;
+}
+
+nav a {
+    padding: 0.7em;
+    text-decoration: none;
+    color: #426a79;
+}
