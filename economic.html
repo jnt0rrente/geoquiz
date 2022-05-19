@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>GeoQuiz - Economic geology</title>
+    <meta name="author" content="Juan Torrente" />
+    <meta name="keywords" content="geology, crystalllography">
+    <meta name="description" content="Information about the branch of economic geology." />
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts/economic_geology.js"></script>
+</head>
+
+<body>
+    <h1>
+        GeoQuiz
+    </h1>
+    <nav>
+        <a href="index.html" accesskey="w" tabindex="1">Welcome</a>
+        <a href="history.html" accesskey="h" tabindex="2">Historical geology</a>
+        <a href="mineralogy.html" accesskey="c" tabindex="3">Mineralogy</a>
+        <a href="economic.html" accesskey="e" tabindex="4">Economic geology</a>
+    </nav>
+    <h2>Economic Geology</h2>
+    <section>
+        <h3>Definition</h3>
+        <p>Economic Geology is concerned with studying, classifying and ultimately harvesting minerals and underground materials that hold economic or industrial value, such as oil, gold and other raw metals.</p>
+        <p>It is usually combined with other branches of technical studies, such as engineering and architecture, which are needed on-site to retrieve whatever material is needed.</p>
+    </section>
+    <section>
+        <h3>Resources</h3>
+        <p>Some of the most common and valuable ores and materials are listed below.</p>
+        <ul>
+            <li>Gold
+                <p>
+                    Gold has held raw value since the dawn of time. Before it had practical use in modern technology, it was used as minting bullion and held as a standard of currency.
+                    Even after it lost that status, it is considered a precious metal, and has applications in many technical fields: from electronics to medical devices.
+                </p>
+            </li>
+            <li>Oil
+                <p>
+                    Sometimes referred to as "black gold", crude oil has driven modern industrialization and pushed our society away from coal furnaces for heating and power.
+                    While it is slowly being replaced by cleaner alternatives, it is still very valuable: its uses range from burning fuel to plastic production.
+                </p>
+            </li>
+            <li>Uranium
+                <p>
+                    Uranium is one of the minerals with the highest rising demand since the 1970s. It is one of the most used fuels for nuclear energy production, which is cleaner and more efficient that fossil fuel burning.
+                    For that reason, it is expected to further increase in demand. One kilogram of enriched uranium holds 20 terajoules of energy, as much as 1.5 million kilograms of coal.
+                </p>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>Latest prices:</h3>
+        <input type="button" value="Update" onclick="mineralApi.update()" />
+        <ul>
+            <li>Gold:</li>
+            <li>Oil:</li>
+        </ul>
+    </section>
+</body>
+
+</html>
