@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE forml SYSTEM "forml.dtd">
 
-<forml>
+<forml xmlns="http://www.uniovi.es"
+	xsi:schemaLocation="http://www.uniovi.es forml.xsd" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <header>
         <title>Sample quiz</title>
         <description>This is an example questionnaire for the GeoQuiz website.</description>
