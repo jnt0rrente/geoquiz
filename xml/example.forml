@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE forml SYSTEM "forml.dtd">
+
+<forml>
+    <header>
+        <title>Sample quiz</title>
+        <description>This is an example questionnaire for the GeoQuiz website.</description>
+    </header>
+    <body>
+        <section name="Section 1">
+            <question text="Which is the best rock?" accepted="b">
+                <option text="Granite"/>
+                <option text="Feldspar"/>
+                <option text="Birch"/>
+                <option text="Clay"/>
+            </question>
+        </section>
+        <section name="Extra points">
+            <section name="Economic geology">
+                <question text="When was the gold standard abandoned?" accepted="c">
+                    <option text="1970"/>
+                    <option text="2009"/>
+                    <option text="1850"/>
+                    <option text="1900"/>
+                </question>
+                <question text="When were rocks invented?" accepted="b">
+                    <option text="0 AD"/>
+                    <option text="2 AD"/>
+                    <option text="135 BC"/>
+                    <option text="90 BC"/>
+                </question>
+            </section>
+            <section name="Mineralogy">
+                <question text="How many rocks are there?" accepted="d">
+                    <option text="3"/>
+                    <option text="4"/>
+                    <option text="5"/>
+                    <option text="More than 5"/>
+                </question>
+            </section>
+        </section>
+    </body>
+</forml>
