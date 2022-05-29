@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <title>GeoQuiz - Economic geology</title>
     <meta name="author" content="Juan Torrente" />
-    <meta name="keywords" content="geology, crystalllography">
-    <meta name="description" content="Information about the branch of economic geology." />
+    <meta name="keywords" content="admin, admin panel, upload">
+    <meta name="description" content="Administration tab for the GeoQuiz site." />
     <meta name="viewport" content="width=device-width, initial scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/economic_geology.js"></script>
+    <script src="scripts/admin.js"></script>
 </head>
 
 <body>
@@ -26,11 +26,11 @@
         <a href="economic.html" accesskey="e" tabindex="4">Economic geology</a>
         <a href="admin.html" accesskey="a" tabindex="5">Administration</a>
     </nav>
-    <h2>Economic Geology</h2>
+    <h2>Admin panel</h2>
     <section>
-        <h3>Definition</h3>
-        <p>Economic Geology is concerned with studying, classifying and ultimately harvesting minerals and underground materials that hold economic or industrial value, such as oil, gold and other raw metals.</p>
-        <p>It is usually combined with other branches of technical studies, such as engineering and architecture, which are needed on-site to retrieve whatever material is needed.</p>
+        <h3>Upload forml xml</h3>
+        <p>After defining a forml file, you can use this utility to upload it as a public quiz on this website.</p>
+        <input id="fileUpload" type="file" onchange="uploadManager.readFile()" />
     </section>
     <section>
         <h3>Resources</h3>
