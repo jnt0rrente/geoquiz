@@ -1,4 +1,4 @@
-name: CI for ASW2122
+name: Continuous Deployment
 
 on:
   release:
