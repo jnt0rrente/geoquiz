@@ -16,4 +16,4 @@ jobs:
           command: |
             rm -r sew_extraordinaria
             git clone https://github.com/jnt0rrente/sew_extraordinaria.git
-            sudo cp /home/sew/sew_extraordinaria/* -r
+            sudo cp /home/sew/sew_extraordinaria/* /var/www/html -r
