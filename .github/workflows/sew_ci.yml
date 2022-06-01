@@ -14,6 +14,6 @@ jobs:
           user: ${{ secrets.DEPLOYMENT_USER }}
           key: ${{ secrets.DEPLOYMENT_KEY }}
           command: |
-            rm -r sew_extraordinaria
+            sudo rm -r sew_extraordinaria
             git clone https://github.com/jnt0rrente/sew_extraordinaria.git
             sudo cp /home/sew/sew_extraordinaria/* /var/www/html -r
