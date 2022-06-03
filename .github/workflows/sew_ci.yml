@@ -1,0 +1,19 @@
+name: Continuous Deployment
+
+on:  workflow_dispatch
+
+jobs:
+  deploy:
+    name: Deploy over SSH
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy over SSH
+        uses: fifsky/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOYMENT_ADDRESS }}
+          user: ${{ secrets.DEPLOYMENT_USER }}
+          key: ${{ secrets.DEPLOYMENT_KEY }}
+          command: |
+            sudo rm -r sew_extraordinaria
+            git clone https://github.com/jnt0rrente/sew_extraordinaria.git
+            sudo cp /home/sew/sew_extraordinaria/* /var/www/html -r

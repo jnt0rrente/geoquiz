@@ -1,0 +1,11 @@
+<!ELEMENT forml (header, body)>
+<!ELEMENT header (title, description?)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT body (section+)>
+<!ELEMENT section (section+|question+)>
+<!ELEMENT question (option, option, option, option)
+<!ATTLIST section name CDATA #REQUIRED>
+<!ATTLIST question text CDATA #REQUIRED
+                   accepted (a|b|c|d) #REQUIRED>
+<!ATTLIST option text CDATA #REQUIRED>
