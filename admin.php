@@ -34,8 +34,7 @@
                 <h3>Upload forml xml</h3>
                 <p>After defining a forml file, you can use this utility to upload it as a public quiz on this website.</p>
                 <input type='file' accept='text/xml' onchange='uploadManager.read(this.files)' />
-                <input type='button' name='uploadFile' value='Subir archivo' onclick='uploadManager.upload()'/> 
-        ";
+                <input type='button' name='uploadFile' value='Subir archivo' onclick='uploadManager.upload()' /> ";
 
     if (isset($_POST["inputFile"])) {
         $inputFile = $_POST["inputFile"];
@@ -44,7 +43,7 @@
         echo "<p>Your new quiz is titled \" $newTitle \"";
     } 
 
-    echo "</section>"
+    echo "</section>";
 
     
 
