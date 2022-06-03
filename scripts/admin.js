@@ -1,8 +1,8 @@
 "use strict"
 class UploadManager {
-    constructor() {
+    constructor(handler) {
         this.acceptedType = /text.xml/;
-        this.handler = new FormlParser();
+        this.handler = handler;
     }
 
     read(files) {
@@ -26,6 +26,10 @@ class UploadManager {
         reader.readAsText(file);
     }
 
+    upload() {
+
+    }
+
 }
 
 class FormlHandler {
@@ -33,7 +37,12 @@ class FormlHandler {
 
     }
 
+    handle(content) {
+        this.rawFile = content;
+        console.log(content);
+    }
 
 }
 
-var uploadManager = new UploadManager();
+var formlHandler = new FormlHandler();
+var uploadManager = new UploadManager(formlHandler);

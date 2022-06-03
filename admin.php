@@ -24,14 +24,31 @@
         <a href="history.html" accesskey="h" tabindex="2">Historical geology</a>
         <a href="mineralogy.html" accesskey="c" tabindex="3">Mineralogy</a>
         <a href="economic.html" accesskey="e" tabindex="4">Economic geology</a>
-        <a href="admin.html" accesskey="a" tabindex="5">Administration</a>
+        <a href="admin.php" accesskey="a" tabindex="5">Administration</a>
     </nav>
-    <h2>Admin panel</h2>
-    <section>
-        <h3>Upload forml xml</h3>
-        <p>After defining a forml file, you can use this utility to upload it as a public quiz on this website.</p>
-        <input type="file" onchange="uploadManager.read(this.files)" />
-    </section>
+
+    <?php
+
+    echo "  <h2>Admin panel</h2>
+            <section>
+                <h3>Upload forml xml</h3>
+                <p>After defining a forml file, you can use this utility to upload it as a public quiz on this website.</p>
+                <input type='file' accept='text/xml' onchange='uploadManager.read(this.files)' />
+                <input type='button' name='uploadFile' value='Subir archivo' onclick='uploadManager.upload()'/> 
+        ";
+
+    if (isset($_POST["inputFile"])) {
+        $inputFile = $_POST["inputFile"];
+        $newTitle = $_POST["newTitle"];
+        echo "<p>File uploaded!</p>";
+        echo "<p>Your new quiz is titled \" $newTitle \"";
+    } 
+
+    echo "</section>"
+
+    
+
+    ?>
 </body>
 
 </html>
