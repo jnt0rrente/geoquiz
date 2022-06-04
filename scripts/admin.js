@@ -27,7 +27,9 @@ class UploadManager {
     }
 
     upload() {
+        $.ajax(
 
+        );
     }
 
 }
