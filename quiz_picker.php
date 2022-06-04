@@ -45,11 +45,21 @@
         $_SESSION["username"] = $username;
         
         $quizManager->showQuizzes();
+        echo "
+            <form action='#' method='post'>
+                <input type='submit' name='logout' value='Log out' $logoutAble />
+            </form>
+        ";
 
     } else if (isset($_SESSION["username"])) {
         $username = $_SESSION["username"];
 
         $quizManager->showQuizzes();
+        echo "
+            <form action='#' method='post'>
+                <input type='submit' name='logout' value='Log out' $logoutAble />
+            </form>
+        ";
 
     } else {
         echo "
@@ -60,14 +70,6 @@
             </form>
         ";
     }
-
-    $logoutAble = $_SESSION["username"]  ? "" : "disabled";
-    echo "
-        <form action='#' method='post'>
-            <input type='submit' name='logout' value='Log out' $logoutAble />
-        </form>
-    ";
-
 
     class QuizManager {
         public function __construct(DatabaseInterface $dbInterface) {
