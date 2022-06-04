@@ -71,12 +71,14 @@
             $questions = [$question1];
 
             $quiz1 = new Quiz(0, "Quiz zero", "Test, burn and retry", 1654170356000, $questions);
-            $quizzes = [$quiz1];
+            $quiz1 = new Quiz(1, "Rocks", "Go see a therapist.", 1654130356000, $questions);
+            $quiz1 = new Quiz(2, "Oil and gas", "Burn. Just burn.", 1652170356000, $questions);
+            $quizzes = [$quiz1, $quiz2, $quiz3];
 
 
             echo "<ul>";
             foreach ($quizzes as $quiz) {
-                echo "<li> Quiz $quiz->id: $quiz->name </li>";
+                echo "<li> <a href='/quiz/$quiz->id'> Quiz $quiz->id: $quiz->name </a> </li>";
             }
             echo "</ul>";
         }
