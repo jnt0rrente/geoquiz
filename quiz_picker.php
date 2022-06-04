@@ -106,6 +106,12 @@
             $this->correct_coption = $correct_option;
         }
     }
+
+    class DatabaseInterface {
+        public function __construct() {
+            
+        }
+    }
     ?>
 </body>
 
