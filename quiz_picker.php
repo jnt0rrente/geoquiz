@@ -34,6 +34,12 @@
     $databaseInterface = new DatabaseInterface();
     $quizManager = new QuizManager($databaseInterface);
 
+
+    if (isset($_POST["logout"])) {
+        unset($_SESSION["username"]);
+    }
+    
+
     if (isset($_POST["username"])) {
         $username = $_POST["username"];
         $_SESSION["username"] = $username;
