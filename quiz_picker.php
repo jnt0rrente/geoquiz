@@ -38,13 +38,11 @@
         $username = $_POST["username"];
         $_SESSION["username"] = $username;
         
-        echo "<h2>All quizzes</h2>";
         $quizManager->showQuizzes();
 
     } else if (isset($_SESSION["username"])) {
         $username = $_SESSION["username"];
 
-        echo "<h2>All quizzes</h2>";
         $quizManager->showQuizzes();
 
     } else {
@@ -57,6 +55,12 @@
         ";
     }
 
+    $logoutAble = $_SESSION["username"]  ? "" : "disabled";
+    echo "
+        <form action='#' method='post'>
+            <input type='submit' name='logout' value='Log out' $logoutAble />
+        </form>
+    ";
 
 
     class QuizManager {
@@ -75,7 +79,7 @@
             $quiz3 = new Quiz(2, "Oil and gas", "Burn. Just burn.", 1652170356000, $questions);
             $quizzes = [$quiz1, $quiz2, $quiz3];
 
-
+            echo "<h2>These are all our quizzes, $username</h2>";
             echo "<ul>";
             foreach ($quizzes as $quiz) {
                 echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->name </a> </li>";
