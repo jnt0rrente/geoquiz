@@ -38,12 +38,15 @@
         $username = $_POST["username"];
         $_SESSION["username"] = $username;
         
-        echo "All quizzes";
-    }
-    if (isset($_SESSION["username"])) {
+        echo "<h2>All quizzes</h2>";
+        $quizManager->showQuizzes();
+
+    } else if (isset($_SESSION["username"])) {
         $username = $_SESSION["username"];
 
-        echo "All quizzes";
+        echo "<h2>All quizzes</h2>";
+        $quizManager->showQuizzes();
+
     } else {
         echo "
             <h2>Enter your username:</h2>
