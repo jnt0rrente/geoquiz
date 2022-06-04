@@ -38,7 +38,7 @@
     if (isset($_POST["logout"])) {
         unset($_SESSION["username"]);
     }
-    
+
 
     if (isset($_POST["username"])) {
         $username = $_POST["username"];
@@ -76,6 +76,7 @@
 
         public function showQuizzes() {
             //$quizzes = $this->dbInterface->retrieveQuizzes();
+            $username = $_SESSION['username'];
             
             $question1 = new Question("Question One", ["One", "Two", "Three", "Four"], "a");
             $questions = [$question1];
@@ -85,7 +86,7 @@
             $quiz3 = new Quiz(2, "Oil and gas", "Burn. Just burn.", 1652170356000, $questions);
             $quizzes = [$quiz1, $quiz2, $quiz3];
 
-            echo "<h2>These are all our quizzes, $username</h2>";
+            echo "<h2>These are all our quizzes, $username </h2>";
             echo "<ul>";
             foreach ($quizzes as $quiz) {
                 echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->name </a> </li>";
