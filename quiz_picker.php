@@ -47,9 +47,9 @@
     } else {
         echo "
             <h2>Enter your username:</h2>
-            <form action='#'>
-                <input type=text name='txtUsername' />
-                <input type=submit name='username' value='Log in' />
+            <form action='#' method='post'>
+                <input type=text name='username' />
+                <input type=submit name='btnUser' value='Log in' />
             </form>
         ";
     }
@@ -109,7 +109,7 @@
 
     class DatabaseInterface {
         public function __construct() {
-            
+
         }
     }
     ?>
