@@ -30,6 +30,7 @@
 
     <?php
     session_start();
+    require_once("database.php");
 
     $databaseInterface = new DatabaseInterface();
     $quizManager = new QuizManager($databaseInterface);
@@ -122,41 +123,6 @@
             $this->title = $title;
             $this->options = $options;
             $this->correct_coption = $correct_option;
-        }
-    }
-
-    class DatabaseInterface {
-        private $dbAddress;
-        private $dbName;
-        private $dbUsername;
-        private $dbPassword;
-
-        private $dbConnection;
-
-        public function __construct() {
-            $this->dbAddress = "localhost";
-            $this->dbName = "geoquiz";
-            $this->dbUsername = "DBUSER2021";
-            $this->dbPassword = "DBPSWD2021";
-
-            $this->connect();
-        }
-
-        private function connect() {
-            $this->dbConnection = new mysqli(
-                $this->dbAddress,
-                $this->dbUsername,
-                $this->dbPassword,
-                $this->dbName
-            );
-        }
-
-        public function read_quizzes() {
-
-        }
-
-        public function add_quiz() {
-
         }
     }
 
