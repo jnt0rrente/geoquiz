@@ -26,13 +26,11 @@ class UploadManager {
         }.bind(this);
         reader.readAsText(file);
 
-        console.log(result);
-        this.parsedQuiz = new FormlParser().parse(result);
-
+        this.fileContent = result;
     }
 
     upload() {
-        var quiz = this.parsedQuiz;
+        var quiz = new FormlParser().parse(this.fileContent);;
         $.ajax({
             url: '/quiz_upload.php',
             method: 'POST',
