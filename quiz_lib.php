@@ -78,7 +78,7 @@ class QuizManager {
 
         public function displaySingleQuizPage($id) {
             $quiz = $this->getSingleQuizById($id);
-            echo var_dump($quiz);
+            
             if ($quiz == NULL) {
                 echo "<h2>Error: this quiz does not exist</h2>";
                 exit;
