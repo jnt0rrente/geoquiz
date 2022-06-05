@@ -52,6 +52,7 @@
 
         public function readQuestionsByQuizId($id) {
             $this->connect();
+            echo "FF";
             $selectQuestionPrepared = "select q.* from question q, quiz z where (select count(*) from contains c where id_cuestionario = z.id and id_pregunta = q.id ) and z.id = ?";
             $selectQuestionPrepared->bind_param("i", $id);
             $questionsArray = array();
