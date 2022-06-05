@@ -36,15 +36,19 @@
             
         }
 
+        public function runQuery($query) {
+            if (!$this->dbConnection->query($query)) {
+                echo "\nDatabase error: " . $this->dbConnection->error;
+                return false;
+            }
+        }
+
         public function add_quiz($newQuiz) {
             $this->connect();
 
             $quizInsertStatement = "INSERT INTO `quiz`(`title`, `description`) VALUES ('$newQuiz->title','$newQuiz->description')";
             
-            if (!$this->dbConnection->query($quizInsertStatement)) {
-                echo "\ndatabase error: " . $this->dbConnection->error;
-                return false;
-            }
+            $this->runQuery($quizInsertStatement);
 
             $thisQuizId = $this->dbConnection->insert_id;
 
@@ -52,14 +56,14 @@
                 $questionInsertStatement = "INSERT INTO 'question'('title','opt1','opt2','opt3','opt4','correct_option') 
                                             VALUES ('$question->title','$question->options[0]','$question->options[1]','$question->options[2]','$question->options[3]','$question->correct_opion')";
                 
-                $this->dbConnection->query($questionInsertStatement);
+                $this->runQuery($questionInsertStatement);
                 
                 $thatQuestionId = $this->dbConnection->insert_id;
 
                 $containsInsertStatement = "INSERT INTO 'contains'('id_cuestionario','id_pregunta') 
                                             VALUES ('$thisQuizId','$thatQuestionId')";
 
-                $this->dbConnection->query($containsInsertStatement);
+                $this->runQuery($containsInsertStatement);
             }
 
             $this->disconnect();
