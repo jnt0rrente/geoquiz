@@ -51,7 +51,7 @@ class UploadManager {
     }
 
     onUploadError(error) {
-        console.log("Error. Server response: " + error);
+        console.log("Error. Server response: " + JSON.stringify(error));
     }
 
 }
