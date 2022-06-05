@@ -43,6 +43,7 @@
                                     VALUES ('$newQuiz->title','$newQuiz->description')";
             
             if (!$this->dbConnection->query($quizInsertStatement)) {
+                echo "AYO";
                 return false;
             }
 
