@@ -65,6 +65,7 @@ class FormlParser {
         quiz.questions = [];
 
         var parsedXML = new DOMParser().parseFromString(content, "text/xml");
+        console.log(JSON.stringify(parsedXML));
         var headerChildren = parsedXML.getElementsByTagName("header")[0].children;
         quiz.title = headerChildren[0];
         quiz.description = headerChildren[1];
