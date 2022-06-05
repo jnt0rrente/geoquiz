@@ -84,15 +84,15 @@
             $quizArray = array();
 
             foreach ($quizAssocArray as $eachQuiz) {
-                $questionsAssocArray = $this->dbInterface->readQuestionsByQuizId($eachQuiz["id"]); //associative array
-                $questionsArray = array();
+                $readQuestionsArray = $this->dbInterface->readQuestionsByQuizId($eachQuiz["id"]);
+                $quizQuestionsArray = array();
 
-                foreach ($questionsAssocArray as $eachQuestion) {
+                foreach ($readQuestionsArray as $eachQuestion) {
                     $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
-                    $questionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
+                    $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
                 }
 
-                $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $eachQuiz["timestamp"], $questionsArray);
+                $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $eachQuiz["timestamp"], $quizQuestionsArray);
             }
 
             return $quizArray;
