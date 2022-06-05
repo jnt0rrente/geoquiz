@@ -27,7 +27,7 @@ class UploadManager {
     }
 
     upload(fileContent) {
-        quiz = new FormlParser().parse(fileContent);
+        var quiz = new FormlParser().parse(fileContent);
         $.ajax({
             url: '/quiz_upload.php',
             method: 'POST',
@@ -59,6 +59,7 @@ class FormlParser {
         var parsedXML = new DOMParser().parseFromString(content, "text/xml");
 
         quiz.title = parsedXML.getElementsByTagName("title")[0].nodeValue;
+        console.log(JSON.stringify(parsedXML.getElementsByTagName("title")[0]));
         quiz.description = parsedXML.getElementsByTagName("description")[0].nodeValue;
         quiz.questions = [];
 
@@ -73,13 +74,10 @@ class FormlParser {
             for (let j = 0; j < options.length; j++) {
                 jsonQuestion.options.push(options[j].getAttribute("text"));
             }
-
-            console.log(JSON.stringify(jsonQuestion));
-
-            console.log(JSON.stringify(quiz));
             quiz.questions.push(jsonQuestion);
         }
 
+        console.log(JSON.stringify(quiz));
         return quiz;
     }
 }
