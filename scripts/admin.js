@@ -74,5 +74,5 @@ class FormlParser {
     }
 }
 
-var formlHandler = new FormlHandler();
+var formlHandler = new FormlParser();
 var uploadManager = new UploadManager();
