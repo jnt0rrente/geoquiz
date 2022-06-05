@@ -28,7 +28,7 @@
             );
 
             if ($this->dbConnection->connect_errno) {
-                echo "db error: " . $this->dbConnection->connect_error;
+                echo "database error: " . $this->dbConnection->connect_error;
             }
         }
 
@@ -43,7 +43,7 @@
                                     VALUES ('$newQuiz->title','$newQuiz->description')";
             
             if (!$this->dbConnection->query($quizInsertStatement)) {
-                echo "AYO";
+                echo "\ndatabase error: " . $this->dbConnection->error;
                 return false;
             }
 
