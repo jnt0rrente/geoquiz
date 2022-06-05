@@ -59,7 +59,7 @@ class FormlParser {
         var parsedXML = new DOMParser().parseFromString(content, "text/xml");
 
         quiz.title = parsedXML.getElementsByTagName("title")[0].nodeValue;
-        console.log(JSON.stringify(parsedXML.getElementsByTagName("title")[0]));
+        console.log(JSON.stringify(parsedXML.getElementsByTagName("title")));
         quiz.description = parsedXML.getElementsByTagName("description")[0].nodeValue;
         quiz.questions = [];
 
