@@ -40,6 +40,7 @@
             if (!$stmt->execute()) {
                 echo "\nDatabase error: " . $stmt->error;
                 return false;
+                exit;
             }
         }
 
