@@ -26,6 +26,10 @@
                 $this->dbPassword,
                 $this->dbName
             );
+
+            if ($this->dbConnection->connect_errno) {
+                echo "db error: " . $this->dbConnection->connect_error;
+            }
         }
 
         public function read_quizzes() {
