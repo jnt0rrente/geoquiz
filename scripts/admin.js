@@ -15,9 +15,9 @@ class UploadManager {
 
 
         var reader = new FileReader();
-        reader.onload = function() {
+        reader.onload = function(e) {
             try {
-                this.fileContent = reader.result;
+                this.fileContent = e.target.result;
             } catch (exception) {
                 console.log("Error: " + exception.message);
             }
