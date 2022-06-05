@@ -39,7 +39,6 @@
         public function executeStatement($stmt) {
             if (!$stmt->execute()) {
                 echo "\nDatabase error: " . $stmt->error;
-                return false;
                 exit;
             }
         }
@@ -64,8 +63,7 @@
             foreach ($newQuiz->questions as $question) {
                 //preparing and inserting each question object
                 $questionInsertPrepared = $this->dbConnection->prepare($questionInsertStatement);
-                echo "\n\n" . $question->options[1] . "\n\n";
-                $questionInsertPrepared->bind_param("ssssss", $question->title, $question->options[0], $question->options[1], $question->options[2], $question->options[3], $question->correct_option);
+                $questionInsertPrepared->bind_param("ssssss", $question->text, $question->options[0], $question->options[1], $question->options[2], $question->options[3], $question->correct_option);
                 $this->executeStatement($questionInsertPrepared);
                 
                 //save the new question id
