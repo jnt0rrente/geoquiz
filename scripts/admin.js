@@ -62,14 +62,14 @@ class FormlParser {
         quiz.description = parsedXML.getElementsByTagName("description")[0].nodeValue;
         quiz.questions = [];
 
-
-        Array.from(parsedXML.getElementsByTagName("question")).forEach(question => {
+        var xmlQuestions = parsedXML.getElementsByTagName("question");
+        for (let i = 0; i < xmlQuestions.length; i++) {
             var jsonQuestion = {};
             jsonQuestion.text = question.getAttribute("text");
             jsonQuestion.correct_option = question.getAttribute("accepted");
 
             quiz.questions.push(jsonQuestion);
-        });
+        }
 
         return quiz;
     }
