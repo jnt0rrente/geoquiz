@@ -13,22 +13,25 @@ class UploadManager {
             return;
         }
 
+
         var reader = new FileReader();
         reader.onload = function() {
             try {
+                console.log(reader.result);
                 this.fileContent = reader.result;
             } catch (exception) {
                 console.log("Error: " + exception.message);
             }
-        }.bind(this)
-
+        }.bind(this);
         reader.readAsText(file);
+
+
         console.log(this.fileContent);
         this.parsedQuiz = new FormlParser().parse(this.fileContent);
 
     }
 
-    upload(fileContent) {
+    upload() {
         var quiz = this.parsedQuiz;
         $.ajax({
             url: '/quiz_upload.php',
