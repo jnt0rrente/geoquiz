@@ -47,8 +47,6 @@ class QuizManager {
                 exit;
             }
 
-            echo "\nHELO ". var_dump($quiz);
-
             try {
                 $readQuestionsArray = $this->dbInterface->readQuestionsByQuizId($id);
             } catch (Exception $e) {
@@ -57,10 +55,12 @@ class QuizManager {
             }
             
             $quizQuestionsArray = array();
-
+            echo "A";
             foreach ($readQuestionsArray as $eachQuestion) {
                 $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
+                echo "B";
                 $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
+                echo "C";
             }
 
             return new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $quizQuestionsArray);
