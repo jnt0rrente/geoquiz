@@ -4,19 +4,8 @@ session_start();
 
 require_once("database.php");
 
-echo file_get_contents("php://input");
-
-if (isset($_POST["quiz"])) {
-    $receiver = new QuizUploadReceiver();
-    $receiver->receive($_POST["quiz"]);
-    echo "recibido";
-} else {
-    echo "no recibido";
-    echo "\nPOST: ";
-    print_r($_POST);
-    echo "\nGET: ";
-    print_r($_GET);
-}
+$decoded_post = json_decode(file_get_contents("php://input"), false);
+echo var_dump($decoded_post);
 
 class QuizUploadReceiver {
     private $db;
