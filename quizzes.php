@@ -79,17 +79,40 @@
             $this->dbInterface = $dbInterface;
         }
 
+        private function getQuizObjects() {
+            try {
+                $quizAssocArray = $this->dbInterface->read_quizzes();
+            } catch (Exception $e) {
+                echo "Database error: " . $e->getMessage() . "\n";
+                exit;
+            }
+            $quizArray = array();
+
+            foreach ($quizAssocArray as $eachQuiz) {
+                try {
+                    $readQuestionsArray = $this->dbInterface->readQuestionsByQuizId($eachQuiz["id"]);
+                } catch (Exception $e) {
+                    echo "Database error: " . $e->getMessage() . "\n";
+                    exit;
+                }
+                
+                $quizQuestionsArray = array();
+
+                foreach ($readQuestionsArray as $eachQuestion) {
+                    $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
+                    $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
+                }
+
+                $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $eachQuiz["timestamp"], $quizQuestionsArray);
+            }
+
+            return $quizArray;
+        }
+
         public function showQuizzes() {
-            //$quizzes = $this->dbInterface->retrieveQuizzes();
             $username = $_SESSION['username'];
             
-            $question1 = new Question("Question One", ["One", "Two", "Three", "Four"], "a");
-            $questions = [$question1];
-
-            $quiz1 = new Quiz(0, "Quiz zero", "Test, burn and retry", 1654170356000, $questions);
-            $quiz2 = new Quiz(1, "Rocks", "Go see a therapist.", 1654130356000, $questions);
-            $quiz3 = new Quiz(2, "Oil and gas", "Burn. Just burn.", 1652170356000, $questions);
-            $quizzes = [$quiz1, $quiz2, $quiz3];
+            $quizzes = $this->getQuizObjects();
 
             echo "<h2>These are all our quizzes, $username </h2>";
             echo "<ul>";
@@ -105,7 +128,7 @@
         public $title;
         public $description;
         public $timestamp;
-        public $questions = [];
+        public $questions = array();
 
         public function __construct($id, $title, $description, $timestamp, $questions) {
             $this->id = $id;
@@ -118,7 +141,7 @@
 
     class Question {
         public $text;
-        public $options = [];
+        public $options = array();
         public $correct_option;
 
         public function __construct($text, $options, $correct_option) {
