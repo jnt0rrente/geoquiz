@@ -29,6 +29,8 @@
                 exit;
             }
 
+            echo "\n" . var_dump($res);
+
             return $res->get_result();            
         }
 
