@@ -59,6 +59,8 @@
             }
 
             $this->disconnect();
+
+            return true;
         }
 
     }

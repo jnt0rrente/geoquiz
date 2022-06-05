@@ -25,7 +25,12 @@ class QuizUploadReceiver {
     public function receive($quiz) {
         $this->validateQuiz($quiz);
         
-        $this->db->add_quiz($quiz);
+        if ($this->db->add_quiz($quiz)) {
+            echo "quiz added";
+        } else {
+            echo "quiz not added";
+        }
+
     }
 
     //enforces that any given string is declared, not null and longer than 0 characters
