@@ -7,6 +7,7 @@ class UploadManager {
 
     read(files) {
         var file = files[0];
+        var content = "";
 
         if (!file.type.match(this.acceptedType)) {
             alert("mal tipo");
@@ -15,13 +16,7 @@ class UploadManager {
 
 
         var reader = new FileReader();
-        reader.onload = function(e) {
-            try {
-                this.fileContent = e.target.result;
-            } catch (exception) {
-                console.log("Error: " + exception.message);
-            }
-        }.bind(this);
+        reader.onload = this.onReaderLoad;
         reader.readAsText(file);
 
         console.log(this.fileContent);
@@ -38,6 +33,11 @@ class UploadManager {
             success: this.onUploadSuccess,
             error: this.onUploadError
         });
+    }
+
+    onReaderLoad(reader) {
+        console.log(JSON.stringify(reader));
+        this.fileContent = reader.result;
     }
 
     onUploadSuccess(data) {
