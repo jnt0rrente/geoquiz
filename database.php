@@ -39,7 +39,7 @@
         public function executeStatement($stmt) {
             if (!$stmt->execute()) {
                 echo "\nDatabase error: " . $stmt->error;
-                return false;
+                exit;
             }
         }
 
