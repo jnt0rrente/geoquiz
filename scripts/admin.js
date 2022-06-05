@@ -38,9 +38,9 @@ class UploadManager {
             method: 'POST',
             contentType: 'application/json',
             dataType: 'text',
-            data: {
+            data: JSON.stringify({
                 "quiz": quiz
-            },
+            }),
             success: this.onUploadSuccess,
             error: this.onUploadError
         });
