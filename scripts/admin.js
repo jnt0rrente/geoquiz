@@ -39,7 +39,7 @@ class UploadManager {
             contentType: 'application/json',
             dataType: 'text',
             data: {
-                quiz: quiz
+                "quiz": quiz
             },
             success: this.onUploadSuccess,
             error: this.onUploadError
