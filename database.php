@@ -29,8 +29,6 @@
                 exit;
             }
 
-            echo "\n" . var_dump($res);
-
             return $preparedQuery->get_result();            
         }
 

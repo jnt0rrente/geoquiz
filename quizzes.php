@@ -118,7 +118,7 @@
             echo "<ul>";
             foreach ($quizzes as $quiz) {
                 $date = date("d/m/Y", $quiz->timestamp);
-                echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title - $date </a> </li>";
+                echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title -" . $date . " </a> </li>";
             }
             echo "</ul>";
         }
