@@ -7,42 +7,84 @@ class UploadManager {
 
     read(files) {
         var file = files[0];
+        var content = "";
 
         if (!file.type.match(this.acceptedType)) {
             alert("mal tipo");
             return;
         }
 
+
         var reader = new FileReader();
         reader.onload = function() {
             try {
                 var fileContent = reader.result;
-                this.handler.handle(fileContent);
+                this.save(fileContent);
             } catch (exception) {
                 console.log("Error: " + exception.message);
             }
         }.bind(this)
-
         reader.readAsText(file);
     }
 
+    save(fileContent) {
+        this.fileContent = fileContent;
+    }
+
     upload() {
+        var quiz = new FormlParser().parse(this.fileContent);;
+        $.ajax({
+            url: '/quiz_upload.php',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'text',
+            data: JSON.stringify({
+                "quiz": quiz
+            }),
+            success: this.onUploadSuccess,
+            error: this.onUploadError
+        });
+    }
 
+    onUploadSuccess(response) {
+        console.log("Server response: " + response);
+    }
+
+    onUploadError(error) {
+        console.log("Error. Server response: " + error);
     }
 
 }
 
-class FormlHandler {
-    constructor() {
+//recibe el xml plano y devuelve un objeto de javascript
+class FormlParser {
+    parse(content) {
+        var quiz = {};
+        var parsedXML = new DOMParser().parseFromString(content, "text/xml");
 
+        quiz.title = parsedXML.getElementsByTagName("title")[0].childNodes[0].nodeValue;
+        quiz.description = parsedXML.getElementsByTagName("description")[0].childNodes[0].nodeValue;
+
+        quiz.questions = [];
+        var xmlQuestions = parsedXML.getElementsByTagName("question");
+        for (let i = 0; i < xmlQuestions.length; i++) {
+            var jsonQuestion = {};
+            jsonQuestion.text = xmlQuestions[i].getAttribute("text");
+            jsonQuestion.correct_option = xmlQuestions[i].getAttribute("accepted");
+            jsonQuestion.options = [];
+
+            var options = xmlQuestions[i].children;
+            for (let j = 0; j < options.length; j++) {
+                jsonQuestion.options.push(options[j].getAttribute("text"));
+            }
+            quiz.questions.push(jsonQuestion);
+        }
+
+
+        console.log(JSON.stringify(quiz));
+        return quiz;
     }
-
-    handle(content) {
-        this.rawFile = content;
-        console.log(content);
-    }
-
 }
 
-var formlHandler = new FormlHandler();
-var uploadManager = new UploadManager(formlHandler);
+var formlHandler = new FormlParser();
+var uploadManager = new UploadManager();

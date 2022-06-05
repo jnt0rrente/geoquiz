@@ -30,6 +30,7 @@
 
     <?php
     session_start();
+    require_once("database.php");
 
     $databaseInterface = new DatabaseInterface();
     $quizManager = new QuizManager($databaseInterface);
@@ -72,6 +73,8 @@
     }
 
     class QuizManager {
+        private $dbInterface;
+
         public function __construct(DatabaseInterface $dbInterface) {
             $this->dbInterface = $dbInterface;
         }
@@ -91,7 +94,7 @@
             echo "<h2>These are all our quizzes, $username </h2>";
             echo "<ul>";
             foreach ($quizzes as $quiz) {
-                echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->name </a> </li>";
+                echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title </a> </li>";
             }
             echo "</ul>";
         }
@@ -99,14 +102,14 @@
 
     class Quiz {
         public $id;
-        public $name;
+        public $title;
         public $description;
         public $timestamp;
         public $questions = [];
 
-        public function __construct($id, $name, $description, $timestamp, $questions) {
+        public function __construct($id, $title, $description, $timestamp, $questions) {
             $this->id = $id;
-            $this->name = $name;
+            $this->title = $title;
             $this->description = $description;
             $this->date = $date;
             $this->questions = $questions;
@@ -114,22 +117,17 @@
     }
 
     class Question {
-        public $title;
+        public $text;
         public $options = [];
         public $correct_option;
 
-        public function __construct($title, $options, $correct_option) {
-            $this->title = $title;
+        public function __construct($text, $options, $correct_option) {
+            $this->text = $text;
             $this->options = $options;
-            $this->correct_coption = $correct_option;
+            $this->correct_option = $correct_option;
         }
     }
 
-    class DatabaseInterface {
-        public function __construct() {
-
-        }
-    }
     ?>
 </body>
 
