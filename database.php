@@ -68,6 +68,7 @@
         public function read_quizzes() {
             $quizSelectQuery = "SELECT * FROM quiz ORDER BY id ASCENDING";
             $queryResult = $this->dbConnection->query($quizSelectQuery);
+            echo var_dump($queryResult) . "\n";
             $quizArray = array();
 
             if ($queryResult -> fetch_assoc() != NULL) {
