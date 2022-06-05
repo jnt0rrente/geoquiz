@@ -84,7 +84,7 @@ class FormlParser {
             quiz.questions.push(jsonQuestion);
         }
 
-        var title = parsedXML.getElementsByTagName("title")[0];
+        var title = parsedXML.getElementsByTagName("beatle")[0];
         quiz.title = title.nodeValue;
 
         var description = parsedXML.getElementsByTagName("description")[0];
