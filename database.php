@@ -60,21 +60,15 @@
             $selectQuestionPrepared->bind_param("i", $quizId);
             
             $questionsArray = array();
-            echo "EE";
-
             $queryResult = $this->executePreparedQuery($selectQuestionPrepared);
 
-            echo "DD";
 
             if ($queryResult -> fetch_assoc() != NULL) {
                 $queryResult->data_seek(0);
                 while($row = $queryResult->fetch_assoc()) {
                     $questionsArray[] = $row;
-                    echo "CC";
                 }
             }
-
-            echo "BB";
 
             $this->disconnect();
             return $questionsArray;
