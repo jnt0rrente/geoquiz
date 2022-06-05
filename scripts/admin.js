@@ -24,7 +24,7 @@ class UploadManager {
 
         reader.readAsText(file);
         console.log(this.fileContent);
-        this.parsedQuiz = new FormlParser.parse(this.fileContent);
+        this.parsedQuiz = new FormlParser().parse(this.fileContent);
 
     }
 
