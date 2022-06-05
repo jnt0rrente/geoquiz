@@ -21,7 +21,7 @@ class UploadManager {
                 var fileContent = reader.result;
                 this.save(fileContent);
             } catch (exception) {
-                console.log("Error: " + exception.message);
+                console.error("FileReader error: " + exception.message);
             }
         }.bind(this)
         reader.readAsText(file);
@@ -48,10 +48,11 @@ class UploadManager {
 
     onUploadSuccess(response) {
         console.log("Server response: " + response);
+        $()
     }
 
     onUploadError(error) {
-        console.log("Error. Server response: " + JSON.stringify(error));
+        console.error("Server error. Response: " + JSON.stringify(error));
     }
 
 }
@@ -80,8 +81,6 @@ class FormlParser {
             quiz.questions.push(jsonQuestion);
         }
 
-
-        console.log(JSON.stringify(quiz));
         return quiz;
     }
 }

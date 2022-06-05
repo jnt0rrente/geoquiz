@@ -51,7 +51,6 @@
             $questionInsertStatement = "INSERT INTO question(title, opt1, opt2, opt3, opt4, correct_option) VALUES (?, ?, ?, ?, ?, ?)";
             $containsInsertStatement = "INSERT INTO contains(id_cuestionario, id_pregunta) VALUES (?, ?)";
 
-
             //preparing and inserting the quiz object
             $quizInsertPrepared = $this->dbConnection->prepare($quizInsertStatement);
             $quizInsertPrepared->bind_param("ss", $newQuiz->title, $newQuiz->description);
@@ -59,7 +58,7 @@
 
             //save the new quiz id
             $thisQuizId = $this->dbConnection->insert_id;
-            echo "AA";
+
             foreach ($newQuiz->questions as $question) {
                 //preparing and inserting each question object
                 $questionInsertPrepared = $this->dbConnection->prepare($questionInsertStatement);
@@ -68,15 +67,15 @@
                 
                 //save the new question id
                 $thatQuestionId = $this->dbConnection->insert_id;
-                echo "BB".$question->text;
+                
                 //preparing and inserting the contains object
                 $containsInsertPrepared = $this->dbConnection->prepare($containsInsertStatement);
                 $containsInsertPrepared->bind_param("ii", $thisQuizId, $thatQuestionId);
                 $this->executeStatement($containsInsertPrepared);
             }
-            echo "CC";
+            
             $this->disconnect();
-            echo "DD";
+            
             return;
         }
 
