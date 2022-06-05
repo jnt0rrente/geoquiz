@@ -62,13 +62,12 @@ class UploadManager {
 class FormlParser {
     parse(content) {
         var quiz = {};
+        quiz.questions = [];
 
         var parsedXML = new DOMParser().parseFromString(content, "text/xml");
-
-        quiz.title = parsedXML.getElementsByTagName("header")[0].children[0];
-        console.log(JSON.stringify(parsedXML.getElementsByTagName("header")));
-        quiz.description = parsedXML.getElementsByTagName("description")[0].nodeValue;
-        quiz.questions = [];
+        var headerChildren = parsedXML.getElementsByTagName("header")[0].children;
+        quiz.title = headerChildren[0];
+        quiz.description = headerChildren[1];
 
         var xmlQuestions = parsedXML.getElementsByTagName("question");
         for (let i = 0; i < xmlQuestions.length; i++) {
