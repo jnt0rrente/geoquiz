@@ -83,6 +83,7 @@
             $quizAssocArray = $this->dbInterface->read_quizzes();
             $quizArray = array();
 
+            echo "BB";
             foreach ($quizAssocArray as $eachQuiz) {
                 $questionsAssocArray = $this->dbInterface->readQuestionsByQuizId($eachQuiz["id"]); //associative array
                 $questionsArray = array();
@@ -101,6 +102,7 @@
         public function showQuizzes() {
             $username = $_SESSION['username'];
             
+            echo "AA";
             $quizzes = $this->getQuizObjects();
 
             echo "<h2>These are all our quizzes, $username </h2>";
