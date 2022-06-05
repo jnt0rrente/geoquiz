@@ -66,7 +66,7 @@ class FormlParser {
         quiz.title = "";
         quiz.description = "";
 
-        var parsedXML = await new DOMParser().parseFromString(content, "text/xml");
+        var parsedXML = new DOMParser().parseFromString(content, "text/xml");
 
         var title = parsedXML.getElementsByTagName("title")[0];
         quiz.title = title.nodeValue;
