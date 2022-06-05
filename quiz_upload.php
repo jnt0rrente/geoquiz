@@ -7,7 +7,7 @@ if (isset($_POST["quiz"])) {
     $receiver->receive($_POST["quiz"]);
     echo "recibido";
 } else {
-    echo "no recibido"
+    echo "no recibido";
 }
 
 class QuizUploadReceiver {
