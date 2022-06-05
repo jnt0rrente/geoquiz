@@ -138,6 +138,7 @@
             $this->description = $description;
             $this->date = $date;
             $this->questions = $questions;
+            $this->timestamp = $timestamp;
         }
     }
 
