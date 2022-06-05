@@ -17,7 +17,7 @@ class UploadManager {
         reader.onload = function() {
             try {
                 var fileContent = reader.result;
-                this.handler.handle(fileContent);
+                this.upload(fileContent);
             } catch (exception) {
                 console.log("Error: " + exception.message);
             }
@@ -26,23 +26,53 @@ class UploadManager {
         reader.readAsText(file);
     }
 
-    upload() {
+    upload(fileContent) {
+        quiz = new FormlParser().parse(fileContent);
+        $.ajax({
+            url: '/quiz_upload.php',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: quiz,
+            success: this.onUploadSuccess,
+            error: this.onUploadError
+        });
+    }
 
+    onUploadSuccess(data) {
+        console.log("success:");
+        console.log(data);
+        alert("olee");
+    }
+
+    onUploadError() {
+        alert("cagaste");
     }
 
 }
 
-class FormlHandler {
-    constructor() {
+//recibe el xml plano y devuelve un objeto de javascript
+class FormlParser {
+    parse(content) {
+        var quiz = {};
 
+        var parsedXML = new DOMParser().parseFromString(content, "text/xml");
+
+        quiz.title = parsedXML.getElementsByTagName("title")[0].nodeValue;
+        quiz.description = parsedXML.getElementsByTagName("description")[0].nodeValue;
+        quiz.questions = [];
+
+        parsedXML.getElementsByTagName("question").forEach(question => {
+            jsonQuestion = {};
+            jsonQuestion.text = question.getAttribute("text");
+            jsonQuestion.correct_option = question.getAttribute("accepted");
+
+            quiz.questions.push(jsonQuestion);
+        });
+
+        return quiz;
     }
-
-    handle(content) {
-        this.rawFile = content;
-        console.log(content);
-    }
-
 }
 
 var formlHandler = new FormlHandler();
-var uploadManager = new UploadManager(formlHandler);
+var uploadManager = new UploadManager();

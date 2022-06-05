@@ -12,8 +12,6 @@
             $this->dbName = "geoquiz";
             $this->dbUsername = "DBUSER2021";
             $this->dbPassword = "DBPSWD2021";
-
-            
         }
 
         private function disconnect() {
@@ -37,8 +35,8 @@
         public function add_quiz($newQuiz) {
             $this->connect();
 
-            $quizInsertStatement = "INSERT INTO 'quiz'('name', 'description') 
-                                    VALUES ('$newQuiz->name','$newQuiz->description')";
+            $quizInsertStatement = "INSERT INTO 'quiz'('title', 'description') 
+                                    VALUES ('$newQuiz->title','$newQuiz->description')";
             
             if (!$this->dbConnection->query($quizInsertStatement)) {
                 return false;
