@@ -14,6 +14,24 @@
             $this->dbPassword = "DBPSWD2021";
         }
 
+        private function executeStatement($stmt) {
+            if (!$stmt->execute()) {
+                echo "\nDatabase error: " . $stmt->error;
+                exit;
+            }
+        }
+
+        //devuelve el resultado de la query antes de llamar a fetch_*()
+        private function executePreparedQuery($preparedQuery) {
+            $res = $preparedQuery->execute();
+            if (!$res) {
+                echo "\nDatabase error: " . $preparedQuery->error;
+                exit;
+            }
+
+            return $res->get_result();            
+        }
+
         private function disconnect() {
             $this->dbConnection->close();
             $this->dbConnection = NULL;
@@ -32,15 +50,34 @@
             }
         }
 
-        public function read_quizzes() {
-            
+        public function readQuestionsByQuizId($id) {
+            $selectQuestionPrepared = "select q.* from question q, quiz z where (select count(*) from contains c where id_cuestionario = z.id and id_pregunta = q.id ) and z.id = ?";
+            $selectQuestionPrepared->bind_param("i", $id);
+            $questionsArray = array();
+
+            $queryResult = $this->executePreparedQuery($selectQuestionPrepared);
+
+            if ($queryResult -> fetch_assoc() != NULL) {
+                $queryResult->data_seek(0);
+                while($row = $queryResult->fetch_assoc()) {
+                    $questionsArray[] = $row;
+                }
+            }
         }
 
-        public function executeStatement($stmt) {
-            if (!$stmt->execute()) {
-                echo "\nDatabase error: " . $stmt->error;
-                exit;
+        public function read_quizzes() {
+            $quizSelectQuery = "SELECT * FROM quiz ORDER BY id ASCENDING";
+            $queryResult = $this->dbConnection->query($quizSelectQuery);
+            $quizArray = array();
+
+            if ($queryResult -> fetch_assoc() != NULL) {
+                $queryResult->data_seek(0);
+                while($row = $queryResult->fetch_assoc()) {
+                    $quizArray[] = $row; //devolveremos las filas como array asociativo, no un objeto Quiz
+                }
             }
+
+            return $quizArray;
         }
 
         public function add_quiz($newQuiz) {
