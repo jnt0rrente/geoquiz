@@ -16,13 +16,13 @@ class UploadManager {
         var reader = new FileReader();
         reader.onload = function() {
             try {
-                var fileContent = reader.result;
-                this.upload(fileContent);
+                this.fileContent = reader.result;
             } catch (exception) {
                 console.log("Error: " + exception.message);
             }
         }.bind(this)
 
+        console.log(file);
         reader.readAsText(file);
     }
 
@@ -45,7 +45,8 @@ class UploadManager {
         alert("olee");
     }
 
-    onUploadError() {
+    onUploadError(error) {
+        console.log(error);
         alert("cagaste");
     }
 
