@@ -88,8 +88,7 @@ class QuizManager {
             echo "<p> $quiz->description </p>";
 
             for ($i = 0; $i < count($quiz->questions); $i++) {
-                echo "Count: " . count($quiz->questions);
-                echo "\n" . var_dump($quiz->questions);
+                echo "\n" . var_dump($quiz->questions[$i]);
                 $text = $quiz->questions[$i]->text;
                 echo "<p>" . $text . "</p>";
             }
