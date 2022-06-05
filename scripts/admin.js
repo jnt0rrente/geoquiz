@@ -38,7 +38,9 @@ class UploadManager {
             method: 'POST',
             contentType: 'application/json',
             dataType: 'text',
-            data: quiz,
+            data: {
+                quiz: quiz
+            },
             success: this.onUploadSuccess,
             error: this.onUploadError
         });
@@ -46,12 +48,10 @@ class UploadManager {
 
     onUploadSuccess(response) {
         console.log("success:" + response);
-        alert("olee");
     }
 
     onUploadError(error) {
         console.log(error);
-        alert("cagaste");
     }
 
 }
