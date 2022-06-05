@@ -47,11 +47,11 @@ class UploadManager {
     }
 
     onUploadSuccess(response) {
-        console.log("success: " + response);
+        console.log("Server response: " + response);
     }
 
     onUploadError(error) {
-        console.log(error);
+        console.log("Error. Server response: " + error);
     }
 
 }

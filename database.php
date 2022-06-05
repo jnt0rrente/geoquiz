@@ -39,8 +39,7 @@
         public function add_quiz($newQuiz) {
             $this->connect();
 
-            $quizInsertStatement = "INSERT INTO 'quiz'('title', 'description') 
-                                    VALUES ('$newQuiz->title','$newQuiz->description')";
+            $quizInsertStatement = "INSERT INTO `quiz`(`title`, `description`) VALUES ('$newQuiz->title','$newQuiz->description')";
             
             if (!$this->dbConnection->query($quizInsertStatement)) {
                 echo "\ndatabase error: " . $this->dbConnection->error;
