@@ -84,12 +84,8 @@ class FormlParser {
             quiz.questions.push(jsonQuestion);
         }
 
-        var title = parsedXML.getElementsByTagName("beatle")[0];
-        quiz.title = title.nodeValue;
-
-        var description = parsedXML.getElementsByTagName("description")[0];
-        quiz.description = description.nodeValue;
-
+        quiz.title = parsedXML.getElementsByTagName("title")[0].childNodes[0].nodeValue;
+        quiz.description = parsedXML.getElementsByTagName("description")[0].childNodes[0].nodeValue;
 
         console.log(JSON.stringify(quiz));
         return quiz;

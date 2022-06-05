@@ -3,7 +3,6 @@
 <forml>
     <header>
         <title>Sample quiz</title>
-        <beatle>Sample quiz</beatle>
         <description>This is an example questionnaire for the GeoQuiz website.</description>
     </header>
     <body>
