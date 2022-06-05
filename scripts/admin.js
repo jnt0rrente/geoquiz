@@ -63,12 +63,16 @@ class FormlParser {
     parse(content) {
         var quiz = {};
         quiz.questions = [];
+        quiz.title = "";
+        quiz.description = "";
 
-        var parsedXML = new DOMParser().parseFromString(content, "text/xml");
-        console.log(JSON.stringify(parsedXML));
-        var headerChildren = parsedXML.getElementsByTagName("header")[0].children;
-        quiz.title = headerChildren[0];
-        quiz.description = headerChildren[1];
+        var parsedXML = await new DOMParser().parseFromString(content, "text/xml");
+
+        var title = parsedXML.getElementsByTagName("title")[0];
+        quiz.title = title.nodeValue;
+
+        var description = parsedXML.getElementsByTagName("description")[0];
+        quiz.description = description.nodeValue;
 
         var xmlQuestions = parsedXML.getElementsByTagName("question");
         for (let i = 0; i < xmlQuestions.length; i++) {
