@@ -29,7 +29,7 @@
     </nav>
 
     <?php
-        require_once("quiz_list.php");
+        require_once("quiz_lib.php");
         require_once("database.php");
 
         $databaseInterface = new DatabaseInterface();
