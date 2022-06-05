@@ -52,17 +52,18 @@
 
         public function readQuestionsByQuizId($quizId) {
             $this->connect();
-            echo "GG";
-            $selectQuestionPrepared = "select q.* from question q, quiz z where z.id = ? AND (select count(*) from contains c where id_cuestionario = z.id and id_pregunta = q.id )";
-            echo "FF";
-            $selectQuestionPrepared->bind_param("s", $quizId);
-            echo "HH";
+
+            $selectQuestionQuery = "select q.* from question q, quiz z where z.id = ? AND (select count(*) from contains c where id_cuestionario = z.id and id_pregunta = q.id )";
+            $selectQuestionPrepared = $this->dbConnection->prepare($selectQuestionQuery);
+            $selectQuestionPrepared->bind_param("i", $quizId);
+            
             $questionsArray = array();
             echo "EE";
 
             $queryResult = $this->executePreparedQuery($selectQuestionPrepared);
 
             echo "DD";
+
             if ($queryResult -> fetch_assoc() != NULL) {
                 $queryResult->data_seek(0);
                 while($row = $queryResult->fetch_assoc()) {
