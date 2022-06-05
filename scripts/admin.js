@@ -47,7 +47,7 @@ class UploadManager {
     }
 
     onUploadSuccess(response) {
-        console.log("success:" + response);
+        console.log("success: " + response);
     }
 
     onUploadError(error) {

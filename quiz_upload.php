@@ -8,6 +8,7 @@ if (isset($_POST["quiz"])) {
     echo "recibido";
 } else {
     echo "no recibido";
+    echo var_dump($_POST);
 }
 
 class QuizUploadReceiver {
