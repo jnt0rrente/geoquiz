@@ -48,7 +48,6 @@ class UploadManager {
 
     onUploadSuccess(response) {
         console.log("Server response: " + response);
-        $()
     }
 
     onUploadError(error) {
