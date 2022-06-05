@@ -66,6 +66,8 @@
         }
 
         public function read_quizzes() {
+            $this->connect();
+
             $quizSelectQuery = "SELECT * FROM quiz ORDER BY id ASCENDING";
 
 
@@ -83,6 +85,7 @@
                 }
             }
 
+            $this->disconnect();
             return $quizArray;
         }
 
