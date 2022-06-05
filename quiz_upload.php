@@ -1,8 +1,10 @@
 <?php
 
-//require_once("database.php");
+session_start();
 
-if (isset($_POST['quiz'])) {
+require_once("database.php");
+
+if (isset($_POST["quiz"])) {
     $receiver = new QuizUploadReceiver();
     $receiver->receive($_POST["quiz"]);
     echo "recibido";
