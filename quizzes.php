@@ -85,6 +85,7 @@
 
             foreach ($quizAssocArray as $eachQuiz) {
                 $readQuestionsArray = $this->dbInterface->readQuestionsByQuizId($eachQuiz["id"]);
+                echo "AA";
                 $quizQuestionsArray = array();
 
                 foreach ($readQuestionsArray as $eachQuestion) {
@@ -101,7 +102,6 @@
         public function showQuizzes() {
             $username = $_SESSION['username'];
             
-            echo "AA";
             $quizzes = $this->getQuizObjects();
 
             echo "<h2>These are all our quizzes, $username </h2>";
