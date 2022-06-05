@@ -80,12 +80,22 @@
         }
 
         private function getQuizObjects() {
-            $quizAssocArray = $this->dbInterface->read_quizzes();
+            try {
+                $quizAssocArray = $this->dbInterface->read_quizzes();
+            } catch (Exception $e) {
+                echo "Database error: " . $e->getMessage() . "\n";
+                exit;
+            }
             $quizArray = array();
 
             foreach ($quizAssocArray as $eachQuiz) {
-                $readQuestionsArray = $this->dbInterface->readQuestionsByQuizId($eachQuiz["id"]);
-                echo "AA";
+                try {
+                    $readQuestionsArray = $this->dbInterface->readQuestionsByQuizId($eachQuiz["id"]);
+                } catch (Exception $e) {
+                    echo "Database error: " . $e->getMessage() . "\n";
+                    exit;
+                }
+                
                 $quizQuestionsArray = array();
 
                 foreach ($readQuestionsArray as $eachQuestion) {
