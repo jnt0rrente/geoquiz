@@ -24,7 +24,13 @@ class QuizUploadReceiver {
 
     public function receive($quiz) {
         $this->validateQuiz($quiz);
-        $this->db->add_quiz($quiz);
+
+        try {
+            $this->db->add_quiz($quiz);
+        } catch (Exception $e) {
+            echo "Database error: " . $e->getMessage() . "\n";
+            exit;
+        }
     }
 
     //enforces that any given string is declared, not null and longer than 0 characters

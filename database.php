@@ -15,8 +15,8 @@
         }
 
         private function disconnect() {
-            $this->dbconnection->close();
-            $this->dbconnection = NULL;
+            $this->dbConnection->close();
+            $this->dbConnection = NULL;
         }
 
         private function connect() {
