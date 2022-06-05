@@ -5,6 +5,9 @@ require_once("database.php");
 if (isset($_POST["quiz"])) {
     $receiver = new QuizUploadReceiver();
     $receiver->receive($_POST["quiz"]);
+    echo "recibido";
+} else {
+    echo "no recibido"
 }
 
 class QuizUploadReceiver {
