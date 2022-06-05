@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/admin.js"></script>
 </head>
 
 <body>
@@ -108,6 +107,35 @@
             return $quizArray;
         }
 
+        //devuelve un objeto quiz con sus preguntas y sus atributos. si no existe ninguno con la ID, devuelve directamente NULL.
+        private function getSingleQuizById($id) {
+            try {
+                $quiz = $this->dbInterface->readQuizById($id);
+                if ($quiz == NULL) {
+                    return NULL;
+                }
+            } catch (Exception $e) {
+                echo "Database error: " . $e->getMessage() . "\n";
+                exit;
+            }
+
+            try {
+                $readQuestionsArray = $this->dbInterface->readQuestionsByQuizId($id);
+            } catch (Exception $e) {
+                echo "Database error: " . $e->getMessage() . "\n";
+                exit;
+            }
+            
+            $quizQuestionsArray = array();
+
+            foreach ($readQuestionsArray as $eachQuestion) {
+                $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
+                $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
+            }
+
+            return new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $quizQuestionsArray);
+        }
+
         public function showQuizzes() {
             $username = $_SESSION['username'];
             
@@ -119,6 +147,18 @@
                 echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title</a> - $date </li>";
             }
             echo "</ul>";
+        }
+
+        public function displaySingleQuizPage($id) {
+            $quiz = $this->getSingleQuizById($id);
+
+
+            echo "<h2> $quiz->title </h2>";
+            echo "<p> $quiz->description </p>";
+
+            for ($i = 0; $i < count($quiz->questions); $i++) {
+                echo "<p>" . $quiz->questions[$i]->text . "</p>";
+            }
         }
     }
 
