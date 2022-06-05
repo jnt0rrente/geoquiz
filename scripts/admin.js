@@ -15,19 +15,19 @@ class UploadManager {
 
 
         var reader = new FileReader();
+        var result;
         reader.onload = function() {
             try {
                 console.log(reader.result);
-                this.fileContent = reader.result;
+                result = reader.result;
             } catch (exception) {
                 console.log("Error: " + exception.message);
             }
         }.bind(this);
         reader.readAsText(file);
 
-
-        console.log(this.fileContent);
-        this.parsedQuiz = new FormlParser().parse(this.fileContent);
+        console.log(result);
+        this.parsedQuiz = new FormlParser().parse(result);
 
     }
 
