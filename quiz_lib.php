@@ -60,6 +60,7 @@ class QuizManager {
                 $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
             }
 
+            echo var_dump($quizQuestionsArray);
             return new Quiz($quiz["id"], $quiz["title"], $quiz["description"], $quizQuestionsArray);
         }
 
@@ -88,7 +89,6 @@ class QuizManager {
             echo "<p> $quiz->description </p>";
 
             for ($i = 0; $i < count($quiz->questions); $i++) {
-                echo "\n" . var_dump($quiz->questions[$i]);
                 $text = $quiz->questions[$i]->text;
                 echo "<p>" . $text . "</p>";
             }
