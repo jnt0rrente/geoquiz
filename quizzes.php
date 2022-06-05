@@ -102,8 +102,7 @@
                     $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
                     $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
                 }
-                echo "antes de construir" . $eachQuiz["created_at"];
-                $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $eachQuiz["created_at"], $quizQuestionsArray);
+                $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $quizQuestionsArray);
             }
 
             return $quizArray;
@@ -117,8 +116,6 @@
             echo "<h2>These are all our quizzes, $username </h2>";
             echo "<ul>";
             foreach ($quizzes as $quiz) {
-                echo "en el foreach" . $quiz->timestamp;
-                $date = date("d/m/Y", $quiz->timestamp);
                 echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title</a> - $date </li>";
             }
             echo "</ul>";
@@ -129,16 +126,14 @@
         public $id;
         public $title;
         public $description;
-        public $timestamp;
         public $questions = array();
 
-        public function __construct($id, $title, $description, $timestamp, $questions) {
+        public function __construct($id, $title, $description, $questions) {
             $this->id = $id;
             $this->title = $title;
             $this->description = $description;
             $this->date = $date;
             $this->questions = $questions;
-            $this->timestamp = $timestamp;
         }
     }
 
