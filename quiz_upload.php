@@ -15,8 +15,10 @@ class QuizUploadReceiver {
     }
 
     public function receive($data) {
-        $decoded_quiz = json_decode($data,false)->quiz; //false para poder utilizar el objeto como un objeto de PHP, en lugar de un array asociativo
-        echo $decoded_quiz;
+        echo $data;
+        echo "\n";
+        $decoded = json_decode($data,false); //false para poder utilizar el objeto como un objeto de PHP, en lugar de un array asociativo
+        echo $decoded;
     }
 }
 
