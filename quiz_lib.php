@@ -47,6 +47,8 @@ class QuizManager {
                 exit;
             }
 
+            echo "\nHELO ". var_dump($quiz);
+
             try {
                 $readQuestionsArray = $this->dbInterface->readQuestionsByQuizId($id);
             } catch (Exception $e) {
