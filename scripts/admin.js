@@ -65,10 +65,12 @@ class FormlParser {
         var xmlQuestions = parsedXML.getElementsByTagName("question");
         for (let i = 0; i < xmlQuestions.length; i++) {
             var jsonQuestion = {};
-            jsonQuestion.text = question.getAttribute("text");
-            jsonQuestion.correct_option = question.getAttribute("accepted");
+            jsonQuestion.text = xmlQuestions[i].getAttribute("text");
+            jsonQuestion.correct_option = xmlQuestions[i].getAttribute("accepted");
 
+            console.log(JSON.stringify(jsonQuestion));
             quiz.questions.push(jsonQuestion);
+
         }
 
         return quiz;
