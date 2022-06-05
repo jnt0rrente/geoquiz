@@ -78,7 +78,7 @@ class QuizManager {
 
         public function displaySingleQuizPage($id) {
             $quiz = $this->getSingleQuizById($id);
-            
+
             if ($quiz == NULL) {
                 echo "<h2>Error: this quiz does not exist</h2>";
                 exit;
@@ -88,7 +88,9 @@ class QuizManager {
             echo "<p> $quiz->description </p>";
 
             for ($i = 0; $i < count($quiz->questions); $i++) {
-                echo "<p>" . $quiz->questions[$i]->text . "</p>";
+                echo "aaa " . $i;
+                $text = $quiz->questions[$i]->text;
+                echo "<p>" . $text . "</p>";
             }
         }
     }
