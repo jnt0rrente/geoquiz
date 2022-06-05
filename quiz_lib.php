@@ -82,6 +82,10 @@ class QuizManager {
             echo "hi" . $id;
             $quiz = $this->getSingleQuizById($id);
 
+            if ($quiz == NULL) {
+                echo "<h2>Error: this quiz does not exist</h2>";
+                exit;
+            }
 
             echo "<h2> $quiz->title </h2>";
             echo "<p> $quiz->description </p>";
