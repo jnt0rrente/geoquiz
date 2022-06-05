@@ -38,7 +38,7 @@ class UploadManager {
             url: '/quiz_upload.php',
             method: 'POST',
             contentType: 'application/json',
-            dataType: 'json',
+            dataType: 'text',
             data: quiz,
             success: this.onUploadSuccess,
             error: this.onUploadError
