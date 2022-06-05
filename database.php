@@ -15,8 +15,8 @@
         }
 
         private function disconnect() {
-            $this->dbconnection->close();
-            $this->dbconnection = NULL;
+            $this->dbConnection->close();
+            $this->dbConnection = NULL;
         }
 
         private function connect() {
@@ -36,35 +36,47 @@
             
         }
 
+        public function executeStatement($stmt) {
+            if (!$stmt->execute()) {
+                echo "\nDatabase error: " . $stmt->error;
+                exit;
+            }
+        }
+
         public function add_quiz($newQuiz) {
             $this->connect();
 
-            $quizInsertStatement = "INSERT INTO `quiz`(`title`, `description`) VALUES ('$newQuiz->title','$newQuiz->description')";
-            
-            if (!$this->dbConnection->query($quizInsertStatement)) {
-                echo "\ndatabase error: " . $this->dbConnection->error;
-                return false;
-            }
+            //statements
+            $quizInsertStatement = "INSERT INTO quiz(title, description) VALUES (?, ?)";
+            $questionInsertStatement = "INSERT INTO question(title, opt1, opt2, opt3, opt4, correct_option) VALUES (?, ?, ?, ?, ?, ?)";
+            $containsInsertStatement = "INSERT INTO contains(id_cuestionario, id_pregunta) VALUES (?, ?)";
 
+            //preparing and inserting the quiz object
+            $quizInsertPrepared = $this->dbConnection->prepare($quizInsertStatement);
+            $quizInsertPrepared->bind_param("ss", $newQuiz->title, $newQuiz->description);
+            $this->executeStatement($quizInsertPrepared);
+
+            //save the new quiz id
             $thisQuizId = $this->dbConnection->insert_id;
 
             foreach ($newQuiz->questions as $question) {
-                $questionInsertStatement = "INSERT INTO 'question'('title','opt1','opt2','opt3','opt4','correct_option') 
-                                            VALUES ('$question->title','$question->options[0]','$question->options[1]','$question->options[2]','$question->options[3]','$question->correct_opion')";
+                //preparing and inserting each question object
+                $questionInsertPrepared = $this->dbConnection->prepare($questionInsertStatement);
+                $questionInsertPrepared->bind_param("ssssss", $question->text, $question->options[0], $question->options[1], $question->options[2], $question->options[3], $question->correct_option);
+                $this->executeStatement($questionInsertPrepared);
                 
-                $this->dbConnection->query($questionInsertStatement);
-                
+                //save the new question id
                 $thatQuestionId = $this->dbConnection->insert_id;
-
-                $containsInsertStatement = "INSERT INTO 'contains'('id_cuestionario','id_pregunta') 
-                                            VALUES ('$thisQuizId','$thatQuestionId')";
-
-                $this->dbConnection->query($containsInsertStatement);
+                
+                //preparing and inserting the contains object
+                $containsInsertPrepared = $this->dbConnection->prepare($containsInsertStatement);
+                $containsInsertPrepared->bind_param("ii", $thisQuizId, $thatQuestionId);
+                $this->executeStatement($containsInsertPrepared);
             }
-
+            
             $this->disconnect();
-
-            return true;
+            
+            return;
         }
 
     }
