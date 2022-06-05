@@ -50,11 +50,11 @@
             }
         }
 
-        public function readQuestionsByQuizId($id) {
+        public function readQuestionsByQuizId($quizId) {
             $this->connect();
             echo "FF";
-            $selectQuestionPrepared = "select q.* from question q, quiz z where (select count(*) from contains c where id_cuestionario = z.id and id_pregunta = q.id ) and z.id = ?";
-            $selectQuestionPrepared->bind_param("i", $id);
+            $selectQuestionPrepared = "select q.* from question q, quiz z where z.id = ? AND (select count(*) from contains c where id_cuestionario = z.id and id_pregunta = q.id )";
+            $selectQuestionPrepared->bind_param("s", $quizId);
             $questionsArray = array();
 
             echo "EE";
