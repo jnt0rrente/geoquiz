@@ -4,6 +4,8 @@ session_start();
 
 require_once("database.php");
 
+echo file_get_contents("php://input");
+
 if (isset($_POST["quiz"])) {
     $receiver = new QuizUploadReceiver();
     $receiver->receive($_POST["quiz"]);
