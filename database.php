@@ -70,13 +70,7 @@
 
             $quizSelectQuery = "SELECT * FROM quiz ORDER BY id";
 
-
-            echo "CC";
             $queryResult = $this->dbConnection->query($quizSelectQuery);
-
-            echo "\n" . var_dump($queryResult) . "\n";
-            echo "DD";
-
             $quizArray = array();
 
             if ($queryResult -> fetch_assoc() != NULL) {

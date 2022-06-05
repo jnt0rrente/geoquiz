@@ -83,7 +83,6 @@
             $quizAssocArray = $this->dbInterface->read_quizzes();
             $quizArray = array();
 
-            echo "BB";
             foreach ($quizAssocArray as $eachQuiz) {
                 $questionsAssocArray = $this->dbInterface->readQuestionsByQuizId($eachQuiz["id"]); //associative array
                 $questionsArray = array();
