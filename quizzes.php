@@ -102,8 +102,8 @@
                     $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
                     $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
                 }
-                echo "antes de construir" . $eachQuiz["timestamp"];
-                $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $eachQuiz["timestamp"], $quizQuestionsArray);
+                echo "antes de construir" . $eachQuiz["created_at"];
+                $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $eachQuiz["created_at"], $quizQuestionsArray);
             }
 
             return $quizArray;
