@@ -70,7 +70,7 @@ class QuizManager {
             echo "<h2>These are all our quizzes, $username </h2>";
             echo "<ul>";
             foreach ($quizzes as $quiz) {
-                echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title</a> - $date </li>";
+                echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title</a> </li>";
             }
             echo "</ul>";
         }
