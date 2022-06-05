@@ -16,13 +16,23 @@ class UploadManager {
 
 
         var reader = new FileReader();
-        reader.onload = this.onReaderLoad;
+        reader.onload = function() {
+            try {
+                var fileContent = reader.result;
+                this.save(fileContent);
+            } catch (exception) {
+                console.log("Error: " + exception.message);
+            }
+        }.bind(this)
         reader.readAsText(file);
+    }
 
-        console.log(this.fileContent);
+    save(fileContent) {
+        this.fileContent = fileContent;
     }
 
     upload() {
+        console.log(this.fileContent);
         var quiz = new FormlParser().parse(this.fileContent);;
         $.ajax({
             url: '/quiz_upload.php',
@@ -33,11 +43,6 @@ class UploadManager {
             success: this.onUploadSuccess,
             error: this.onUploadError
         });
-    }
-
-    onReaderLoad(reader) {
-        console.log(JSON.stringify(reader));
-        this.fileContent = reader.result;
     }
 
     onUploadSuccess(data) {
