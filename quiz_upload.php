@@ -4,8 +4,9 @@ session_start();
 
 require_once("database.php");
 
-$decoded_post = json_decode(file_get_contents("php://input"), false);
-echo var_dump($decoded_post);
+$decoded_quiz = json_decode(file_get_contents("php://input"), false)->quiz;
+echo var_dump($decoded_quiz);
+echo "\nTitle: " . $decoded_quiz->title;
 
 class QuizUploadReceiver {
     private $db;
