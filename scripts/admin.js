@@ -28,7 +28,6 @@ class UploadManager {
     }
 
     save(fileContent) {
-        console.log(fileContent);
         this.fileContent = fileContent;
     }
 
@@ -45,9 +44,8 @@ class UploadManager {
         });
     }
 
-    onUploadSuccess(data) {
-        console.log("success:");
-        console.log(data);
+    onUploadSuccess(response) {
+        console.log("success:" + response);
         alert("olee");
     }
 
