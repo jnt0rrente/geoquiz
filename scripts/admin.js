@@ -66,6 +66,8 @@ class FormlParser {
         quiz.description = "";
         quiz.questions = [];
 
+        console.log(content)
+
         var parsedXML = new DOMParser().parseFromString(content, "text/xml");
 
         var xmlQuestions = parsedXML.getElementsByTagName("question");
