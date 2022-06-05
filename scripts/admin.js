@@ -15,18 +15,16 @@ class UploadManager {
 
 
         var reader = new FileReader();
-        var result;
         reader.onload = function() {
             try {
-                console.log(reader.result);
-                result = reader.result;
+                this.fileContent = reader.result;
             } catch (exception) {
                 console.log("Error: " + exception.message);
             }
         }.bind(this);
         reader.readAsText(file);
 
-        this.fileContent = result;
+        console.log(this.fileContent);
     }
 
     upload() {
