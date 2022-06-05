@@ -78,6 +78,8 @@ class QuizManager {
         }
 
         public function displaySingleQuizPage($id) {
+
+            echo "hi" . $id;
             $quiz = $this->getSingleQuizById($id);
 
 
