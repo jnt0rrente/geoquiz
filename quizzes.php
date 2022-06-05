@@ -118,7 +118,7 @@
             echo "<ul>";
             foreach ($quizzes as $quiz) {
                 $date = date("d/m/Y", $quiz->timestamp);
-                echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title </a> - " . $date . " </li>";
+                echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title</a> - " . $date . " </li>";
             }
             echo "</ul>";
         }
@@ -132,6 +132,7 @@
         public $questions = array();
 
         public function __construct($id, $title, $description, $timestamp, $questions) {
+            echo $timestamp;
             $this->id = $id;
             $this->title = $title;
             $this->description = $description;
