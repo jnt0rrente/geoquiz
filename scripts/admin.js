@@ -28,11 +28,11 @@ class UploadManager {
     }
 
     save(fileContent) {
+        console.log(fileContent);
         this.fileContent = fileContent;
     }
 
     upload() {
-        console.log(this.fileContent);
         var quiz = new FormlParser().parse(this.fileContent);;
         $.ajax({
             url: '/quiz_upload.php',
@@ -65,8 +65,8 @@ class FormlParser {
 
         var parsedXML = new DOMParser().parseFromString(content, "text/xml");
 
-        quiz.title = parsedXML.getElementsByTagName("title")[0].nodeValue;
-        console.log(JSON.stringify(parsedXML.getElementsByTagName("title")));
+        quiz.title = parsedXML.getElementsByTagName("header")[0].children[0];
+        console.log(JSON.stringify(parsedXML.getElementsByTagName("header")));
         quiz.description = parsedXML.getElementsByTagName("description")[0].nodeValue;
         quiz.questions = [];
 
