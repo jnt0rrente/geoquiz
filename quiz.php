@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <title>GeoQuiz - Quiz</title>
     <meta name="author" content="Juan Torrente" />
-    <meta name="keywords" content="admin, admin panel, upload">
-    <meta name="description" content="Administration tab for the GeoQuiz site." />
-    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <meta name="keywords" content="quiz" />
+    <meta name="description" content="A quiz on the GeoQuiz site." />
+    <meta name="viewport" content="width=device-width, initial scale=1.0" />
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="single_quiz.css">
@@ -36,7 +36,10 @@
         $databaseInterface = new DatabaseInterface();
         $quizManager = new QuizManager($databaseInterface);
 
-        $quizManager->displaySingleQuizPage($_GET["id"]);
+        $quizManager->displaySingleQuizSection($_GET["id"]);
+
+        echo "<input type=button value='Solve quiz' onload='sqp.solve()' />";
+        echo "<input type=submit disabled/>";
     ?>
 </body>
 

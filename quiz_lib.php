@@ -75,18 +75,21 @@ class QuizManager {
             echo "</ul>";
         }
 
-        public function displaySingleQuizPage($id) {
+        public function displaySingleQuizSection($id) {
             $quiz = $this->getSingleQuizById($id);
+
+            echo "<section>";
 
             if ($quiz == NULL) {
                 echo "<h2>Error: this quiz does not exist</h2>";
+                echo "</section>";
                 exit;
             }
 
             echo "<h2> $quiz->title </h2>";
             echo "<p> $quiz->description </p>";
 
-            echo "<form action='#'>";
+            echo "<form action='#' method='post'>";
 
             for ($i = 0; $i < count($quiz->questions); $i++) {
                 $text = $quiz->questions[$i]->text;
@@ -110,9 +113,8 @@ class QuizManager {
 
                 echo "</fieldset>";
             }
-
-            echo "<input type='submit' />";
             echo "</form>";
+            echo "</section>";
         }
     }
 
