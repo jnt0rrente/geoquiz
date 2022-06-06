@@ -6,7 +6,7 @@ class SingleQuizPage {
     solve() {
         var answers = [];
         $("input[type='radio']:checked").each(function() {
-            answers.push($(this).value());
+            answers.push($(this).val());
         });
 
         console.log(JSON.stringify(answers));
