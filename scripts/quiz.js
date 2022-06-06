@@ -23,7 +23,7 @@ class SingleQuizPage {
                 solutions = JSON.parse(data);
             },
             error: function(err) {
-                console.err(JSON.stringify(err));
+                console.error(JSON.stringify(err));
             }
         });
 
