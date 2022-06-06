@@ -3,16 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>GeoQuiz - Admin panel</title>
+    <title>GeoQuiz - Quiz</title>
     <meta name="author" content="Juan Torrente" />
-    <meta name="keywords" content="admin, admin panel, upload">
-    <meta name="description" content="Administration tab for the GeoQuiz site." />
-    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <meta name="keywords" content="quiz" />
+    <meta name="description" content="A quiz on the GeoQuiz site." />
+    <meta name="viewport" content="width=device-width, initial scale=1.0" />
 
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="single_quiz.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/admin.js"></script>
+    <script src="scripts/quiz.js"></script>
 </head>
 
 <body>
@@ -29,17 +30,16 @@
     </nav>
 
     <?php
+        require_once("quiz_lib.php");
+        require_once("database.php");
 
-    echo "  <h2>Admin panel</h2>
-            <section>
-                <h3>Upload forml xml</h3>
-                <p>After defining a forml file, you can use this utility to upload it as a public quiz on this website.</p>
-                <input type='file' accept='text/xml' onchange='uploadManager.read(this.files)' />
-                <input type='button' name='uploadFile' value='Subir archivo' onclick='uploadManager.upload()' /> 
-                <p>Upload status: </p>
-            </section>";
+        $databaseInterface = new DatabaseInterface();
+        $quizManager = new QuizManager($databaseInterface);
+
+        $quizManager->displaySingleQuizSection($_GET["id"]);
+
+        echo "<input type=button value='Solve quiz' onclick='sqp.solve( " . $_GET["id"] . " )' />";
     ?>
-    
 </body>
 
 </html>
