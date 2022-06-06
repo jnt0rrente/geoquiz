@@ -38,8 +38,7 @@
 
         $quizManager->displaySingleQuizSection($_GET["id"]);
 
-        echo "<input type=button value='Solve quiz' onload='sqp.solve()' />";
-        echo "<input type=submit disabled/>";
+        echo "<input type=button value='Solve quiz' onclick='sqp.solve()' />";
     ?>
 </body>
 
