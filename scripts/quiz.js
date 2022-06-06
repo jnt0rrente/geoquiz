@@ -3,13 +3,28 @@ class SingleQuizPage {
 
     }
 
-    solve() {
+    solve(id) {
         var answers = [];
+        var solutions = [];
         $("input[type='radio']:checked").each(function() {
             answers.push($(this).val());
         });
 
-        console.log(JSON.stringify(answers));
+        $.ajax({
+            url: '/quiz.php',
+            method: 'GET',
+            contentType: 'text',
+            dataType: 'application/json',
+            data: id,
+            success: function(data) {
+                solutions = JSON.parse(data);
+            },
+            error: function(err) {
+
+            }
+        });
+
+        console.log(JSON.stringify(solutions));
     }
 }
 

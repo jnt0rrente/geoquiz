@@ -38,7 +38,7 @@
 
         $quizManager->displaySingleQuizSection($_GET["id"]);
 
-        echo "<input type=button value='Solve quiz' onclick='sqp.solve()' />";
+        echo "<input type=button value='Solve quiz' onclick='sqp.solve( " . $_GET["id"] . " )' />";
     ?>
 </body>
 
