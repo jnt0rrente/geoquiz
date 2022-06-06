@@ -5,7 +5,8 @@ class SingleQuizPage {
 
     solve(id) {
         var answers = [];
-        var solutions = [];
+        var solutions;
+
         $("input[type='radio']:checked").each(function() {
             answers.push($(this).val());
         });
@@ -13,17 +14,20 @@ class SingleQuizPage {
         $.ajax({
             url: '/quiz.php',
             method: 'GET',
-            contentType: 'text',
+            contentType: 'application/json',
             dataType: 'application/json',
-            data: id,
+            data: JSON.stringify({
+                "id": id
+            }),
             success: function(data) {
                 solutions = JSON.parse(data);
             },
             error: function(err) {
-
+                console.err(JSON.stringify(err));
             }
         });
 
+        console.log(JSON.stringify(answers));
         console.log(JSON.stringify(solutions));
     }
 }

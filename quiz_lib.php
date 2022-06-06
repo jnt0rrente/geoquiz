@@ -35,6 +35,17 @@ class QuizManager {
             return $quizArray;
         }
 
+        public function getSolutionsForQuiz($id) {
+            $quiz = $this->getSingleQuizById($id);
+            $response_array = array();
+
+            foreach($quiz->questions as $question) {
+                $response_array[] = $question->correct_option;
+            }
+
+            return $response_array;
+        }
+
         //devuelve un objeto quiz con sus preguntas y sus atributos. si no existe ninguno con la ID, devuelve directamente NULL.
         private function getSingleQuizById($id) {
             try {

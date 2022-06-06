@@ -38,10 +38,8 @@
                 <input type='button' name='uploadFile' value='Subir archivo' onclick='uploadManager.upload()' /> 
                 <p>Upload status: </p>
             </section>";
-
-    
-
     ?>
+    
 </body>
 
 </html>
