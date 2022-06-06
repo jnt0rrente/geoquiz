@@ -6,10 +6,13 @@ require_once("quiz_lib.php");
 $db = new DatabaseInterface();
 $qm = new QuizManager($db);
 
-if (isset($_POST["id"])) {
+$id = json_decode(file_get_contents("php://input"), false)->id;
+if (isset($id)) {
     $answerArray = $qm->getSolutionsForQuiz($_POST["id"]);
 
     echo json_encode($answerArray);
+} else {
+    echo "No ID queried.\n";
 }
 
 
