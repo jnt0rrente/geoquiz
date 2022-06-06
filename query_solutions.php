@@ -13,6 +13,7 @@ if (isset($id)) {
     echo json_encode($answerArray);
 } else {
     echo "No ID queried.\n";
+    echo var_dump(file_get_contents("php://input"));
 }
 
 
