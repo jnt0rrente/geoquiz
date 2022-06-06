@@ -86,10 +86,32 @@ class QuizManager {
             echo "<h2> $quiz->title </h2>";
             echo "<p> $quiz->description </p>";
 
+            echo "<form action='#'>";
+
             for ($i = 0; $i < count($quiz->questions); $i++) {
                 $text = $quiz->questions[$i]->text;
-                echo "<p>" . $text . "</p>";
+                $options = $quiz->questions[$i]->options;
+                $correct_option = $quiz->questions[$i]->correct_option;
+                $question_name = "q" . $i;
+
+                echo "<fieldset>";
+
+                echo "<legend> $text </legend>";
+
+                for ($j = 0; $j < count(); $j++) {
+                    $optionText = $options[$j];
+                    $id = $question_name . $j;
+                    $value = array("a", "b", "c", "d")[$j];
+
+                    echo "<input type='radio' id='$id' name='$question_name' value='$value'/>";
+                    echo "<label for='$id'> $optionText </label>";
+                }
+
+                echo "</fieldset>";
             }
+
+            echo "<input type='submit' />";
+            echo "</form>";
         }
     }
 
