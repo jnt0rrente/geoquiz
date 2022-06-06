@@ -103,8 +103,9 @@ class QuizManager {
                     $id = $question_name . $j;
                     $value = array("a", "b", "c", "d")[$j];
 
+                    echo "<label for='$id'>";
                     echo "<input type='radio' id='$id' name='$question_name' value='$value'/>";
-                    echo "<label for='$id'> $optionText </label>";
+                    echo $optionText . "</label>";
                 }
 
                 echo "</fieldset>";
