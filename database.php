@@ -14,24 +14,6 @@
             $this->dbPassword = "DBPSWD2021";
         }
 
-        private function executeStatement($stmt) {
-            if (!$stmt->execute()) {
-                echo "\nDatabase error: " . $stmt->error;
-                exit;
-            }
-        }
-
-        //devuelve el resultado de la query antes de llamar a fetch_*()
-        private function executePreparedQuery($preparedQuery) {
-            $res = $preparedQuery->execute();
-            if (!$res) {
-                echo "\nDatabase error: " . $preparedQuery->error;
-                exit;
-            }
-
-            return $preparedQuery->get_result();            
-        }
-
         private function disconnect() {
             $this->dbConnection->close();
             $this->dbConnection = NULL;
@@ -48,6 +30,24 @@
             if ($this->dbConnection->connect_errno) {
                 echo "database error: " . $this->dbConnection->connect_error;
             }
+        }
+
+        private function executeStatement($stmt) {
+            if (!$stmt->execute()) {
+                echo "\nDatabase error: " . $stmt->error;
+                exit;
+            }
+        }
+
+        //devuelve el resultado de la query antes de llamar a fetch_*()
+        private function executePreparedQuery($preparedQuery) {
+            $res = $preparedQuery->execute();
+            if (!$res) {
+                echo "\nDatabase error: " . $preparedQuery->error;
+                exit;
+            }
+
+            return $preparedQuery->get_result();            
         }
 
         public function readQuizById($id) {

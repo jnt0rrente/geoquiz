@@ -49,10 +49,14 @@ class UploadManager {
 
     onUploadSuccess(response) {
         console.log("Server response: " + response);
+
+        $("p:last").text("Success!");
     }
 
     onUploadError(error) {
         console.error("Server error. Response: " + JSON.stringify(error));
+
+        $("p:last").text("Error.");
     }
 
 }

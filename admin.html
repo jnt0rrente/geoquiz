@@ -9,7 +9,7 @@
     <meta name="description" content="Administration tab for the GeoQuiz site." />
     <meta name="viewport" content="width=device-width, initial scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="scripts/admin.js"></script>
@@ -19,6 +19,7 @@
     <h1>
         GeoQuiz
     </h1>
+
     <nav>
         <a href="index.html" accesskey="w" tabindex="1">Welcome</a>
         <a href="history.html" accesskey="h" tabindex="2">Historical geology</a>
@@ -28,18 +29,16 @@
         <a href="quiz_list.php" accesskey="q" tabindex="6">Quizzes</a>
     </nav>
 
-    <?php
+    <h2>Admin panel</h2>
 
-    echo "  <h2>Admin panel</h2>
-            <section>
-                <h3>Upload forml xml</h3>
-                <p>After defining a forml file, you can use this utility to upload it as a public quiz on this website.</p>
-                <input type='file' accept='text/xml' onchange='uploadManager.read(this.files)' />
-                <input type='button' name='uploadFile' value='Subir archivo' onclick='uploadManager.upload()' /> 
-                <p>Upload status: </p>
-            </section>";
-    ?>
-    
+    <section>
+        <h3>Upload forml xml</h3>
+        <p>After defining a forml file, you can use this utility to upload it as a public quiz on this website.</p>
+        <input type='file' accept='text/xml' onchange='uploadManager.read(this.files)' />
+        <input type='button' name='uploadFile' value='Subir archivo' onclick='uploadManager.upload()' />
+        <p>Upload status: </p>
+    </section>
+
 </body>
 
 </html>
