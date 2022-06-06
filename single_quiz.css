@@ -1,0 +1,8 @@
+fieldset {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type=radio] {
+    margin: 0.2em;
+}

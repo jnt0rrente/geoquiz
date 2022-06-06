@@ -92,11 +92,11 @@ class QuizManager {
                 $text = $quiz->questions[$i]->text;
                 $options = $quiz->questions[$i]->options;
                 $correct_option = $quiz->questions[$i]->correct_option;
-                $question_name = "q" . $i;
+                $question_name = "q" . ($i+1);
 
                 echo "<fieldset>";
 
-                echo "<legend> $text </legend>";
+                echo "<legend> " . ($i+1) . ". " $text " </legend>";
 
                 for ($j = 0; $j < count($options); $j++) {
                     $optionText = $options[$j];
