@@ -50,6 +50,27 @@
             }
         }
 
+        public function readQuizById($id) {
+            $this->connect();
+
+            $selectQuizQuery = "SELECT * FROM quiz where id = ?";
+            $selectQuizPrepared = $this->dbConnection->prepare($selectQuizQuery);
+            $selectQuizPrepared->bind_param("i", $id);
+
+            $queryResult = $this->executePreparedQuery($selectQuizPrepared);
+
+            if ($queryResult -> fetch_assoc() != NULL) {
+                $queryResult->data_seek(0);
+                $quizAsAssocArray = $queryResult->fetch_assoc();
+            } else {
+                $this->disconnect();
+                return NULL;
+            }
+
+            $this->disconnect();
+            return $quizAsAssocArray;
+        }
+
         public function readQuestionsByQuizId($quizId) {
             $this->connect();
 
@@ -59,7 +80,6 @@
             
             $questionsArray = array();
             $queryResult = $this->executePreparedQuery($selectQuestionPrepared);
-
 
             if ($queryResult -> fetch_assoc() != NULL) {
                 $queryResult->data_seek(0);
