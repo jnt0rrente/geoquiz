@@ -13,7 +13,7 @@ class SingleQuizPage {
 
         $.ajax({
             url: '/query_solutions.php',
-            method: 'GET',
+            method: 'POST',
             contentType: 'application/json',
             dataType: 'application/json',
             data: JSON.stringify({
