@@ -96,7 +96,7 @@ class QuizManager {
 
                 echo "<fieldset>";
 
-                echo "<legend> " . ($i+1) . ". " $text " </legend>";
+                echo "<legend> " . ($i+1) . ". " . $text . " </legend>";
 
                 for ($j = 0; $j < count($options); $j++) {
                     $optionText = $options[$j];
