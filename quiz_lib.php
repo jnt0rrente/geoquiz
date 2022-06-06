@@ -98,7 +98,7 @@ class QuizManager {
 
                 echo "<legend> $text </legend>";
 
-                for ($j = 0; $j < count(); $j++) {
+                for ($j = 0; $j < count($options); $j++) {
                     $optionText = $options[$j];
                     $id = $question_name . $j;
                     $value = array("a", "b", "c", "d")[$j];
