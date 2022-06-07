@@ -3,6 +3,28 @@ class UploadManager {
     constructor(handler) {
         this.acceptedType = /text.xml/;
         this.handler = handler;
+        this.adminCoordinates = null;
+    }
+
+    saveLocation(loc) {
+        this.adminCoordinates = loc;
+    }
+
+    locationError(err) {
+        $("label ~ p").text("Location restriction status: Error.");
+    }
+
+    checkRestriction() {
+        if ($("checkbox").is(":checked")) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(this.saveLocation, this.locationError);
+                $("label ~ p").text("Location restriction status: Working.");
+            } else {
+                $("label ~ p").text("Location restriction status: Location unavailable.");
+            }
+        } else {
+            this.adminCoordinates = null;
+        }
     }
 
     read(files) {
