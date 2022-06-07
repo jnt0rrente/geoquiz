@@ -127,12 +127,13 @@
             //save the new quiz id
             $thisQuizId = $this->dbConnection->insert_id;
 
-            echo "insert id: " . $thisQuizId;
-            echo "dump: " . var_dump($newQuiz);
             foreach ($newQuiz->questions as $question) {
                 //preparing and inserting each question object
+                echo "A";
                 $questionInsertPrepared = $this->dbConnection->prepare($questionInsertStatement);
+                echo "B";
                 $questionInsertPrepared->bind_param("ssssss", $question->text, $question->options[0], $question->options[1], $question->options[2], $question->options[3], $question->correct_option);
+                echo "C";
                 $this->executeStatement($questionInsertPrepared);
                 
                 //save the new question id
