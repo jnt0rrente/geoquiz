@@ -35,7 +35,7 @@ class UploadManager {
         var quiz = new FormlParser().parse(this.fileContent);;
 
         $.ajax({
-            url: '/quiz_upload.php',
+            url: '/api_upload.php',
             method: 'POST',
             contentType: 'application/json',
             dataType: 'text',

@@ -12,7 +12,7 @@ class SingleQuizPage {
         });
 
         $.ajax({
-            url: '/query_solutions.php',
+            url: '/api_solutions.php',
             method: 'POST',
             contentType: 'application/json',
             dataType: 'application/json',
