@@ -112,8 +112,10 @@
         }
 
         public function add_quiz($newQuiz) {
+            echo "AA";
             $this->connect();
 
+            echo "BB";
             //statements
             $quizInsertStatement = "INSERT INTO quiz(title, description) VALUES (?, ?)";
             $questionInsertStatement = "INSERT INTO question(title, opt1, opt2, opt3, opt4, correct_option) VALUES (?, ?, ?, ?, ?, ?)";
@@ -124,6 +126,7 @@
             $quizInsertPrepared->bind_param("ss", $newQuiz->title, $newQuiz->description);
             $this->executeStatement($quizInsertPrepared);
 
+            echo "CC";
             //save the new quiz id
             $thisQuizId = $this->dbConnection->insert_id;
 
@@ -135,7 +138,7 @@
                 
                 //save the new question id
                 $thatQuestionId = $this->dbConnection->insert_id;
-                
+                echo "DD";
                 //preparing and inserting the contains object
                 $containsInsertPrepared = $this->dbConnection->prepare($containsInsertStatement);
                 $containsInsertPrepared->bind_param("ii", $thisQuizId, $thatQuestionId);
