@@ -116,7 +116,7 @@
 
             //statements
             $quizInsertStatement = "INSERT INTO quiz(title, description) VALUES (?, ?)";
-            $questionInsertStatement = "INSERT INTO question(title, opt1, opt2, opt3, opt4, correct_option) VALUES (?, ?, ?, ?, ?, ?)";
+            $questionInsertStatement = "INSERT INTO question(text, opt1, opt2, opt3, opt4, correct_option) VALUES (?, ?, ?, ?, ?, ?)";
             $containsInsertStatement = "INSERT INTO contains(id_cuestionario, id_pregunta) VALUES (?, ?)";
 
             //preparing and inserting the quiz object
@@ -129,11 +129,10 @@
 
             foreach ($newQuiz->questions as $question) {
                 //preparing and inserting each question object
-                echo "A";
                 $questionInsertPrepared = $this->dbConnection->prepare($questionInsertStatement);
-                echo "B";
+
                 $questionInsertPrepared->bind_param("ssssss", $question->text, $question->options[0], $question->options[1], $question->options[2], $question->options[3], $question->correct_option);
-                echo "C";
+         
                 $this->executeStatement($questionInsertPrepared);
                 
                 //save the new question id
