@@ -32,8 +32,8 @@ class UploadManager {
     }
 
     upload() {
-
         var quiz = new FormlParser().parse(this.fileContent);;
+
         $.ajax({
             url: '/quiz_upload.php',
             method: 'POST',
@@ -50,13 +50,13 @@ class UploadManager {
     onUploadSuccess(response) {
         console.log("Server response: " + response);
 
-        $("p:last").text("Success!");
+        $("p:last").text("Upload status: Success!");
     }
 
     onUploadError(error) {
         console.error("Server error. Response: " + JSON.stringify(error));
 
-        $("p:last").text("Error.");
+        $("p:last").text("Upload status: Error.");
     }
 
 }
