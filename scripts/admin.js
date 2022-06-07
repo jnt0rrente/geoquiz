@@ -15,7 +15,7 @@ class UploadManager {
     }
 
     checkRestriction() {
-        if ($("checkbox").is(":checked")) {
+        if ($("checkbox.checked")) {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(this.saveLocation, this.locationError);
                 $("label ~ p").text("Location restriction status: Working.");

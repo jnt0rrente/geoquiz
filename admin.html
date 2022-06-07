@@ -35,7 +35,7 @@
         <h3>Upload forml xml</h3>
         <p>After defining a forml file, you can use this utility to upload it as a public quiz on this website.</p>
         <input type='file' accept='text/xml' onchange='uploadManager.read(this.files)' />
-        <input type="checkbox" name="geoRestrict" id="geoRestrict" onclick="uploadManager.checkRestriction()">
+        <input type="checkbox" name="geoRestrict" id="geoRestrict" onchange="uploadManager.checkRestriction()">
         <label for="geoRestrict">Restrict access by location</label>
         <p>Location restriction status: </p>
         <input type='button' name='uploadFile' value='Subir archivo' onclick='uploadManager.upload()' />
