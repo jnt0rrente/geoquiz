@@ -38,7 +38,13 @@
 
         echo var_dump($_POST);
 
-        $quizManager->displaySingleQuizSection($_GET["id"]);
+        if (!isset($_POST["q1"])) {
+            $quizManager->displaySingleQuizSection($_GET["id"]);
+        } else {
+            foreach ($_POST as $answer) {
+                echo $answer . "\n";
+            }
+        }
 
 
     ?>
