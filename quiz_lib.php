@@ -124,7 +124,7 @@ class QuizManager {
 
                 echo "</fieldset>";
             }
-            echo "<input type=submit disabled/>";
+            echo "<input type=submit />";
             echo "</form>";
             echo "</section>";
         }
