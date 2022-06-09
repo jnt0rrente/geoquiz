@@ -29,7 +29,17 @@ class MineralPriceAPIObject {
     }
 
     error() {
-        $("h1").val("error");
+        console.log(JSON.stringify(response));
+        console.log(this.url);
+
+        var stringOutput = "<li>Gold: Error </li>";
+        stringOutput += "<li>Oil: Error </li>";
+
+        var ul = document.createElement("ul");
+        ul.innerHTML = stringOutput;
+
+        $("ul:last").remove();
+        $("section:last").append(ul);
     }
 }
 
