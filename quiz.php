@@ -36,8 +36,6 @@
         $databaseInterface = new DatabaseInterface();
         $quizManager = new QuizManager($databaseInterface);
 
-        echo var_dump($_POST);
-
         if (!isset($_POST["q1"])) {
             $quizManager->displaySingleQuizSection($_GET["id"]);
         } else {

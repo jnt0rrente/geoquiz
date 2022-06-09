@@ -118,15 +118,30 @@ class QuizManager {
                     $value = array("a", "b", "c", "d")[$j];
 
                     echo "<label for='$id'>";
-                    echo "<input type='radio' id='$id' name='$question_name' value='$value'/>";
+                    echo "<input type='radio' id='$id' name='$question_name' value='$value' required/>";
                     echo $optionText . "</label>";
                 }
 
                 echo "</fieldset>";
             }
-            echo "<input type=submit />";
+            echo "<input type=submit value='Enviar' />";
             echo "</form>";
             echo "</section>";
+        }
+
+        public function displayResultsForQuiz($id, $answers) {
+            $correctAnswers = $this->getSolutionsForQuiz($id);
+            $counter = 0;
+            for ($i = 0; $i < count($correctAnswers); $i++) {
+                if ($correctAnswers[$i] == $answers[$i]) {
+                    $counter++;
+                }
+            }
+
+            echo "  <section>
+                        <h2> Results </h2>
+                            <p> You have scored: $counter/".count($correctAnswers)."</p>
+                    </section>";
         }
     }
 
