@@ -41,9 +41,12 @@
         if (!isset($_POST["q1"])) {
             $quizManager->displaySingleQuizSection($_GET["id"]);
         } else {
+            $answers = array();
             foreach ($_POST as $answer) {
-                echo $answer . "\n";
+                $answers[] = $answer;
             }
+
+            $quizManager->displayResultsForQuiz($_GET["id"], $answers);
         }
 
 
