@@ -149,6 +149,36 @@
             return;
         }
 
+        public function add_attempt($id_quiz, $username, $score) {
+            $this->connect();
+
+            $attemptInsertStatement = "INSERT INTO attempt(user, score, id_quiz) VALUES (?, ?, ?)";
+
+            $attemptInsertPrepared = $this->dbConnection->prepare($attemptInsertStatement);
+            $attemptInsertPrepared->bind_param("sii", $username, $score, $id_quiz);
+
+            echo "METIENDO INTENTO EN BASE D DATOS";
+            //$this->executeStatement($attemptInsertPrepared);
+
+            $this->disconnect();
+        }
+
+        public function read_attempts_for_quiz($id_quiz) {
+            $this->connect();
+
+            $attemptSelectQuery = "SELECT * FROM attempt WHERE id = ?";
+            $attemptSelectPrepared = $this->dbConnection->prepare($attemptSelectQuery);
+            $attemptSelectPrepared->bind_param("i", $id_quiz);
+
+            $result = $this->executePreparedQuery($attemptSelectPrepared);
+
+            echo var_dump($result);
+
+            $this->disconnect();
+
+            return $result;
+        }
+
     }
 
 ?>
