@@ -192,6 +192,8 @@ class QuizManager {
                 $returnArray[] = new Attempt($entry["user"], $entry["id_quiz"], $entry["score"], $entry["date"]);
             }
 
+            echo "ret len " . count($returnArray);
+
             return $returnArray;
         }
     }
