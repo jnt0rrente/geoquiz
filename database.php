@@ -166,7 +166,7 @@
         public function read_attempts_for_quiz($id_quiz) {
             $this->connect();
 
-            $attemptSelectQuery = "SELECT * FROM attempt WHERE id = ?";
+            $attemptSelectQuery = "SELECT * FROM attempt WHERE id_quiz = ?";
             $attemptSelectPrepared = $this->dbConnection->prepare($attemptSelectQuery);
             $attemptSelectPrepared->bind_param("i", $id_quiz);
 
