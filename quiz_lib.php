@@ -182,7 +182,7 @@ class QuizManager {
             echo "IDQUIZ " . $id_quiz;
             echo "USERNAME " . $username;
             echo "COUNTER " . $counter;
-            if ($id != NULL && $username != NULL && $counter != NULL) {
+            if ($id_quiz != NULL && $username != NULL && $counter != NULL) {
                 echo "LLEGA";
                 $this->dbInterface->add_attempt($id_quiz, $username, $counter);
             }
