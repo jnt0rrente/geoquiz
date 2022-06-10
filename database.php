@@ -172,8 +172,6 @@
 
             $result = $this->executePreparedQuery($attemptSelectPrepared);
 
-            echo var_dump($result);
-
             $this->disconnect();
 
             return $result;
