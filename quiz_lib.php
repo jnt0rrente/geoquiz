@@ -172,8 +172,8 @@ class QuizManager {
 
                 echo "  <tr>
                             <td>$username</td>
-                            <td>$score</td>
                             <td>$date</td>
+                            <td>$score</td>
                         </tr>";
             }
 
