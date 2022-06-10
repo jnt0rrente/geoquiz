@@ -179,11 +179,7 @@ class QuizManager {
         }
 
         private function recordQuizAttempt($id_quiz, $username, $counter) {
-            echo "IDQUIZ " . $id_quiz;
-            echo "USERNAME " . $username;
-            echo "COUNTER " . $counter;
             if ($id_quiz != NULL && $username != NULL && $counter != NULL) {
-                echo "LLEGA";
                 $this->dbInterface->add_attempt($id_quiz, $username, $counter);
             }
         }
