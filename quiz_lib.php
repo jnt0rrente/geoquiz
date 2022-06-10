@@ -155,7 +155,6 @@ class QuizManager {
             $limit = 10;
             if (count($leaderboard) < $limit) {
                 $limit = count($leaderboard);
-                echo "LIMIT: " . $limit;
             }
 
             echo    "<table>
@@ -165,7 +164,8 @@ class QuizManager {
                             <th>Fecha</th>
                             <th>Puntuación</th>
                         </tr>";
-            for ($i = 0; $i < limit; $i++) {
+
+            for ($i = 0; $i < $limit; $i++) {
                 $username = $leaderboard[$i]->username;
                 $score = $leaderboard[$i]->score;
                 $date = $leaderboard[$i]->date;

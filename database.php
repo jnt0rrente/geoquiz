@@ -157,7 +157,6 @@
             $attemptInsertPrepared = $this->dbConnection->prepare($attemptInsertStatement);
             $attemptInsertPrepared->bind_param("sii", $username, $score, $id_quiz);
 
-            echo "METIENDO INTENTO EN BASE D DATOS";
             //$this->executeStatement($attemptInsertPrepared);
 
             $this->disconnect();
