@@ -172,9 +172,13 @@
 
             $queryResult = $this->executePreparedQuery($attemptSelectPrepared);
 
+            $attempts = array();
+
             if ($queryResult -> fetch_assoc() != NULL) {
                 $queryResult->data_seek(0);
-                $quizAsAssocArray = $queryResult->fetch_assoc();
+                while($row = $queryResult->fetch_assoc()) {
+                    $attempts[] = $row;
+                }
             } else {
                 $this->disconnect();
                 return NULL;
@@ -182,7 +186,7 @@
 
             $this->disconnect();
 
-            return $quizAsAssocArray;
+            return $attempts;
         }
 
     }
