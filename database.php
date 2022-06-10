@@ -170,11 +170,19 @@
             $attemptSelectPrepared = $this->dbConnection->prepare($attemptSelectQuery);
             $attemptSelectPrepared->bind_param("i", $id_quiz);
 
-            $result = $this->executePreparedQuery($attemptSelectPrepared);
+            $queryResult = $this->executePreparedQuery($attemptSelectPrepared);
+
+            if ($queryResult -> fetch_assoc() != NULL) {
+                $queryResult->data_seek(0);
+                $quizAsAssocArray = $queryResult->fetch_assoc();
+            } else {
+                $this->disconnect();
+                return NULL;
+            }
 
             $this->disconnect();
 
-            return $result;
+            return $quizAsAssocArray;
         }
 
     }
