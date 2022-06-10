@@ -151,9 +151,11 @@ class QuizManager {
             }
 
             $leaderboard = $this->getLeaderboard($id);
+
             $limit = 10;
             if (count($leaderboard) < $limit) {
                 $limit = count($leaderboard);
+                echo "LIMIT: " . $limit;
             }
 
             echo    "<table>
@@ -190,11 +192,7 @@ class QuizManager {
 
             foreach ($leaderboard as $entry) {
                 $returnArray[] = new Attempt($entry["user"], $entry["id_quiz"], $entry["score"], $entry["date"]);
-                echo $entry["user"]. $entry["id_quiz"]. $entry["score"]. $entry["date"];
             }
-
-            echo "ret len " . count($returnArray);
-            echo "lb len " . count($leaderboard);
 
             return $returnArray;
         }
