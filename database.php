@@ -157,7 +157,7 @@
             $attemptInsertPrepared = $this->dbConnection->prepare($attemptInsertStatement);
             $attemptInsertPrepared->bind_param("sii", $username, $score, $id_quiz);
 
-            //$this->executeStatement($attemptInsertPrepared);
+            $this->executeStatement($attemptInsertPrepared);
 
             $this->disconnect();
         }
