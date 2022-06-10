@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="styles/quiz.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/quiz.js"></script>
 </head>
 
 <body>
