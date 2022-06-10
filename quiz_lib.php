@@ -186,6 +186,7 @@ class QuizManager {
 
         private function getLeaderboard($id) {
             $leaderboard = $this->dbInterface->read_attempts_for_quiz($id);
+            echo "LB: " . var_dump($leaderboard);
             $returnArray = array();
 
             foreach ($leaderboard as $entry) {
