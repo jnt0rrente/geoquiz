@@ -30,6 +30,7 @@
     </nav>
 
     <?php
+        session_start();
         require_once("quiz_lib.php");
         require_once("database.php");
 
