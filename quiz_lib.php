@@ -193,6 +193,7 @@ class QuizManager {
             }
 
             echo "ret len " . count($returnArray);
+            echo "lb len " . count($leaderboard);
 
             return $returnArray;
         }
