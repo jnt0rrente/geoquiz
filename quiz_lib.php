@@ -181,7 +181,7 @@ class QuizManager {
         }
 
         private function recordQuizAttempt($id_quiz, $username, $counter) {
-            if ($id_quiz != NULL && $username != NULL && $counter != NULL) {
+            if ($id_quiz != NULL && $username != NULL) {
                 $this->dbInterface->add_attempt($id_quiz, $username, $counter);
             }
         }
