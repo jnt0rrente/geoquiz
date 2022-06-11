@@ -145,9 +145,10 @@
                 $this->executeStatement($containsInsertPrepared);
             }
 
-            echo "AA: " . ($newQuiz->restrictions);
+            echo "array mide: " . count($newQuiz->restrictions);
 
             foreach ($newQuiz->restrictions as $restriction) {
+                echo $restriction;
                 $restrictionInsertPrepared = $this->dbConnection->prepare($restrictionInsertStatement);
                 $restrictionInsertPrepared->bind_param("si", $restriction, $thisQuizId);
                 $this->executeStatement($restrictionInsertPrepared);
