@@ -78,12 +78,21 @@ class QuizManager {
             
             $quizzes = $this->getQuizObjects();
 
-            echo "<h2>These are all our quizzes, $username </h2>";
+            echo "<h3>These are all our quizzes, $username </h3>";
             echo "<ul>";
             foreach ($quizzes as $quiz) {
                 echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title</a> </li>";
             }
             echo "</ul>";
+        }
+
+        public function showLoginForm() {
+            echo "<form action='#' method='post'>
+                <label>Username<input type=text name='username' /></label>
+                <label>Region<input type=text name='region' disabled/></label>
+                <input type=submit name='btnUser' value='Log in' disabled />
+            </form>
+        ";
         }
 
         public function displaySingleQuizSection($id) {

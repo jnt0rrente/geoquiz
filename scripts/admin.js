@@ -6,26 +6,6 @@ class UploadManager {
         this.adminCoordinates = null;
     }
 
-    saveLocation(loc) {
-        this.adminCoordinates = loc;
-    }
-
-    locationError(err) {
-        $("label ~ p").text("Location restriction status: Error.");
-    }
-
-    checkRestriction() {
-        if ($("checkbox.checked")) {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(this.saveLocation, this.locationError);
-                $("label ~ p").text("Location restriction status: Working.");
-            } else {
-                $("label ~ p").text("Location restriction status: Location unavailable.");
-            }
-        } else {
-            this.adminCoordinates = null;
-        }
-    }
 
     read(files) {
         var file = files[0];
@@ -35,7 +15,6 @@ class UploadManager {
             alert("mal tipo");
             return;
         }
-
 
         var reader = new FileReader();
         reader.onload = function() {
@@ -48,7 +27,6 @@ class UploadManager {
         }.bind(this)
         reader.readAsText(file);
     }
-    º
 
     save(fileContent) {
         this.fileContent = fileContent;

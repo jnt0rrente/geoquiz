@@ -28,6 +28,8 @@
         <a href="quiz_list.php" accesskey="q" tabindex="6">Quizzes</a>
     </nav>
 
+
+    <h2>Quizzes</h2>
     <?php
     session_start();
     require_once("database.php");
@@ -64,13 +66,7 @@
         ";
 
     } else {
-        echo "
-            <h2>Enter your username:</h2>
-            <form action='#' method='post'>
-                <input type=text name='username' />
-                <input type=submit name='btnUser' value='Log in' />
-            </form>
-        ";
+        $quizManager->showLoginForm();
     }
 
     ?>
