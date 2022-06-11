@@ -151,7 +151,11 @@
                 $restrictionInsertPrepared = $this->dbConnection->prepare($restrictionInsertStatement);
                 $restrictionInsertPrepared->bind_param("si", $restriction, $thisQuizId);
                 $this->executeStatement($restrictionInsertPrepared);
+
+                echo "CC";
             }
+
+            echo "BB";
             
             $this->disconnect();
             
