@@ -95,9 +95,9 @@ form input[type=button] {
 }
 
 form input[type=submit] {
-    width: 8em;
+    width: 6em;
     align-self: center;
-    padding-top: 1em;
+    margin-top: 1em;
 }
 
 form label {
