@@ -207,6 +207,8 @@ class QuizManager {
 
         public function isAllowedOnRegion($region) {            
             foreach ($this->restricted as $banned_region) {
+                echo "region: " . $region;
+                echo "\nbanned region: " . $banned_region;
                 if (strcasecmp($region, $banned_region) == 0) {
                     return false;
                 }
