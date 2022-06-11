@@ -32,7 +32,7 @@ class QuizListManager {
         }
 
         $("input[type=text]:last").val(continent);
-
+        $("input[type=submit]").prop("disabled", false);
     }
 
     getCoordinates() {
