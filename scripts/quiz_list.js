@@ -11,11 +11,9 @@ class QuizListManager {
             "&q=" + encodeURIComponent(lat + "," + long);
     }
 
-    getContinentForCoordinates(data) {
-        let coords = data.coords;
-
+    getContinentForCoordinates(latitude, longitude) {
         $.ajax({
-            url: this.buildUrl(coords.latitude, coords.longitude),
+            url: this.buildUrl(latitude, longitude),
             method: 'GET',
             dataType: 'json',
             success: this.callSuccess,
@@ -28,9 +26,9 @@ class QuizListManager {
         let returnedObject = JSON.parse(data);
     }
 
-    saveRegion(loc) {
+    saveRegion() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError).bind(this);
+            navigator.geolocation.getCurrentPosition(this.locationSuccess.bind(this), this.locationError);
             $("input[type=submit]").prop("disabled", false);
         } else {
             console.log("Location unavailable. Cannot proceed.");
@@ -39,7 +37,7 @@ class QuizListManager {
 
     locationSuccess(data) {
         console.log("Location working.");
-        this.getContinentForCoordinates(data);
+        getContinentForCoordinates(data.coords.latitude, data.coords.longitude);
     }
 
     locationError(err) {
