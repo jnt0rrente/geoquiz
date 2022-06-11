@@ -151,6 +151,8 @@
                 echo $restriction;
                 $restrictionInsertPrepared = $this->dbConnection->prepare($restrictionInsertStatement);
                 $restrictionInsertPrepared->bind_param("si", $restriction, $thisQuizId);
+
+                echo "DD";
                 $this->executeStatement($restrictionInsertPrepared);
 
                 echo "CC";
