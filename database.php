@@ -143,20 +143,14 @@
                 $this->executeStatement($containsInsertPrepared);
             }
 
-            echo "array mide: " . count($newQuiz->restrictions);
-
             foreach ($newQuiz->restrictions as $restriction) {
                 echo $restriction;
                 $restrictionInsertPrepared = $this->dbConnection->prepare($restrictionInsertStatement);
                 $restrictionInsertPrepared->bind_param("si", $restriction, $thisQuizId);
 
-                echo "DD";
                 $this->executeStatement($restrictionInsertPrepared);
 
-                echo "CC";
             }
-
-            echo "BB";
             
             $this->disconnect();
             
