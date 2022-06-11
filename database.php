@@ -118,6 +118,7 @@
             $quizInsertStatement = "INSERT INTO quiz(title, description) VALUES (?, ?)";
             $questionInsertStatement = "INSERT INTO question(text, opt1, opt2, opt3, opt4, correct_option) VALUES (?, ?, ?, ?, ?, ?)";
             $containsInsertStatement = "INSERT INTO contains(id_cuestionario, id_pregunta) VALUES (?, ?)";
+            $restrictionInsertStatement = "INSERT INTO RESTRICTION (continente, id_cuestionario) VALUES (?, ?)";
 
             //preparing and inserting the quiz object
             $quizInsertPrepared = $this->dbConnection->prepare($quizInsertStatement);
@@ -142,6 +143,12 @@
                 $containsInsertPrepared = $this->dbConnection->prepare($containsInsertStatement);
                 $containsInsertPrepared->bind_param("ii", $thisQuizId, $thatQuestionId);
                 $this->executeStatement($containsInsertPrepared);
+            }
+
+            foreach ($newQuiz->restrictions as $restriction) {
+                $restrictionInsertPrepared = $this->dbConnection->prepare($restrictionInsertStatement);
+                $restrictionInsertPrepared->bind_param("si", $restriction, $thisQuizId);
+                $this->executeStatement($restrictionInsertPrepared);
             }
             
             $this->disconnect();
