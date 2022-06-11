@@ -93,3 +93,13 @@ form input[type=button] {
     width: 8em;
     align-self: center;
 }
+
+form input[type=submit] {
+    width: 8em;
+    align-self: center;
+    padding-top: 1em;
+}
+
+form label {
+    padding-top: 0.5em;
+}
