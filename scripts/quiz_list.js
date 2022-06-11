@@ -30,7 +30,7 @@ class QuizListManager {
 
     getCoordinates() {
         if (navigator.geolocation) {
-            await navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError);
+            navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError);
             console.log("Location working.");
 
             getContinentForCoordinates(this.latitude, this.longitude);
