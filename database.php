@@ -35,7 +35,6 @@
         private function executeStatement($stmt) {
             if (!$stmt->execute()) {
                 echo "\nDatabase error: " . $stmt->error;
-                exit;
             }
         }
 
@@ -44,7 +43,6 @@
             $res = $preparedQuery->execute();
             if (!$res) {
                 echo "\nDatabase error: " . $preparedQuery->error;
-                exit;
             }
 
             return $preparedQuery->get_result();            
@@ -118,7 +116,7 @@
             $quizInsertStatement = "INSERT INTO quiz(title, description) VALUES (?, ?)";
             $questionInsertStatement = "INSERT INTO question(text, opt1, opt2, opt3, opt4, correct_option) VALUES (?, ?, ?, ?, ?, ?)";
             $containsInsertStatement = "INSERT INTO contains(id_cuestionario, id_pregunta) VALUES (?, ?)";
-            $restrictionInsertStatement = "INSERT INTO RESTRICTION (continente, id_cuestionario) VALUES (?, ?)";
+            $restrictionInsertStatement = "INSERT INTO restriction(continente, id_cuestionario) VALUES (?, ?)";
 
             //preparing and inserting the quiz object
             $quizInsertPrepared = $this->dbConnection->prepare($quizInsertStatement);
