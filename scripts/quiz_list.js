@@ -30,7 +30,7 @@ class QuizListManager {
 
     getCoordinates() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError);
+            navigator.geolocation.getCurrentPosition(this.locationSuccess.bind(this), this.locationError);
             console.log("Location working.");
 
             $("input[type=submit]").prop("disabled", false);
@@ -48,16 +48,16 @@ class QuizListManager {
     locationError(err) {
         switch (err.code) {
             case error.PERMISSION_DENIED:
-                console.log("Location permission denied.");
+                console.error("Location permission denied.");
                 break;
             case error.POSITION_UNAVAILABLE:
-                console.log("Location error: position unavailable.");
+                console.error("Location error: position unavailable.");
                 break;
             case error.TIMEOUT:
-                console.log("Location timed out.");
+                console.error("Location timed out.");
                 break;
             case error.UNKNOWN_ERROR:
-                console.log("Location error: unknown.");
+                console.error("Location error: unknown.");
                 break;
         }
     }
