@@ -40,7 +40,7 @@ class QuizManager {
                 }
                 
                 $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $quizQuestionsArray, $readRestrictionsArray);
-                echo "RESTRICTIONS : " . $readRestrictionsArray;
+                echo "RESTRICTIONS : " . count($readRestrictionsArray);
             }
 
             return $quizArray;
@@ -109,7 +109,7 @@ class QuizManager {
                             <input type=text name='username' id='username' required />
 
                         <label for='region'>Region</label>
-                            <input type=text name='region' id='region'/>
+                            <input type=text name='region' id='region' required/>
                         <input type=button value='Load location' onclick=qlm.loadContinent() disabled/>
                         
                         <input type=submit value='Log in' disabled />

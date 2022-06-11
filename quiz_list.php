@@ -41,12 +41,13 @@
 
     if (isset($_POST["logout"])) {
         unset($_SESSION["username"]);
+        unset($_SESSION["region"]);
     }
 
 
-    if (isset($_POST["username"])) {
-        $username = $_POST["username"];
-        $_SESSION["username"] = $username;
+    if (isset($_POST["username"]) && isset($_POST["region"])) {
+        $_SESSION["region"] = $_POST["region"];
+        $_SESSION["username"] = $_POST["username"];
         
         $quizManager->showQuizzes();
         echo "
@@ -55,9 +56,9 @@
             </form>
         ";
 
-    } else if (isset($_SESSION["username"])) {
+    } else if (isset($_SESSION["username"]) && isset($_SESSION["region"])) {
         $username = $_SESSION["username"];
-        $region = $_POST["region"];
+        $region = $_SESSION["region"];
 
         $quizManager->showQuizzes($region);
         echo "
