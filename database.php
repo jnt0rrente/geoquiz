@@ -98,13 +98,12 @@
             $selectRestrictionPrepared->bind_param("i", $quizId);
             
             $restrictionsArray = array();
+
             $queryResult = $this->executePreparedQuery($selectRestrictionPrepared);
 
-            if ($queryResult -> fetch_assoc() != NULL) {
+            if ($queryResult -> fetch_array() != NULL) {
                 $queryResult->data_seek(0);
-                while($row = $queryResult->fetch_assoc()) {
-                    $restrictionsArray[] = $row;
-                }
+                $restrictionsArray = $queryResult -> fetch_array();
             }
 
             $this->disconnect();
