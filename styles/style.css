@@ -61,6 +61,8 @@ nav a {
 }
 
 nav a:last-child {
+    font-weight: bold;
+    text-decoration: underline;
     color: #640d0d;
 }
 
