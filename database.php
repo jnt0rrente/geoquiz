@@ -93,7 +93,7 @@
         public function readRestrictionsByQuizId($quizId) {
             $this->connect();
 
-            $selectRestrictionQuery = "select r.* from restriction r, quiz q where q.id = ? AND r.id_cuestionario = q.id";
+            $selectRestrictionQuery = "select r.continente from restriction r, quiz q where q.id = ? AND r.id_cuestionario = q.id";
             $selectRestrictionPrepared = $this->dbConnection->prepare($selectRestrictionQuery);
             $selectRestrictionPrepared->bind_param("i", $quizId);
             
