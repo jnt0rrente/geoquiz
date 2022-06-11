@@ -16,6 +16,7 @@ class QuizListManager {
     loadContinent() {
         let url = this.buildUrl(this.latitude, this.longitude);
         console.log(url);
+        console.log("lat " + this.latitude + " long " + this.longitude)
         $.ajax({
             url: url,
             method: 'GET',
