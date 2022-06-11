@@ -32,7 +32,6 @@ class QuizManager {
 
                 
                 try {
-                    echo "CC";
                     $readRestrictionsArray = $this->dbInterface->readRestrictionsByQuizId($eachQuiz["id"]);
                 } catch (Exception $e) {
                     echo "Database error: " . $e->getMessage() . "\n";
@@ -40,7 +39,6 @@ class QuizManager {
                 }
                 
                 $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $quizQuestionsArray, $readRestrictionsArray);
-                echo "RESTRICTIONS : " . count($readRestrictionsArray);
             }
 
             return $quizArray;
@@ -86,8 +84,6 @@ class QuizManager {
 
         public function showQuizzes($region) {
             $username = $_SESSION['username'];
-            
-            echo "BB";
             $quizzes = $this->getQuizObjects();
 
             echo "<h3>These are all our quizzes, $username </h3>";
@@ -201,7 +197,6 @@ class QuizManager {
         }
 
         public function isAllowedOnRegion($region) {
-            echo "AA";
             $lowercase_array = array_map('strtolower', $restricted);
             return !in_array(strtolower($region), $lowercase_array); //if not in restricted
         }
