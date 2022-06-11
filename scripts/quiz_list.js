@@ -52,8 +52,8 @@ class QuizListManager {
         $("input[type=button]").prop("disabled", false);
     }
 
-    locationError(err) {
-        switch (err.code) {
+    locationError(error) {
+        switch (error.code) {
             case error.PERMISSION_DENIED:
                 $("p:last").text("Location permission denied.");
                 console.error();
