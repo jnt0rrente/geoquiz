@@ -204,7 +204,8 @@ class QuizManager {
         }
 
         public function isAllowedOnRegion($region) {
-            return !in_array(strtolower($region), $restricted); //if not in restricted
+            $lowercase_array = array_map('strtolower', $restricted);
+            return !in_array(strtolower($region), $lowercase_array); //if not in restricted
         }
 
         
