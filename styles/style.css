@@ -46,6 +46,10 @@ h2 {
     margin-top: 3em;
 }
 
+h4 {
+    margin-bottom: 0em;
+}
+
 nav {
     align-self: center;
 }
@@ -53,8 +57,14 @@ nav {
 nav a {
     padding: 0.7em;
     text-decoration: none;
-    color: #426a79;
+    color: #0f5974;
 }
+
+nav a:last-child {
+    color: #640d0d;
+}
+
+
 
 footer {
     text-align: right;
