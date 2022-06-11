@@ -65,5 +65,6 @@ section label {
 }
 
 section input[type=button] {
-    width: 3em;
+    width: 6em;
+    align-self: center;
 }
