@@ -92,10 +92,10 @@ class QuizManager {
                 <input type=text name='username' id='username' required />
 
                 <label for='region'>Region</label>
-                <input type=text name='region' id='region' disabled/>
+                <input type=text name='region' id='region' disabled required/>
 
-                <input type=button value='Load location' onclick=qlm.loadContinent() disabled required/>
-                <input type=submit name='btnUser' value='Log in' disabled />
+                <input type=button value='Load location' onclick=qlm.loadContinent() disabled/>
+                <input type=submit name='btnUser' value='Log in' />
             </form>
         ";
         }
