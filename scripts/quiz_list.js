@@ -35,7 +35,7 @@ class QuizListManager {
 
         console.log(continent);
 
-        $("input[type=text]:last-child").val(continent);
+        $("input[type=text]:last").val(continent);
     }
 
     getCoordinates() {
