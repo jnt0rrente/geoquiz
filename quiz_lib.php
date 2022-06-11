@@ -8,28 +8,43 @@ class QuizManager {
 
         private function getQuizObjects() {
             try {
-                $quizAssocArray = $this->dbInterface->read_quizzes();
+                $quizAssocArray = $this->dbInterface->readQuizzes();
             } catch (Exception $e) {
                 echo "Database error: " . $e->getMessage() . "\n";
                 exit;
             }
+
             $quizArray = array();
 
             foreach ($quizAssocArray as $eachQuiz) {
                 try {
                     $readQuestionsArray = $this->dbInterface->readQuestionsByQuizId($eachQuiz["id"]);
+                    $quizQuestionsArray = array();
+
+                    foreach ($readQuestionsArray as $eachQuestion) {
+                        $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
+                        $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
+                    }
+                } catch (Exception $e) {
+                    echo "Database error: " . $e->getMessage() . "\n";
+                    exit;
+                }
+
+                
+
+                try {
+                    $readRestrictionsArray = $this->dbInterface->readRestrictionsByQuizId($eachQuiz["id"]);
                 } catch (Exception $e) {
                     echo "Database error: " . $e->getMessage() . "\n";
                     exit;
                 }
                 
-                $quizQuestionsArray = array();
+                
 
-                foreach ($readQuestionsArray as $eachQuestion) {
-                    $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
-                    $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
-                }
-                $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $quizQuestionsArray);
+
+
+                $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $quizQuestionsArray, $readRestrictionsArray);
+                echo "RESTRICTIONS : " . $readRestrictionsArray;
             }
 
             return $quizArray;
@@ -73,7 +88,7 @@ class QuizManager {
             return new Quiz($quiz["id"], $quiz["title"], $quiz["description"], $quizQuestionsArray);
         }
 
-        public function showQuizzes() {
+        public function showQuizzes($region) {
             $username = $_SESSION['username'];
             
             $quizzes = $this->getQuizObjects();
@@ -81,7 +96,12 @@ class QuizManager {
             echo "<h3>These are all our quizzes, $username </h3>";
             echo "<ul>";
             foreach ($quizzes as $quiz) {
-                echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title</a> </li>";
+                if ($quiz->isAllowedOnRegion($region)) {
+                    echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title</a> </li>";
+                } else {
+                    echo "<li> Quiz $quiz->id: $quiz->title (access restricted) </li>";
+                }
+                
             }
             echo "</ul>";
         }
@@ -172,19 +192,22 @@ class QuizManager {
         public $title;
         public $description;
         public $questions = array();
-        public $allowed = array();
+        public $restricted = array();
 
-        public function __construct($id, $title, $description, $questions) {
+        public function __construct($id, $title, $description, $questions, $restricted) {
             $this->id = $id;
             $this->title = $title;
             $this->description = $description;
             $this->date = $date;
             $this->questions = $questions;
+            $this->restricted = $restricted;
         }
 
-        public function setAllowedRegions($regions) {
-            $this->allowed = $regions;
+        public function isAllowedOnRegion($region) {
+            return !in_array(strtolower($region), $restricted); //if not in restricted
         }
+
+        
     }
 
     class Question {

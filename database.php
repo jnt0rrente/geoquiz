@@ -90,7 +90,28 @@
             return $questionsArray;
         }
 
-        public function read_quizzes() {
+        public function readRestrictionsByQuizId($quizId) {
+            $this->connect();
+
+            $selectRestrictionQuery = "select r.* from restriction r, quiz q where q.id = ? AND r.id_cuestionario = q.id";
+            $selectRestrictionPrepared = $this->dbConnection->prepare($selectRestrictionQuery);
+            $selectRestrictionPrepared->bind_param("i", $quizId);
+            
+            $restrictionsArray = array();
+            $queryResult = $this->executePreparedQuery($selectRestrictionPrepared);
+
+            if ($queryResult -> fetch_assoc() != NULL) {
+                $queryResult->data_seek(0);
+                while($row = $queryResult->fetch_assoc()) {
+                    $restrictionsArray[] = $row;
+                }
+            }
+
+            $this->disconnect();
+            return $restrictionsArray;
+        }
+
+        public function readQuizzes() {
             $this->connect();
 
             $quizSelectQuery = "SELECT * FROM quiz ORDER BY id";
