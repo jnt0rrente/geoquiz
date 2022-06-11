@@ -82,6 +82,7 @@ class QuizManager {
             return new Quiz($quiz["id"], $quiz["title"], $quiz["description"], $quizQuestionsArray);
         }
 
+    
         public function showQuizzes($region) {
             $username = $_SESSION['username'];
             $quizzes = $this->getQuizObjects();
@@ -97,6 +98,14 @@ class QuizManager {
                 
             }
             echo "</ul>";
+        }
+
+        public function showLogoutButton() {
+            echo "
+            <form action='#' method='post'>
+                <input type='submit' name='logout' value='Log out' $logoutAble />
+            </form>
+        ";
         }
 
         public function showLoginForm() {

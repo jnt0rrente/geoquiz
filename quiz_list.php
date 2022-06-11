@@ -40,18 +40,17 @@
 
 
     if (isset($_POST["logout"])) {
-        echo "A";
         unset($_SESSION["username"]);
         unset($_SESSION["region"]);
 
     } 
     
     if (isset($_POST["username"]) && isset($_POST["region"])) {
-        echo "B";
         $_SESSION["region"] = $_POST["region"];
         $_SESSION["username"] = $_POST["username"];
         
         $quizManager->showQuizzes($_POST["region"]);
+        $quizManager->showLogoutButton();
         echo "
             <form action='#' method='post'>
                 <input type='submit' name='logout' value='Log out' $logoutAble />
@@ -59,19 +58,14 @@
         ";
 
     } else if (isset($_SESSION["username"]) && isset($_SESSION["region"])) {
-        echo "C";
         $username = $_SESSION["username"];
         $region = $_SESSION["region"];
 
         $quizManager->showQuizzes($region);
-        echo "
-            <form action='#' method='post'>
-                <input type='submit' name='logout' value='Log out' $logoutAble />
-            </form>
-        ";
+        $quizManager->showLogoutButton();
+        
 
     } else {
-        echo "D";
         $quizManager->showLoginForm();
         $quizManager->showLocationStatusSection();
     }
