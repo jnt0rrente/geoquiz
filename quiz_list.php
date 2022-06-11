@@ -51,12 +51,7 @@
         
         $quizManager->showQuizzes($_POST["region"]);
         $quizManager->showLogoutButton();
-        echo "
-            <form action='#' method='post'>
-                <input type='submit' name='logout' value='Log out' $logoutAble />
-            </form>
-        ";
-
+        
     } else if (isset($_SESSION["username"]) && isset($_SESSION["region"])) {
         $username = $_SESSION["username"];
         $region = $_SESSION["region"];
