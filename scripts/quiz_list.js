@@ -30,7 +30,11 @@ class QuizListManager {
 
     saveRegion() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.locationSuccess.bind(this), this.locationError);
+            await navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError);
+            console.log("Location working.");
+
+            getContinentForCoordinates(this.latitude, this.longitude);
+
             $("input[type=submit]").prop("disabled", false);
         } else {
             console.log("Location unavailable. Cannot proceed.");
@@ -38,8 +42,8 @@ class QuizListManager {
     }
 
     locationSuccess(data) {
-        console.log("Location working.");
-        this.getContinentForCoordinates(data.coords.latitude, data.coords.longitude);
+        this.latitude = data.coords.latitude;
+        this.longitude = data.coords.longitude;
     }
 
     locationError(err) {
