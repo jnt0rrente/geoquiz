@@ -11,8 +11,8 @@ class QuizListManager {
             "&q=" + encodeURIComponent(lat + "," + long);
     }
 
-    getContinentForCoordinates(latitude, longitude) {
-        let url = this.buildUrl(latitude, longitude);
+    loadContinent() {
+        let url = this.buildUrl(this.latitude, this.longitude);
         console.log(url);
         $.ajax({
             url: url,
@@ -28,7 +28,7 @@ class QuizListManager {
         let returnedObject = JSON.parse(data);
     }
 
-    saveRegion() {
+    getCoordinates() {
         if (navigator.geolocation) {
             await navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError);
             console.log("Location working.");
@@ -44,13 +44,27 @@ class QuizListManager {
     locationSuccess(data) {
         this.latitude = data.coords.latitude;
         this.longitude = data.coords.longitude;
+        $("input[type=button]").prop("disabled", false);
     }
 
     locationError(err) {
-        console.log("Location permission rejected.");
+        switch (err.code) {
+            case error.PERMISSION_DENIED:
+                console.log("Location permission denied.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                console.log("Location error: position unavailable.");
+                break;
+            case error.TIMEOUT:
+                console.log("Location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                console.log("Location error: unknown.");
+                break;
+        }
     }
 
 }
 
 let qlm = new QuizListManager();
-window.onload = qlm.saveRegion();
+qlm.getCoordinates();

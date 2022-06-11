@@ -90,6 +90,7 @@ class QuizManager {
             echo "<form action='#' method='post'>
                 <label>Username<input type=text name='username' /></label>
                 <label>Region<input type=text name='region' disabled/></label>
+                <input type=button value='Load location' onclick=qlm.loadContinent() disabled/>
                 <input type=submit name='btnUser' value='Log in' disabled />
             </form>
         ";
