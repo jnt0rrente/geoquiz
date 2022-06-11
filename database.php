@@ -149,6 +149,45 @@
             return;
         }
 
+        public function add_attempt($id_quiz, $username, $score) {
+            $this->connect();
+
+            $attemptInsertStatement = "INSERT INTO attempt(user, score, id_quiz) VALUES (?, ?, ?)";
+
+            $attemptInsertPrepared = $this->dbConnection->prepare($attemptInsertStatement);
+            $attemptInsertPrepared->bind_param("sii", $username, $score, $id_quiz);
+
+            $this->executeStatement($attemptInsertPrepared);
+
+            $this->disconnect();
+        }
+
+        public function read_attempts_for_quiz($id_quiz) {
+            $this->connect();
+
+            $attemptSelectQuery = "SELECT * FROM attempt WHERE id_quiz = ? ORDER BY SCORE DESC";
+            $attemptSelectPrepared = $this->dbConnection->prepare($attemptSelectQuery);
+            $attemptSelectPrepared->bind_param("i", $id_quiz);
+
+            $queryResult = $this->executePreparedQuery($attemptSelectPrepared);
+
+            $attempts = array();
+
+            if ($queryResult -> fetch_assoc() != NULL) {
+                $queryResult->data_seek(0);
+                while($row = $queryResult->fetch_assoc()) {
+                    $attempts[] = $row;
+                }
+            } else {
+                $this->disconnect();
+                return NULL;
+            }
+
+            $this->disconnect();
+
+            return $attempts;
+        }
+
     }
 
 ?>

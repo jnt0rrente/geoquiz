@@ -18,6 +18,9 @@ body section {
     text-align: left;
     width: 50em;
     float: left;
+
+    display: flex;
+    flex-direction: column;
 }
 
 body img {

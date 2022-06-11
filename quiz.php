@@ -11,9 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="stylesheet" type="text/css" href="styles/quiz.css">
+    <link rel="stylesheet" type="text/css" href="styles/table.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/quiz.js"></script>
 </head>
 
 <body>
@@ -30,24 +30,25 @@
     </nav>
 
     <?php
+        session_start();
         require_once("quiz_lib.php");
         require_once("database.php");
 
         $databaseInterface = new DatabaseInterface();
         $quizManager = new QuizManager($databaseInterface);
 
-        if (!isset($_POST["q1"])) {
-            $quizManager->displaySingleQuizSection($_GET["id"]);
-        } else {
-            $answers = array();
-            foreach ($_POST as $answer) {
-                $answers[] = $answer;
+        if (isset($_GET["id"])) {
+            if (!isset($_POST["q1"])) {
+                $quizManager->displaySingleQuizSection($_GET["id"]);
+            } else {
+                $answers = array();
+                foreach ($_POST as $answer) {
+                    $answers[] = $answer;
+                }
+    
+                $quizManager->displayResultsForQuiz($_GET["id"], $answers);
             }
-
-            $quizManager->displayResultsForQuiz($_GET["id"], $answers);
         }
-
-
     ?>
 </body>
 

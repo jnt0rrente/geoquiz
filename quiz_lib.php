@@ -132,16 +132,69 @@ class QuizManager {
         public function displayResultsForQuiz($id, $answers) {
             $correctAnswers = $this->getSolutionsForQuiz($id);
             $counter = 0;
+
             for ($i = 0; $i < count($correctAnswers); $i++) {
                 if ($correctAnswers[$i] == $answers[$i]) {
                     $counter++;
                 }
             }
 
+            $scoreString = $counter . "/" . count($correctAnswers);
             echo "  <section>
                         <h2> Results </h2>
-                            <p> You have scored: $counter/".count($correctAnswers)."</p>
-                    </section>";
+                        <p> You have scored: " . $scoreString  . "</p>";
+
+            if (isset($_SESSION["username"])) {
+                $this->recordQuizAttempt($id, $_SESSION["username"], $counter);
+            } else {
+                echo "<p>No hemos podido obtener tu username. No hemos registrado tu puntuación.</p>";
+            }
+
+            $leaderboard = $this->getLeaderboard($id);
+
+            $limit = 10;
+            if (count($leaderboard) < $limit) {
+                $limit = count($leaderboard);
+            }
+
+            echo    "<table>
+                        <caption>Ranking</caption>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <th>Puntuación</th>
+                        </tr>";
+
+            for ($i = 0; $i < $limit; $i++) {
+                $username = $leaderboard[$i]->username;
+                $score = $leaderboard[$i]->score;
+                $date = $leaderboard[$i]->date;
+
+                echo "  <tr>
+                            <td>$username</td>
+                            <td>$date</td>
+                            <td>$score</td>
+                        </tr>";
+            }
+
+            echo "</section>";
+        }
+
+        private function recordQuizAttempt($id_quiz, $username, $counter) {
+            if ($id_quiz != NULL && $username != NULL) {
+                $this->dbInterface->add_attempt($id_quiz, $username, $counter);
+            }
+        }
+
+        private function getLeaderboard($id) {
+            $leaderboard = $this->dbInterface->read_attempts_for_quiz($id);
+            $returnArray = array();
+
+            foreach ($leaderboard as $entry) {
+                $returnArray[] = new Attempt($entry["user"], $entry["id_quiz"], $entry["score"], $entry["date"]);
+            }
+
+            return $returnArray;
         }
     }
 
@@ -169,6 +222,20 @@ class QuizManager {
             $this->text = $text;
             $this->options = $options;
             $this->correct_option = $correct_option;
+        }
+    }
+
+    class Attempt {
+        public $username;
+        public $id_quiz;
+        public $score;
+        public $date;
+
+        public function __construct($username, $id_quiz, $score, $date) {
+            $this->username = $username;
+            $this->id_quiz = $id_quiz;
+            $this->score = $score;
+            $this->date = $date; 
         }
     }
 ?>
