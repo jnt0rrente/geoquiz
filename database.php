@@ -102,7 +102,7 @@
             $queryResult = $this->executePreparedQuery($selectRestrictionPrepared);
 
             if ($queryResult -> fetch_array() != NULL) {
-                $queryResult->data_seek(0);
+                //$queryResult->data_seek(0);
                 $restrictionsArray = $queryResult -> fetch_array();
             }
 
