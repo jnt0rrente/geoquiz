@@ -37,7 +37,7 @@ class QuizListManager {
 
     locationSuccess(data) {
         console.log("Location working.");
-        getContinentForCoordinates(data.coords.latitude, data.coords.longitude);
+        this.getContinentForCoordinates(data.coords.latitude, data.coords.longitude);
     }
 
     locationError(err) {
