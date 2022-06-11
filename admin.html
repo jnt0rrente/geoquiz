@@ -40,13 +40,24 @@
 
             <input type='file' accept='text/xml' onchange='uploadManager.read(this.files)' />
 
-            <input type="checkbox" name="geoRestrict" id="geoRestrict" onchange="uploadManager.checkRestriction()">
-            <label for="geoRestrict">Restrict access by location</label>
+            <p>Allowed accesses by region<p>
+                    <input type="checkbox" name="europe" id="allowEurope">
+                    <label for="allowEurope">Europe</label>
+                    <input type="checkbox" name="africa" id="allowAfrica">
+                    <label for="allowAfrica">Africa</label>
+                    <input type="checkbox" name="asia" id="allowAsia">
+                    <label for="allowAsia">Asia</label>
+                    <input type="checkbox" name="oceania" id="allowOceania">
+                    <label for="allowOceania">Oceania</label>
+                    <input type="checkbox" name="northAmerica" id="allowNorthAmerica">
+                    <label for="allowNorthAmerica">North America</label>
+                    <input type="checkbox" name="southAmerica" id="allowSouthAmerica">
+                    <label for="allowSouthAmerica">South America</label>
 
-            <input type='button' name='uploadFile' value='Subir archivo' onclick='uploadManager.upload()' />
 
-            <p>Location restriction status: </p>
-            <p>Upload status: </p>
+                    <input type='button' name='uploadFile' value='Subir archivo' onclick='uploadManager.upload()' />
+
+                    <p>Upload status: </p>
         </section>
 
     </section>
