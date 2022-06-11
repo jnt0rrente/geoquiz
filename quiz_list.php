@@ -57,6 +57,7 @@
 
     } else if (isset($_SESSION["username"])) {
         $username = $_SESSION["username"];
+        $region = $_POST["region"];
 
         $quizManager->showQuizzes();
         echo "
