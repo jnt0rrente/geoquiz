@@ -36,9 +36,18 @@
         $databaseInterface = new DatabaseInterface();
         $quizManager = new QuizManager($databaseInterface);
 
-        $quizManager->displaySingleQuizSection($_GET["id"]);
+        if (!isset($_POST["q1"])) {
+            $quizManager->displaySingleQuizSection($_GET["id"]);
+        } else {
+            $answers = array();
+            foreach ($_POST as $answer) {
+                $answers[] = $answer;
+            }
 
-        echo "<input type=button value='Solve quiz' onclick='sqp.solve( " . $_GET["id"] . " )' />";
+            $quizManager->displayResultsForQuiz($_GET["id"], $answers);
+        }
+
+
     ?>
 </body>
 
