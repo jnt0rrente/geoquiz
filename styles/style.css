@@ -18,13 +18,15 @@ body section {
     text-align: left;
     width: 50em;
     float: left;
-
 }
 
 body section section {
     text-align: left;
     width: 50em;
     float: left;
+
+    display: flex;
+    flex-direction: column;
 }
 
 body img {
@@ -56,4 +58,8 @@ nav a {
 
 footer {
     text-align: right;
+}
+
+label {
+    float: left;
 }
