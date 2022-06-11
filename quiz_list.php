@@ -44,7 +44,9 @@
         unset($_SESSION["username"]);
         unset($_SESSION["region"]);
 
-    } else if (isset($_POST["username"]) && isset($_POST["region"])) {
+    } 
+    
+    if (isset($_POST["username"]) && isset($_POST["region"])) {
         echo "B";
         $_SESSION["region"] = $_POST["region"];
         $_SESSION["username"] = $_POST["username"];
