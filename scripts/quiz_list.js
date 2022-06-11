@@ -27,8 +27,15 @@ class QuizListManager {
     }
 
     callSuccess(data) {
-        console.log(data);
-        let returnedObject = JSON.parse(data);
+        let continent = data.results[0].components.continent;
+
+        if (continent == null) { //si no estás en tierra: barcos, la luna..
+            continent = "none"; //podría perfectamente restringir acceso si no estás en un continente, pero prefiero dejarlo ilimitado. decisión de diseño
+        }
+
+        console.log(continent);
+
+        $("input[type=text]:last-child").text(continent);
     }
 
     getCoordinates() {
