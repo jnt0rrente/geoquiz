@@ -30,16 +30,20 @@ class QuizListManager {
 
     saveRegion(loc) {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.getContinentForCoordinates, this.locationError);
-            console.log("Location restriction status: Working.");
+            navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError);
             $("input[type=submit]").prop("disabled", false);
         } else {
-            console.log("Location disabled. Cannot proceed.");
+            console.log("Location unavailable. Cannot proceed.");
         }
     }
 
+    locationSuccess(data) {
+        console.log("Location working.");
+        getContinentForCoordinates(data);
+    }
+
     locationError(err) {
-        console.error("Location restriction status: Error.");
+        console.log("Location rejected.");
     }
 
 }
