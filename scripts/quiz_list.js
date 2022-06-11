@@ -38,8 +38,6 @@ class QuizListManager {
     getCoordinates() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.locationSuccess.bind(this), this.locationError);
-            $("p:last").text("Working correctly.");
-            $("input[type=submit]").prop("disabled", false);
         } else {
             console.log("Location unavailable. Cannot proceed.");
         }
@@ -49,6 +47,7 @@ class QuizListManager {
         this.latitude = data.coords.latitude;
         this.longitude = data.coords.longitude;
         $("input[type=button]").prop("disabled", false);
+        $("p:last").text("Working correctly.");
     }
 
     locationError(error) {
