@@ -100,6 +100,14 @@ class QuizManager {
         ";
         }
 
+        public function showLocationStatusSection() {
+            echo "  <section>
+                        <h3>Location service status</h3>
+                        <p>Awaiting...</p>
+                    </section>
+            ";
+        }
+
         public function displaySingleQuizSection($id) {
             $quiz = $this->getSingleQuizById($id);
 

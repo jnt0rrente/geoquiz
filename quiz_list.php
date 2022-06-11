@@ -67,6 +67,7 @@
 
     } else {
         $quizManager->showLoginForm();
+        $quizManager->showLocationStatusSection();
     }
 
     ?>

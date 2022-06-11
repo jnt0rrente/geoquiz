@@ -15,8 +15,6 @@ class QuizListManager {
 
     loadContinent() {
         let url = this.buildUrl(this.latitude, this.longitude);
-        console.log(url);
-        console.log("lat " + this.latitude + " long " + this.longitude)
         $.ajax({
             url: url,
             method: 'GET',
@@ -33,9 +31,8 @@ class QuizListManager {
             continent = "none"; //podría perfectamente restringir acceso si no estás en un continente, pero prefiero dejarlo ilimitado. decisión de diseño
         }
 
-        console.log(continent);
-
         $("input[type=text]:last").val(continent);
+        $("input[type=submit]").prop("disabled", false);
     }
 
     getCoordinates() {
@@ -58,16 +55,17 @@ class QuizListManager {
     locationError(err) {
         switch (err.code) {
             case error.PERMISSION_DENIED:
-                console.error("Location permission denied.");
+                $("p:last").text("Location permission denied.");
+                console.error();
                 break;
             case error.POSITION_UNAVAILABLE:
-                console.error("Location error: position unavailable.");
+                $("p:last").text("Location error: position unavailable.");
                 break;
             case error.TIMEOUT:
-                console.error("Location timed out.");
+                $("p:last").text("Location timed out.");
                 break;
             case error.UNKNOWN_ERROR:
-                console.error("Location error: unknown.");
+                $("p:last").text("Location error: unknown.");
                 break;
         }
     }
