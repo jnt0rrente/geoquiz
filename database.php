@@ -145,6 +145,8 @@
                 $this->executeStatement($containsInsertPrepared);
             }
 
+            echo "AA: " . ($newQuiz->restrictions);
+
             foreach ($newQuiz->restrictions as $restriction) {
                 $restrictionInsertPrepared = $this->dbConnection->prepare($restrictionInsertStatement);
                 $restrictionInsertPrepared->bind_param("si", $restriction, $thisQuizId);
