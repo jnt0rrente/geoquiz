@@ -49,7 +49,7 @@
         $_SESSION["region"] = $_POST["region"];
         $_SESSION["username"] = $_POST["username"];
         
-        $quizManager->showQuizzes();
+        $quizManager->showQuizzes($_POST["region"]);
         echo "
             <form action='#' method='post'>
                 <input type='submit' name='logout' value='Log out' $logoutAble />
