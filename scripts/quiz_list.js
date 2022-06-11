@@ -12,8 +12,10 @@ class QuizListManager {
     }
 
     getContinentForCoordinates(latitude, longitude) {
+        let url = this.buildUrl(latitude, longitude);
+        console.log(url);
         $.ajax({
-            url: this.buildUrl(latitude, longitude),
+            url: url,
             method: 'GET',
             dataType: 'json',
             success: this.callSuccess,
