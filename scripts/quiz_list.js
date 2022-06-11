@@ -18,7 +18,7 @@ class ReverseGeocoder {
 class QuizListManager {
 
     checkLocationRestriction() {
-
+        let rev = new ReverseGeocoder();
     }
 
 }

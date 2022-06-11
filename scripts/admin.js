@@ -48,13 +48,15 @@ class UploadManager {
         }.bind(this)
         reader.readAsText(file);
     }
+    º
 
     save(fileContent) {
         this.fileContent = fileContent;
     }
 
     upload() {
-        var quiz = new FormlParser().parse(this.fileContent);;
+        var quiz = this.handler.parse(this.fileContent);
+        quiz.restrictions = this.getSelectedRestrictions();
 
         $.ajax({
             url: '/upload.php',
@@ -67,6 +69,14 @@ class UploadManager {
             success: this.onUploadSuccess,
             error: this.onUploadError
         });
+    }
+
+    getSelectedRestrictions() {
+        let restrictedOn = []
+        $("input[type=checkbox]:checked").each(function() {
+            restrictedOn.push(this.name);
+        });
+        return restrictedOn;
     }
 
     onUploadSuccess(response) {
@@ -112,4 +122,4 @@ class FormlParser {
 }
 
 var formlHandler = new FormlParser();
-var uploadManager = new UploadManager();
+var uploadManager = new UploadManager(formlHandler);

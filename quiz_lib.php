@@ -150,6 +150,7 @@ class QuizManager {
         public $title;
         public $description;
         public $questions = array();
+        public $allowed = array();
 
         public function __construct($id, $title, $description, $questions) {
             $this->id = $id;
@@ -157,6 +158,10 @@ class QuizManager {
             $this->description = $description;
             $this->date = $date;
             $this->questions = $questions;
+        }
+
+        public function setAllowedRegions($regions) {
+            $this->allowed = $regions;
         }
     }
 
