@@ -9,6 +9,8 @@ class QuizListManager {
         let returnUrl = this.url +
             "?key=" + this.apikey +
             "&q=" + encodeURIComponent(lat + "," + long);
+
+        return returnUrl;
     }
 
     loadContinent() {
