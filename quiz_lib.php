@@ -89,7 +89,7 @@ class QuizManager {
         public function showLoginForm() {
             echo "<form action='#' method='post'>
                 <label for='username'>Username</label>
-                <input type=text name='username' id='username' />
+                <input type=text name='username' id='username' required />
 
                 <label for='region'>Region</label>
                 <input type=text name='region' id='region' disabled/>
