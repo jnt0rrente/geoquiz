@@ -88,8 +88,12 @@ class QuizManager {
 
         public function showLoginForm() {
             echo "<form action='#' method='post'>
-                <label>Username<input type=text name='username' /></label>
-                <label>Region<input type=text name='region' disabled/></label>
+                <label for='username'>Username</label>
+                <input type=text name='username' id='username' />
+
+                <label for='region'>Region</label>
+                <input type=text name='region' id='region' disabled/>
+
                 <input type=button value='Load location' onclick=qlm.loadContinent() disabled/>
                 <input type=submit name='btnUser' value='Log in' disabled />
             </form>
