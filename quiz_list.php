@@ -48,10 +48,11 @@
     if (isset($_POST["username"]) && isset($_POST["region"])) {
         $_SESSION["region"] = $_POST["region"];
         $_SESSION["username"] = $_POST["username"];
-        
+        echo "<section>";
         $quizManager->showQuizzes($_POST["region"]);
         $quizManager->showLogoutButton();
-        
+        echo "</section>";
+
     } else if (isset($_SESSION["username"]) && isset($_SESSION["region"])) {
         $username = $_SESSION["username"];
         $region = $_SESSION["region"];

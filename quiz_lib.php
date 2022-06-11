@@ -109,6 +109,7 @@ class QuizManager {
         }
 
         public function showLoginForm() {
+            echo "<p>In order to use this application, you must provide an username and your region (continent). The continent will be automatically retrieved from your location, so you need to give us permission to read it. Do not manually tamper with the Region field.<p>";
             echo "  <form action='#' method='post'>
                         <label for='username'>Username</label>
                             <input type=text name='username' id='username' required />
