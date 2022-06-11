@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="styles/style.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts/quiz_list.js"></script>
 </head>
 
 <body>
