@@ -68,3 +68,7 @@ section input[type=button] {
     width: 6em;
     align-self: center;
 }
+
+section input[type=file] {
+    align-self: center;
+}
