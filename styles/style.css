@@ -118,3 +118,10 @@ input[type=checkbox] {
     margin-bottom: 2em;
     padding: 0.5em;
 }
+
+/*Especificidad: 011*/
+input[type=radio] {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 0.5em;
+}
