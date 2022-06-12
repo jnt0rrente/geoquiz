@@ -89,7 +89,8 @@ section input[type=file] {
 form {
     display: flex;
     flex-direction: column;
-    width: 40em;
+    width: 30em;
+    align-self: center;
 }
 
 form input[type=button] {
