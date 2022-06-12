@@ -36,17 +36,29 @@
         <p>After defining a forml file, you can use this utility to upload it as a public quiz on this website.</p>
 
         <section>
-            <input type='file' accept='text/xml' onchange='uploadManager.read(this.files)' />
+            <label for="fileIn">Load file</label>
+            <input type='file' accept='text/xml' id="fileIn" onchange='uploadManager.read(this.files)' />
 
             <h4>Disallowed regions</h4>
             <p>Your newly uploaded quiz can be configured to only be available on certain regions. Check those regions you want to forbid from trying your quiz.</p>
 
-            <label for="disallowEurope"><input type="checkbox" name="europe" id="disallowEurope">Europe</label>
-            <label for="disallowAfrica"><input type="checkbox" name="africa" id="disallowAfrica">Africa</label>
-            <label for="disallowAsia"><input type="checkbox" name="asia" id="disallowAsia">Asia</label>
-            <label for="disallowOceania"><input type="checkbox" name="oceania" id="disallowOceania">Oceania</label>
-            <label for="disallowNorthAmerica"><input type="checkbox" name="northAmerica" id="disallowNorthAmerica">North America</label>
-            <label for="disallowSouthAmerica"><input type="checkbox" name="southAmerica" id="disallowSouthAmerica">South America</label>
+            <input type="checkbox" name="europe" id="disallowEurope">
+            <label for="disallowEurope">Europe</label>
+
+            <input type="checkbox" name="africa" id="disallowAfrica">
+            <label for="disallowAfrica">Africa</label>
+
+            <input type="checkbox" name="asia" id="disallowAsia">
+            <label for="disallowAsia">Asia</label>
+
+            <input type="checkbox" name="oceania" id="disallowOceania">
+            <label for="disallowOceania">Oceania</label>
+
+            <input type="checkbox" name="northAmerica" id="disallowNorthAmerica">
+            <label for="disallowNorthAmerica">North America</label>
+
+            <input type="checkbox" name="southAmerica" id="disallowSouthAmerica">
+            <label for="disallowSouthAmerica">South America</label>
 
             <input type='button' name='uploadFile' value='Upload' onclick='uploadManager.upload()' />
 
