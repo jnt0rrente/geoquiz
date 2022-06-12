@@ -1,7 +1,7 @@
 /*Especificidad: 001*/
 body {
     font-family: "Arial", serif;
-    font-size: 1.5em;
+    font-size: 2em;
 
     background-color: #d5ccba;
     color: #20111b;
@@ -89,7 +89,7 @@ form {
 
 /*Especificidad: 002*/
 form label {
-    padding-top: 0.5em;
+    padding: 2em 0em;
 }
 
 /*Especificidad: 011*/
