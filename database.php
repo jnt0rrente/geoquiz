@@ -108,7 +108,9 @@
             $queryResult = $this->executePreparedQuery($selectRestrictionPrepared);
 
             if ($queryResult -> fetch_array() != NULL) {
-                $restrictionsArray = $queryResult -> fetch_array();
+                foreach ($queryResult -> fetch_array() as $restriction) {
+                    $restrictionsArray[] = $restriction;
+                }
             }
 
             echo "an array:\n";
