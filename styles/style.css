@@ -61,6 +61,8 @@ nav {
 /*Especificidad: 002*/
 nav a {
     padding: 0.7em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
     text-decoration: none;
     background-color: #d5ccba;
     color: #0f5974;
@@ -77,6 +79,8 @@ nav a:last-child {
 /*Especificidad: 002*/
 section label {
     float: left;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 /*Especificidad: 001*/
@@ -110,11 +114,4 @@ input[type=submit] {
 input[type=file] {
     align-self: center;
     margin: 2em;
-}
-
-/*Especificidad: 011*/
-input[type=checkbox] {
-    margin-top: 2em;
-    margin-bottom: 2em;
-    padding: 0.5em;
 }
