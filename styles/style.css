@@ -90,26 +90,21 @@ form label {
     padding-top: 0.5em;
 }
 
-/*Especificidad: 012*/
-form input[type=button] {
+/*Especificidad: 011*/
+input[type=button] {
     width: 10em;
     align-self: center;
+    margin-bottom: 0.5em;
 }
 
-/*Especificidad: 012*/
-form input[type=submit] {
+/*Especificidad: 011*/
+input[type=submit] {
     width: 6em;
     align-self: center;
     margin-top: 1em;
 }
 
-/*Especificidad: 012*/
-section input[type=button] {
-    width: 6em;
-    align-self: center;
-}
-
-/*Especificidad: 012*/
-section input[type=file] {
+/*Especificidad: 011*/
+input[type=file] {
     align-self: center;
 }
