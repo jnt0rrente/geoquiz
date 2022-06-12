@@ -89,27 +89,27 @@ form {
 
 /*Especificidad: 002*/
 form label {
-    padding: 2em 0em;
+    margin-top: 2em;
 }
 
 /*Especificidad: 011*/
 input[type=button] {
+    margin-top: 2em;
     width: 10em;
     align-self: center;
-    margin-bottom: 0.5em;
 }
 
 /*Especificidad: 011*/
 input[type=submit] {
     width: 6em;
     align-self: center;
-    margin-top: 1em;
+    margin-top: 2em;
 }
 
 /*Especificidad: 011*/
 input[type=file] {
     align-self: center;
-    margin: 1em;
+    margin: 2em;
 }
 
 /*Especificidad: 011*/
