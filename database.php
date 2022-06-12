@@ -108,7 +108,8 @@
             $queryResult = $this->executePreparedQuery($selectRestrictionPrepared);
 
             if ($queryResult -> fetch_array() != NULL) {
-                foreach ($queryResult -> fetch_array() as $restriction) {
+                $queryResult->data_seek(0);
+                foreach ($queryResult->fetch_row() as $restriction) {
                     $restrictionsArray[] = $restriction;
                 }
             }
