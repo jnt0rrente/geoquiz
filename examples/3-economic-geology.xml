@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<forml>
+    <header>
+        <title>Economic geology</title>
+        <description>All that glitters... (ANSWERS: B D D C)</description>
+    </header>
+    <body>
+        <section name="Section A">
+            <question text="What is the main concern of economic geology?" accepted="b">
+                <option text="Minerals"/>
+                <option text="Studying, classifying and harvesting valuable underground materials"/>
+                <option text="The history of our planet from a geological point of view"/>
+                <option text="Atmospheric phenomena"/>
+            </question>
+            <question text="What other technical fields does economic geology cooperate with?" accepted="d">
+                <option text="Literature"/>
+                <option text="Cinematography and social studies"/>
+                <option text="Biology and chemistry"/>
+                <option text="Engineering and architecture"/>
+            </question>
+        </section>
+        <section name="Section B">
+            <section name="Section B A">
+                <question text="How much coal is 1kg of uranium equivalent to, in terms of energetic value?" accepted="d">
+                    <option text="100 kg"/>
+                    <option text="1000 kg"/>
+                    <option text="1 million kg"/>
+                    <option text="1.5 million kg"/>
+                </question>
+            </section>
+            <section name="Section B B">
+                <question text="How much is a barrel of oil worth?" accepted="c">
+                    <option text="About 10€"/>
+                    <option text="About 50€"/>
+                    <option text="About 100€"/>
+                    <option text="More than 500€"/>
+                </question>
+            </section>
+        </section>
+    </body>
+</forml>

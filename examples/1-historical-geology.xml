@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<forml>
+    <header>
+        <title>Historical geology</title>
+        <description>¿Do you feel strong in palaeogeology? Try your best! (ANSWERS: A B C D B)</description>
+    </header>
+    <body>
+        <section name="Section 1">
+            <question text="When did the Proterozoic era end?" accepted="a">
+                <option text="2500 MYA"/>
+                <option text="500 MYA"/>
+                <option text="1500 MYA"/>
+                <option text="1000 MYA"/>
+            </question>
+            <question text="What is the main focus of investigations for this discipline?" accepted="b">
+                <option text="Minerals"/>
+                <option text="Geological strata"/>
+                <option text="Tectonic plate collisions"/>
+                <option text="Oceanic sediments"/>
+            </question>
+            <question text="What event marks the end of the Permic era?" accepted="c">
+                <option text="The emergence of the first euchariotic cells"/>
+                <option text="The collision of one of Mars' moons onto its surface"/>
+                <option text="A mass extinction event"/>
+                <option text="The building of the Pyramids of Giza"/>
+            </question>
+        </section>
+        <section name="Section 2">
+            <question text="How many eons are recognized since the formation of the Earth?" accepted="b">
+                <option text="3"/>
+                <option text="4"/>
+                <option text="5"/>
+                <option text="More than 5"/>
+            </question>
+            </question>
+        </section>
+    </body>
+</forml>

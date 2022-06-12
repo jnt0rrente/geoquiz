@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<forml>
+    <header>
+        <title>Mineralogy</title>
+        <description>The cool part of all that dirt. (ANSWERS: A B A B)</description>
+    </header>
+    <body>
+        <section name="Main section">
+            <question text="What does mineralogy study?" accepted="a">
+                <option text="Minerals"/>
+                <option text="Gases"/>
+                <option text="Living organisms"/>
+                <option text="16th century string instruments"/>
+            </question>
+            <question text="What is the accepted color of gold?" accepted="b">
+                <option text="Blue"/>
+                <option text="Metallic yellow"/>
+                <option text="Orange"/>
+                <option text="Colorless"/>
+            </question>
+            <question text="What is the crystal form of quartz?" accepted="a">
+                <option text="Trigonal or hexagonal"/>
+                <option text="Cubic"/>
+                <option text="Quartz does not crystallize"/>
+                <option text="Pentagonal"/>
+            </question>
+            <question text="What is the hardness of lead (PB) according to the Mohs scale?" accepted="b">
+                <option text="6"/>
+                <option text="1.5"/>
+                <option text="9"/>
+                <option text="3"/>
+            </question>
+        </section>
+    </body>
+</forml>
