@@ -210,6 +210,7 @@ class QuizManager {
 
     //tras rellenar el cuestionario, imprime la página de resultados
     public function displayResultsForQuiz($id, $answers) {
+        echo "<section>";
         $correctAnswers = $this->getSolutionsForQuiz($id);
         $counter = 0;
 
@@ -220,9 +221,8 @@ class QuizManager {
         }
 
         $scoreString = $counter . "/" . count($correctAnswers);
-        echo "  <section>
-                    <h2> Results </h2>
-                    <p> You have scored: " . $scoreString  . "</p>";
+        echo "  <h2> Results </h2>
+                <p> You have scored: " . $scoreString  . "</p>";
 
         if (isset($_SESSION["username"])) {
             $this->recordQuizAttempt($id, $_SESSION["username"], $counter);
@@ -254,7 +254,8 @@ class QuizManager {
                         <td>$username</td>
                         <td>$date</td>
                         <td>$score</td>
-                    </tr>";
+                    </tr>
+                </table>";
         }
 
         echo "</section>";
