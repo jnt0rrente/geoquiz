@@ -98,17 +98,17 @@ class QuizManager {
     public function showQuizzesAndLogout($region) {
         echo "<section>";
         echo "<h2>Quizzes</h2>";
-        $quizManager->showQuizzes($region);
-        $quizManager->showLogoutButton();
+        $this->showQuizzes($region);
+        $this->showLogoutButton();
         echo "</section>";
     }
 
     //muestra el login y el status de la localización
     public function showLoginAndLocation() {
-        echo "<h2>Quizzes</h2>";
         echo "<section>";
-        $quizManager->showLoginForm();
-        $quizManager->showLocationStatusSection();
+        echo "<h2>Quizzes</h2>";
+        $this->showLoginForm();
+        $this->showLocationStatusSection();
         echo "</section>";
     }
 
