@@ -98,7 +98,7 @@ class QuizManager {
     public function showQuizzesAndLogout($region) {
         echo "<section>";
         echo "<h2>Quizzes</h2>";
-        $quizManager->showQuizzes($_POST["region"]);
+        $quizManager->showQuizzes($region);
         $quizManager->showLogoutButton();
         echo "</section>";
     }
