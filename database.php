@@ -30,7 +30,7 @@
             );
 
             if ($this->dbConnection->connect_errno) {
-                echo "database error: " . $this->dbConnection->connect_error;
+                echo "Database error: " . $this->dbConnection->connect_error;
             }
         }
 
@@ -171,7 +171,6 @@
             }
 
             foreach ($newQuiz->restrictions as $restriction) {
-                echo $restriction;
                 $restrictionInsertPrepared = $this->dbConnection->prepare($restrictionInsertStatement);
                 $restrictionInsertPrepared->bind_param("si", $restriction, $thisQuizId);
 

@@ -37,14 +37,10 @@
         $databaseInterface = new DatabaseInterface();
         $quizManager = new QuizManager($databaseInterface);
 
-        echo "A";
-
         if (isset($_GET["id"])) {
             if (!isset($_POST["q1"])) {
-                echo "B";
                 $quizManager->displaySingleQuizSection($_GET["id"]);
             } else {
-                echo "C";
                 $answers = array();
                 foreach ($_POST as $answer) {
                     $answers[] = $answer;

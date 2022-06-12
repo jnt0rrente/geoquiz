@@ -82,8 +82,16 @@ class QuizManager {
             $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
             $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
         }
-        echo "I";
-        return new Quiz($quiz["id"], $quiz["title"], $quiz["description"], $quizQuestionsArray);
+
+        $readRestrictionsArray = array();
+        try {
+            $readRestrictionsArray = $this->dbInterface->readRestrictionsByQuizId($eachQuiz["id"]);
+        } catch (Exception $e) {
+            echo "Database error: " . $e->getMessage() . "\n";
+            exit;
+        }
+        
+        return new Quiz($quiz["id"], $quiz["title"], $quiz["description"], $quizQuestionsArray, $readRestrictionsArray);
     }
 
     //imprime en el HTML los cuestionarios disponibles para el usuario. para ello, recibe un parámetro $region con la región en la que se encuentra el usuario.
@@ -262,16 +270,12 @@ class Quiz {
     public $restricted = array();
 
     public function __construct($id, $title, $description, $questions, $restricted) {
-
-        echo "NN";
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
         $this->date = $date;
         $this->questions = $questions;
         $this->restricted = $restricted;
-
-        echo "J";
     }
 
     //comprueba si el cuestionario puede mostrarse en la región que se le pasa como parámetro

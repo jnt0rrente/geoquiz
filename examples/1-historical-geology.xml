@@ -33,7 +33,6 @@
                 <option text="5"/>
                 <option text="More than 5"/>
             </question>
-            </question>
         </section>
     </body>
 </forml>
