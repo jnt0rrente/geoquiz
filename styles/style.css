@@ -60,9 +60,8 @@ nav {
 
 /*Especificidad: 002*/
 nav a {
-    padding: 0.7em;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
+    margin-left: 1.2em;
+    margin-right: 1.2em;
     text-decoration: none;
     background-color: #d5ccba;
     color: #0f5974;
