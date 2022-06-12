@@ -38,7 +38,7 @@
         $quizManager = new QuizManager($databaseInterface);
 
         if (isset($_GET["id"])) {
-            if (!isset($_POST["q1"])) {
+            if (!isset($_POST["finishQuiz"])) {
                 $quizManager->displaySingleQuizSection($_GET["id"]);
             } else {
                 $answers = array();
