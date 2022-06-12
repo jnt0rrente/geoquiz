@@ -23,6 +23,15 @@ body section {
     flex-direction: column;
 }
 
+body section section {
+    text-align: left;
+    width: 50em;
+    float: left;
+
+    display: flex;
+    flex-direction: column;
+}
+
 body img {
     float: right;
     width: 16em;
@@ -40,6 +49,10 @@ h2 {
     margin-top: 3em;
 }
 
+h4 {
+    margin-bottom: 0em;
+}
+
 nav {
     align-self: center;
 }
@@ -47,9 +60,49 @@ nav {
 nav a {
     padding: 0.7em;
     text-decoration: none;
-    color: #426a79;
+    color: #0f5974;
+}
+
+nav a:last-child {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #640d0d;
 }
 
 footer {
     text-align: right;
+}
+
+section label {
+    float: left;
+}
+
+section input[type=button] {
+    width: 6em;
+    align-self: center;
+}
+
+section input[type=file] {
+    align-self: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+form input[type=button] {
+    width: 8em;
+    align-self: center;
+}
+
+form input[type=submit] {
+    width: 6em;
+    align-self: center;
+    margin-top: 1em;
+}
+
+form label {
+    padding-top: 0.5em;
 }

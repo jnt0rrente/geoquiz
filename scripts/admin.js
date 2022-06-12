@@ -6,26 +6,6 @@ class UploadManager {
         this.adminCoordinates = null;
     }
 
-    saveLocation(loc) {
-        this.adminCoordinates = loc;
-    }
-
-    locationError(err) {
-        $("label ~ p").text("Location restriction status: Error.");
-    }
-
-    checkRestriction() {
-        if ($("checkbox").is(":checked")) {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(this.saveLocation, this.locationError);
-                $("label ~ p").text("Location restriction status: Working.");
-            } else {
-                $("label ~ p").text("Location restriction status: Location unavailable.");
-            }
-        } else {
-            this.adminCoordinates = null;
-        }
-    }
 
     read(files) {
         var file = files[0];
@@ -35,7 +15,6 @@ class UploadManager {
             alert("mal tipo");
             return;
         }
-
 
         var reader = new FileReader();
         reader.onload = function() {
@@ -54,10 +33,11 @@ class UploadManager {
     }
 
     upload() {
-        var quiz = new FormlParser().parse(this.fileContent);;
+        var quiz = this.handler.parse(this.fileContent);
+        quiz.restrictions = this.getSelectedRestrictions();
 
         $.ajax({
-            url: '/api_upload.php',
+            url: '/upload.php',
             method: 'POST',
             contentType: 'application/json',
             dataType: 'text',
@@ -67,6 +47,14 @@ class UploadManager {
             success: this.onUploadSuccess,
             error: this.onUploadError
         });
+    }
+
+    getSelectedRestrictions() {
+        let restrictedOn = []
+        $("input[type=checkbox]:checked").each(function() {
+            restrictedOn.push(this.name);
+        });
+        return restrictedOn;
     }
 
     onUploadSuccess(response) {
@@ -112,4 +100,4 @@ class FormlParser {
 }
 
 var formlHandler = new FormlParser();
-var uploadManager = new UploadManager();
+var uploadManager = new UploadManager(formlHandler);

@@ -35,7 +35,6 @@
         private function executeStatement($stmt) {
             if (!$stmt->execute()) {
                 echo "\nDatabase error: " . $stmt->error;
-                exit;
             }
         }
 
@@ -44,7 +43,6 @@
             $res = $preparedQuery->execute();
             if (!$res) {
                 echo "\nDatabase error: " . $preparedQuery->error;
-                exit;
             }
 
             return $preparedQuery->get_result();            
@@ -92,7 +90,26 @@
             return $questionsArray;
         }
 
-        public function read_quizzes() {
+        public function readRestrictionsByQuizId($quizId) {
+            $this->connect();
+
+            $selectRestrictionQuery = "select r.continente from restriction r, quiz q where q.id = ? AND r.id_cuestionario = q.id";
+            $selectRestrictionPrepared = $this->dbConnection->prepare($selectRestrictionQuery);
+            $selectRestrictionPrepared->bind_param("i", $quizId);
+            
+            $restrictionsArray = array();
+
+            $queryResult = $this->executePreparedQuery($selectRestrictionPrepared);
+
+            if ($queryResult -> fetch_array() != NULL) {
+                $restrictionsArray = $queryResult -> fetch_array();
+            }
+
+            $this->disconnect();
+            return $restrictionsArray;
+        }
+
+        public function readQuizzes() {
             $this->connect();
 
             $quizSelectQuery = "SELECT * FROM quiz ORDER BY id";
@@ -118,6 +135,7 @@
             $quizInsertStatement = "INSERT INTO quiz(title, description) VALUES (?, ?)";
             $questionInsertStatement = "INSERT INTO question(text, opt1, opt2, opt3, opt4, correct_option) VALUES (?, ?, ?, ?, ?, ?)";
             $containsInsertStatement = "INSERT INTO contains(id_cuestionario, id_pregunta) VALUES (?, ?)";
+            $restrictionInsertStatement = "INSERT INTO restriction(continente, id_cuestionario) VALUES (?, ?)";
 
             //preparing and inserting the quiz object
             $quizInsertPrepared = $this->dbConnection->prepare($quizInsertStatement);
@@ -142,6 +160,15 @@
                 $containsInsertPrepared = $this->dbConnection->prepare($containsInsertStatement);
                 $containsInsertPrepared->bind_param("ii", $thisQuizId, $thatQuestionId);
                 $this->executeStatement($containsInsertPrepared);
+            }
+
+            foreach ($newQuiz->restrictions as $restriction) {
+                echo $restriction;
+                $restrictionInsertPrepared = $this->dbConnection->prepare($restrictionInsertStatement);
+                $restrictionInsertPrepared->bind_param("si", $restriction, $thisQuizId);
+
+                $this->executeStatement($restrictionInsertPrepared);
+
             }
             
             $this->disconnect();

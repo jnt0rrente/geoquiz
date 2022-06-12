@@ -7,7 +7,7 @@
     <meta name="author" content="Juan Torrente" />
     <meta name="keywords" content="quiz" />
     <meta name="description" content="A quiz on the GeoQuiz site." />
-    <meta name="viewport" content="width=device-width, initial scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="stylesheet" type="text/css" href="styles/quiz.css">

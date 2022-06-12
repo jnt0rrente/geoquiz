@@ -8,28 +8,37 @@ class QuizManager {
 
         private function getQuizObjects() {
             try {
-                $quizAssocArray = $this->dbInterface->read_quizzes();
+                $quizAssocArray = $this->dbInterface->readQuizzes();
             } catch (Exception $e) {
                 echo "Database error: " . $e->getMessage() . "\n";
                 exit;
             }
+
             $quizArray = array();
 
             foreach ($quizAssocArray as $eachQuiz) {
                 try {
                     $readQuestionsArray = $this->dbInterface->readQuestionsByQuizId($eachQuiz["id"]);
+                    $quizQuestionsArray = array();
+
+                    foreach ($readQuestionsArray as $eachQuestion) {
+                        $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
+                        $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
+                    }
+                } catch (Exception $e) {
+                    echo "Database error: " . $e->getMessage() . "\n";
+                    exit;
+                }
+
+                
+                try {
+                    $readRestrictionsArray = $this->dbInterface->readRestrictionsByQuizId($eachQuiz["id"]);
                 } catch (Exception $e) {
                     echo "Database error: " . $e->getMessage() . "\n";
                     exit;
                 }
                 
-                $quizQuestionsArray = array();
-
-                foreach ($readQuestionsArray as $eachQuestion) {
-                    $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
-                    $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
-                }
-                $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $quizQuestionsArray);
+                $quizArray[] = new Quiz($eachQuiz["id"], $eachQuiz["title"], $eachQuiz["description"], $quizQuestionsArray, $readRestrictionsArray);
             }
 
             return $quizArray;
@@ -73,17 +82,53 @@ class QuizManager {
             return new Quiz($quiz["id"], $quiz["title"], $quiz["description"], $quizQuestionsArray);
         }
 
-        public function showQuizzes() {
+    
+        public function showQuizzes($region) {
             $username = $_SESSION['username'];
-            
             $quizzes = $this->getQuizObjects();
 
-            echo "<h2>These are all our quizzes, $username </h2>";
+            echo "<h3>These are all our quizzes, $username </h3>";
             echo "<ul>";
             foreach ($quizzes as $quiz) {
-                echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title</a> </li>";
+                if ($quiz->isAllowedOnRegion($region)) {
+                    echo "<li> <a href='/quiz.php?id=$quiz->id'> Quiz $quiz->id: $quiz->title</a> </li>";
+                } else {
+                    echo "<li> Quiz $quiz->id: $quiz->title (access restricted) </li>";
+                }
+                
             }
             echo "</ul>";
+        }
+
+        public function showLogoutButton() {
+            echo "
+            <form action='#' method='post'>
+                <input type='submit' name='logout' value='Log out' $logoutAble />
+            </form>
+        ";
+        }
+
+        public function showLoginForm() {
+            echo "<p>In order to use this application, you must provide an username and your region (continent). The continent will be automatically retrieved from your location, so you need to give us permission to read it. Do not manually tamper with the Region field.<p>";
+            echo "  <form action='#' method='post'>
+                        <label for='username'>Username</label>
+                            <input type=text name='username' id='username' required />
+
+                        <label for='region'>Region</label>
+                            <input type=text name='region' id='region' required/>
+                        <input type=button value='Load location' onclick=qlm.loadContinent() disabled/>
+                        
+                        <input type=submit value='Log in' disabled />
+                    </form>
+        ";
+        }
+
+        public function showLocationStatusSection() {
+            echo "  <section>
+                        <h3>Location service status</h3>
+                        <p>Awaiting...</p>
+                    </section>
+            ";
         }
 
         public function displaySingleQuizSection($id) {
@@ -203,14 +248,28 @@ class QuizManager {
         public $title;
         public $description;
         public $questions = array();
+        public $restricted = array();
 
-        public function __construct($id, $title, $description, $questions) {
+        public function __construct($id, $title, $description, $questions, $restricted) {
             $this->id = $id;
             $this->title = $title;
             $this->description = $description;
             $this->date = $date;
             $this->questions = $questions;
+            $this->restricted = $restricted;
         }
+
+        public function isAllowedOnRegion($region) {            
+            foreach ($this->restricted as $banned_region) {
+                if (strcasecmp($region, $banned_region) == 0) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        
     }
 
     class Question {
