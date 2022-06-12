@@ -36,13 +36,13 @@
         <p>After defining a forml file, you can use this utility to upload it as a public quiz on this website.</p>
 
         <section>
-            <label for="fileIn"><input type='file' accept='text/xml' id="fileIn" onchange='uploadManager.read(this.files)' />Load file</label>
+            <label for="fileIn">Load file</label>
+            <input type='file' accept='text/xml' id="fileIn" onchange='uploadManager.read(this.files)' />
 
             <h4>Disallowed regions</h4>
             <p>Your newly uploaded quiz can be configured to only be available on certain regions. Check those regions you want to forbid from trying your quiz.</p>
 
-            <label><input type="checkbox" name="europe" />Europe</label>
-
+            <label for="disallowEurope"><input type="checkbox" name="europe" id="disallowEurope" />Europe</label>
             <label for="disallowAfrica"><input type="checkbox" name="africa" id="disallowAfrica" />Africa</label>
             <label for="disallowAsia"><input type="checkbox" name="asia" id="disallowAsia" />Asia</label>
             <label for="disallowOceania"><input type="checkbox" name="oceania" id="disallowOceania" />Oceania</label>
