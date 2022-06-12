@@ -47,7 +47,7 @@
         $_SESSION["region"] = $_POST["region"];
         $_SESSION["username"] = $_POST["username"];
 
-        $quizManager->showQuizzesAndLogout($region);
+        $quizManager->showQuizzesAndLogout($_SESSION["region"]);
         
 
     } else if (isset($_SESSION["username"]) && isset($_SESSION["region"])) {
