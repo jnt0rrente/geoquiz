@@ -36,8 +36,7 @@
         <p>After defining a forml file, you can use this utility to upload it as a public quiz on this website.</p>
 
         <section>
-            <label for="fileIn">Load file</label>
-            <input type='file' accept='text/xml' id="fileIn" onchange='uploadManager.read(this.files)' />
+            <label for="fileIn">Load file<input type='file' accept='text/xml' id="fileIn" onchange='uploadManager.read(this.files)' /></label>
 
             <h4>Disallowed regions</h4>
             <p>Your newly uploaded quiz can be configured to only be available on certain regions. Check those regions you want to forbid from trying your quiz.</p>
@@ -49,7 +48,7 @@
             <label for="disallowNorthAmerica"><input type="checkbox" name="northAmerica" id="disallowNorthAmerica" />North America</label>
             <label for="disallowSouthAmerica"><input type="checkbox" name="southAmerica" id="disallowSouthAmerica" />South America</label>
 
-            <label for="uploadFile"><input type='button' id="uploadFile" name='uploadFile' value='Upload' onclick='uploadManager.upload()' />Confirm and upload</label>
+            <input type='button' id="uploadFile" name='uploadFile' value='Upload' onclick='uploadManager.upload()' disabled />
 
             <h4>Status</h4>
             <p>Upload status: Idle</p>
