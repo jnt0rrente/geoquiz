@@ -14,12 +14,13 @@ body {
     margin-right: auto;
     align-items: center;
 
-    width: 60%;
+    width: auto;
 }
 
 /*Especificidad: 002*/
 section {
     text-align: left;
+    width: 50em;
     float: left;
 
     display: flex;
@@ -55,6 +56,7 @@ h4 {
 /*Especificidad: 001*/
 nav {
     align-self: center;
+    width: 60em;
 
     display: flex;
     justify-content: space-between;
@@ -88,6 +90,7 @@ section label {
 form {
     display: flex;
     flex-direction: column;
+    width: 30em;
     align-self: center;
 }
 
