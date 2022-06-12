@@ -94,6 +94,22 @@ class QuizManager {
         return new Quiz($quiz["id"], $quiz["title"], $quiz["description"], $quizQuestionsArray, $readRestrictionsArray);
     }
 
+    //muestra la lista de quizzes y el botón de logout
+    public function showQuizzesAndLogout($region) {
+        echo "<section>";
+        $quizManager->showQuizzes($_POST["region"]);
+        $quizManager->showLogoutButton();
+        echo "</section>";
+    }
+
+    //muestra el login y el status de la localización
+    public function showLoginAndLocation() {
+        echo "<section>";
+        $quizManager->showLoginForm();
+        $quizManager->showLocationStatusSection();
+        echo "</section>";
+    }
+
     //imprime en el HTML los cuestionarios disponibles para el usuario. para ello, recibe un parámetro $region con la región en la que se encuentra el usuario.
     public function showQuizzes($region) {
         $username = $_SESSION['username'];

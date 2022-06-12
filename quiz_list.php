@@ -49,25 +49,17 @@
         $_SESSION["region"] = $_POST["region"];
         $_SESSION["username"] = $_POST["username"];
 
-        echo "<section>";
-        $quizManager->showQuizzes($_POST["region"]);
-        $quizManager->showLogoutButton();
-        echo "</section>";
+        $quizManager->showQuizzesAndLogout($region);
+        
 
     } else if (isset($_SESSION["username"]) && isset($_SESSION["region"])) {
         $username = $_SESSION["username"];
         $region = $_SESSION["region"];
 
-        echo "<section>";
-        $quizManager->showQuizzes($region);
-        $quizManager->showLogoutButton();
-        echo "</section>";
+        $quizManager->showQuizzesAndLogout($region);
         
     } else {
-        echo "<section>";
-        $quizManager->showLoginForm();
-        $quizManager->showLocationStatusSection();
-        echo "</section>";
+        $quizManager->showLoginAndLocation();
     }
 
     ?>
