@@ -154,6 +154,8 @@ class QuizManager {
             exit;
         }
 
+        echo "T";
+
         echo "<h2> $quiz->title </h2>";
         echo "<p> $quiz->description </p>";
 
