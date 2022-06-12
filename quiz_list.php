@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
+    <title>GeoQuiz - All quizzes</title>
     <meta charset="UTF-8">
-    <title>GeoQuiz - Economic geology</title>
     <meta name="author" content="Juan Torrente" />
-    <meta name="keywords" content="admin, admin panel, upload">
-    <meta name="description" content="Administration tab for the GeoQuiz site." />
+    <meta name="keywords" content="quiz, list">
+    <meta name="description" content="All the quizzes on our site." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="styles/style.css">

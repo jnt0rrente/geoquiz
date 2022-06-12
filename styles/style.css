@@ -1,5 +1,6 @@
+/*Especificidad: 001*/
 body {
-    font-family: "Arial";
+    font-family: "Arial", serif;
     background-color: #d5ccba;
     color: #20111b;
 
@@ -14,7 +15,8 @@ body {
     width: 60em;
 }
 
-body section {
+/*Especificidad: 002*/
+section {
     text-align: left;
     width: 50em;
     float: left;
@@ -23,70 +25,59 @@ body section {
     flex-direction: column;
 }
 
-body section section {
-    text-align: left;
-    width: 50em;
-    float: left;
-
-    display: flex;
-    flex-direction: column;
-}
-
-body img {
-    float: right;
+/*Especificidad: 001*/
+img {
     width: 16em;
     height: auto;
 }
 
+/*Especificidad: 001*/
 h1 {
     text-align: center;
     font-size: 3em;
+    background-color: #d5ccba;
     color: #212121;
     padding-bottom: 1em;
 }
 
+/*Especificidad: 001*/
 h2 {
     margin-top: 3em;
 }
 
+/*Especificidades: 001*/
 h3,
 h4 {
     margin-bottom: 0em;
 }
 
+/*Especificidad: 001*/
 nav {
     align-self: center;
 }
 
+/*Especificidad: 002*/
 nav a {
     padding: 0.7em;
     text-decoration: none;
+    background-color: #d5ccba;
     color: #0f5974;
 }
 
+/*Especificidad: 012*/
 nav a:last-child {
     font-weight: bold;
     text-decoration: underline;
+    background-color: #d5ccba;
     color: #640d0d;
 }
 
-footer {
-    text-align: right;
-}
-
+/*Especificidad: 002*/
 section label {
     float: left;
 }
 
-section input[type=button] {
-    width: 6em;
-    align-self: center;
-}
-
-section input[type=file] {
-    align-self: center;
-}
-
+/*Especificidad: 001*/
 form {
     display: flex;
     flex-direction: column;
@@ -94,17 +85,31 @@ form {
     align-self: center;
 }
 
+/*Especificidad: 002*/
+form label {
+    padding-top: 0.5em;
+}
+
+/*Especificidad: 012*/
 form input[type=button] {
     width: 8em;
     align-self: center;
 }
 
+/*Especificidad: 012*/
 form input[type=submit] {
     width: 6em;
     align-self: center;
     margin-top: 1em;
 }
 
-form label {
-    padding-top: 0.5em;
+/*Especificidad: 012*/
+section input[type=button] {
+    width: 6em;
+    align-self: center;
+}
+
+/*Especificidad: 012*/
+section input[type=file] {
+    align-self: center;
 }

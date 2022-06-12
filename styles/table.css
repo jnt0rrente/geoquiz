@@ -3,7 +3,6 @@ table {
     border: 1px solid #3b4252;
     border-collapse: collapse;
     text-align: center;
-
     margin: 3em;
 }
 
@@ -19,6 +18,7 @@ td {
     padding: 1em;
 }
 
+/*Especificidad: 001*/
 caption {
     font-weight: bold;
 }
