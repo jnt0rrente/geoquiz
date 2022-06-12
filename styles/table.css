@@ -9,13 +9,13 @@ table {
 /*Especificidad: 001*/
 th {
     border: 1px solid #3b4252;
-    margin: 0.6em;
+    padding: 0.6em;
 }
 
 /*Especificidad: 001*/
 td {
     border: 1px solid #3b4252;
-    margin: 1em;
+    padding: 1em;
 }
 
 /*Especificidad: 001*/
