@@ -272,6 +272,8 @@ class Quiz {
         $this->date = $date;
         $this->questions = $questions;
         $this->restricted = $restricted;
+
+        echo "J";
     }
 
     //comprueba si el cuestionario puede mostrarse en la región que se le pasa como parámetro
