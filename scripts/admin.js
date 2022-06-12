@@ -8,7 +8,6 @@ class UploadManager {
 
     read(files) { //lee un único archivo desde el html
         var file = files[0];
-        var content = "";
 
         if (!file.type.match(this.acceptedType)) {
             alert("mal tipo");
@@ -26,6 +25,7 @@ class UploadManager {
                 $("p:last").text("Upload status: File reader error");
             }
         }.bind(this)
+        reader.readAsText(file);
     }
 
 
