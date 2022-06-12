@@ -280,9 +280,7 @@ class Quiz {
 
     //comprueba si el cuestionario puede mostrarse en la región que se le pasa como parámetro
     public function isAllowedOnRegion($region) {    
-        echo "You come from " . $region;        
         foreach ($this->restricted as $banned_region) {
-            echo "\nThis quiz is restricted on: " . $banned_region;
             if (strcasecmp($region, $banned_region) == 0) {
                 return false;
             }
