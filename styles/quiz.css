@@ -8,5 +8,7 @@ fieldset {
 
 /*Especificidad: 011*/
 input[type=radio] {
-    margin: 0.6em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 0.5em;
 }
