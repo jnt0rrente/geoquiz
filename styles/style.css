@@ -110,3 +110,9 @@ input[type=submit] {
 input[type=file] {
     align-self: center;
 }
+
+/*Especificidad: 011*/
+input[type=checkbox] {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
