@@ -6,8 +6,7 @@ class UploadManager {
         this.adminCoordinates = null;
     }
 
-
-    read(files) {
+    read(files) { //lee un único archivo desde el html
         var file = files[0];
         var content = "";
 
@@ -28,10 +27,13 @@ class UploadManager {
         reader.readAsText(file);
     }
 
+
+    //guarda una string en el objeto
     save(fileContent) {
         this.fileContent = fileContent;
     }
 
+    //hace la llamada de AJAX para enviar el contenido del archivo al backend
     upload() {
         var quiz = this.handler.parse(this.fileContent);
         quiz.restrictions = this.getSelectedRestrictions();
@@ -49,6 +51,7 @@ class UploadManager {
         });
     }
 
+    //devuelve un array con las restricciones que se eligen para el cuestionario
     getSelectedRestrictions() {
         let restrictedOn = []
         $("input[type=checkbox]:checked").each(function() {

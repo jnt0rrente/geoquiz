@@ -1,5 +1,5 @@
 "use strict"
-class MineralPriceAPIObject {
+class MineralPriceAPIObject { //encapsula la llamada a la api de minerales
     constructor() {
         this.url = "https://www.commodities-api.com/api/latest?access_key=z6y4cwoumau8ki7g6hxwjcli7ynceyj4gxlq3t57jhw7wrem321pxz7d9ypt&base=EUR&symbols=BRENTOIL%2CXAU";
     }

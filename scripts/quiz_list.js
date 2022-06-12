@@ -1,10 +1,10 @@
 class QuizListManager {
-
     constructor() {
         this.apikey = "e1d215c28c8c49389af3cc37b829c5f5";
         this.url = "https://api.opencagedata.com/geocode/v1/json";
     }
 
+    //devuelve la url para la llamada a la api de geocoding a partir de dos coordenadas
     buildUrl(lat, long) {
         let returnUrl = this.url +
             "?key=" + this.apikey +
@@ -13,6 +13,7 @@ class QuizListManager {
         return returnUrl;
     }
 
+    //llama a la api
     loadContinent() {
         let url = this.buildUrl(this.latitude, this.longitude);
         $.ajax({
@@ -24,6 +25,7 @@ class QuizListManager {
         });
     }
 
+    //guarda el continente en el formulario y habilita el botón de iniciar sesión
     callSuccess(data) {
         let continent = data.results[0].components.continent;
 
@@ -35,6 +37,7 @@ class QuizListManager {
         $("input[type=submit]").prop("disabled", false);
     }
 
+    //llama a la API geolocation, sin más
     getCoordinates() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.locationSuccess.bind(this), this.locationError);
