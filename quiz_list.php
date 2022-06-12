@@ -51,7 +51,6 @@
         
 
     } else if (isset($_SESSION["username"]) && isset($_SESSION["region"])) {
-        $username = $_SESSION["username"];
         $region = $_SESSION["region"];
 
         $quizManager->showQuizzesAndLogout($region);
