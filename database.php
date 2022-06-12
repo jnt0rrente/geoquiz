@@ -111,6 +111,10 @@
                 $restrictionsArray = $queryResult -> fetch_array();
             }
 
+            echo "an array:\n";
+            echo var_dump($restrictionsArray);
+            echo "\n\n";
+
             $this->disconnect();
             return $restrictionsArray;
         }
