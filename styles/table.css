@@ -15,10 +15,11 @@ th {
 /*Especificidad: 001*/
 td {
     border: 1px solid #3b4252;
-    padding: 1em;
+    margin: 1em;
 }
 
 /*Especificidad: 001*/
 caption {
     font-weight: bold;
+    margin-bottom: 1.5em;
 }
