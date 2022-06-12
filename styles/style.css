@@ -92,7 +92,7 @@ form label {
 
 /*Especificidad: 012*/
 form input[type=button] {
-    width: 8em;
+    width: 10em;
     align-self: center;
 }
 
