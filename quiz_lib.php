@@ -60,7 +60,6 @@ class QuizManager {
     //devuelve un objeto quiz con sus preguntas y sus atributos. si no existe ninguno con la ID, devuelve directamente NULL.
     private function getSingleQuizById($id) {
         try {
-            echo "E";
             $quiz = $this->dbInterface->readQuizById($id);
             if ($quiz == NULL) {
                 return NULL;
@@ -71,17 +70,15 @@ class QuizManager {
         }
 
         try {
-            echo "F";
             $readQuestionsArray = $this->dbInterface->readQuestionsByQuizId($id);
         } catch (Exception $e) {
             echo "Database error: " . $e->getMessage() . "\n";
             exit;
         }
         
-        echo "G";
         $quizQuestionsArray = array();
         foreach ($readQuestionsArray as $eachQuestion) {
-            echo "H";
+
             $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
             $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
         }
@@ -143,7 +140,6 @@ class QuizManager {
 
     //imprime un cuestionario rellenable, con sus preguntas y la lógica de envío
     public function displaySingleQuizSection($id) {
-        echo "D";
         $quiz = $this->getSingleQuizById($id);
 
         echo "<section>";
@@ -153,8 +149,6 @@ class QuizManager {
             echo "</section>";
             exit;
         }
-
-        echo "T";
 
         echo "<h2> $quiz->title </h2>";
         echo "<p> $quiz->description </p>";
@@ -268,6 +262,8 @@ class Quiz {
     public $restricted = array();
 
     public function __construct($id, $title, $description, $questions, $restricted) {
+
+        echo "NN";
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
