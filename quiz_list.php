@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8" />
     <title>GeoQuiz - All quizzes</title>
-    <meta charset="UTF-8">
     <meta name="author" content="Juan Torrente" />
     <meta name="keywords" content="quiz, list">
     <meta name="description" content="All the quizzes on our site." />
