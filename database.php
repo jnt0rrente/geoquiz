@@ -109,8 +109,8 @@
 
             if ($queryResult -> fetch_array() != NULL) {
                 $queryResult->data_seek(0);
-                foreach ($queryResult->fetch_row() as $restriction) {
-                    $restrictionsArray[] = $restriction;
+                while ($row = $queryResult->fetch_row()) {
+                    $restrictionsArray[] = $row[0];
                 }
             }
 
