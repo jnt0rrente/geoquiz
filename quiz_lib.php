@@ -97,6 +97,7 @@ class QuizManager {
     //muestra la lista de quizzes y el botón de logout
     public function showQuizzesAndLogout($region) {
         echo "<section>";
+        echo "<h2>Quizzes</h2>";
         $quizManager->showQuizzes($_POST["region"]);
         $quizManager->showLogoutButton();
         echo "</section>";
@@ -104,6 +105,7 @@ class QuizManager {
 
     //muestra el login y el status de la localización
     public function showLoginAndLocation() {
+        echo "<h2>Quizzes</h2>";
         echo "<section>";
         $quizManager->showLoginForm();
         $quizManager->showLocationStatusSection();

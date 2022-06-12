@@ -28,8 +28,6 @@
         <a href="quiz_list.php" accesskey="q" tabindex="6">Quizzes</a>
     </nav>
 
-
-    <h2>Quizzes</h2>
     <?php
     session_start(); //para guardar y recuperar el username y su ubicación
     require_once("database.php");
