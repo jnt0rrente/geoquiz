@@ -10,8 +10,8 @@ body {
     flex-direction: column;
 
     margin-top: 4em;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 20%;
+    margin-right: 20%;
     align-items: center;
 
     /*width: auto;*/
