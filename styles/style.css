@@ -57,6 +57,9 @@ h4 {
 nav {
     align-self: center;
     width: 60em;
+
+    display: flex;
+    justify-content: space-between;
 }
 
 /*Especificidad: 002*/
