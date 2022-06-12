@@ -6,6 +6,7 @@ class QuizManager {
             $this->dbInterface = $dbInterface;
         }
 
+        //lee los quizzes de la interfaz de la BD y los transforma en objetos Quiz
         private function getQuizObjects() {
             try {
                 $quizAssocArray = $this->dbInterface->readQuizzes();
@@ -44,6 +45,7 @@ class QuizManager {
             return $quizArray;
         }
 
+        //devuelve un array no asociativo con las soluciones de un determinado cuestionario
         public function getSolutionsForQuiz($id) {
             $quiz = $this->getSingleQuizById($id);
             $response_array = array();
@@ -82,7 +84,7 @@ class QuizManager {
             return new Quiz($quiz["id"], $quiz["title"], $quiz["description"], $quizQuestionsArray);
         }
 
-    
+        //imprime en el HTML los cuestionarios disponibles para el usuario. para ello, recibe un parámetro $region con la región en la que se encuentra el usuario.
         public function showQuizzes($region) {
             $username = $_SESSION['username'];
             $quizzes = $this->getQuizObjects();
@@ -100,6 +102,7 @@ class QuizManager {
             echo "</ul>";
         }
 
+        //imprime el botón que permite al usuario salir de la plataforma
         public function showLogoutButton() {
             echo "
             <form action='#' method='post'>
@@ -108,6 +111,7 @@ class QuizManager {
         ";
         }
 
+        //imprime el formulario que contiene la lógica para que el usuario entre en la plataforma
         public function showLoginForm() {
             echo "<p>In order to use this application, you must provide an username and your region (continent). The continent will be automatically retrieved from your location, so you need to give us permission to read it. Do not manually tamper with the Region field.<p>";
             echo "  <form action='#' method='post'>
@@ -123,6 +127,7 @@ class QuizManager {
         ";
         }
 
+        //imprime una sección para mostrar en vivo el estado de la gelocalización del usuario
         public function showLocationStatusSection() {
             echo "  <section>
                         <h3>Location service status</h3>
@@ -131,6 +136,7 @@ class QuizManager {
             ";
         }
 
+        //imprime un cuestionario rellenable, con sus preguntas y la lógica de envío
         public function displaySingleQuizSection($id) {
             $quiz = $this->getSingleQuizById($id);
 
@@ -174,6 +180,7 @@ class QuizManager {
             echo "</section>";
         }
 
+        //tras rellenar el cuestionario, imprime la página de resultados
         public function displayResultsForQuiz($id, $answers) {
             $correctAnswers = $this->getSolutionsForQuiz($id);
             $counter = 0;
@@ -225,14 +232,16 @@ class QuizManager {
             echo "</section>";
         }
 
+        //guarda un intento en la base de datos, comprobando que los parámetros sean correctos
         private function recordQuizAttempt($id_quiz, $username, $counter) {
             if ($id_quiz != NULL && $username != NULL) {
-                $this->dbInterface->add_attempt($id_quiz, $username, $counter);
+                $this->dbInterface->writeAttempt($id_quiz, $username, $counter);
             }
         }
 
+        //obtiene de la base de datos el ranking de un cuestionario
         private function getLeaderboard($id) {
-            $leaderboard = $this->dbInterface->read_attempts_for_quiz($id);
+            $leaderboard = $this->dbInterface->readAttemptsForQuiz($id);
             $returnArray = array();
 
             foreach ($leaderboard as $entry) {
@@ -259,6 +268,7 @@ class QuizManager {
             $this->restricted = $restricted;
         }
 
+        //comprueba si el cuestionario puede mostrarse en la región que se le pasa como parámetro
         public function isAllowedOnRegion($region) {            
             foreach ($this->restricted as $banned_region) {
                 if (strcasecmp($region, $banned_region) == 0) {

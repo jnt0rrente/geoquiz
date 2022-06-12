@@ -31,7 +31,7 @@
 
     <h2>Quizzes</h2>
     <?php
-    session_start();
+    session_start(); //para guardar y recuperar el username y su ubicación
     require_once("database.php");
     require_once("quiz_lib.php");
 

@@ -14,11 +14,13 @@
             $this->dbPassword = "DBPSWD2021";
         }
 
+        //desconecta la base de datos
         private function disconnect() {
             $this->dbConnection->close();
             $this->dbConnection = NULL;
         }
 
+        //establece la conexión a la base de datos.
         private function connect() {
             $this->dbConnection = new mysqli(
                 $this->dbAddress,
@@ -48,6 +50,7 @@
             return $preparedQuery->get_result();            
         }
 
+        //dado el ID de un cuestionario, lo extrae de la base de datos y devuelve como un array asociativo (no un objeto)
         public function readQuizById($id) {
             $this->connect();
 
@@ -69,6 +72,8 @@
             return $quizAsAssocArray;
         }
 
+
+        //dado el ID de un cuestionario, lee las preguntas que contiene
         public function readQuestionsByQuizId($quizId) {
             $this->connect();
 
@@ -90,6 +95,7 @@
             return $questionsArray;
         }
 
+        //dado el ID de un cuestionario, devuelve un array no asociativo con las regiones en las que está bloqueado
         public function readRestrictionsByQuizId($quizId) {
             $this->connect();
 
@@ -109,6 +115,7 @@
             return $restrictionsArray;
         }
 
+        //devuelve un array asociativo con todos los quizzes que existen en la base de datos
         public function readQuizzes() {
             $this->connect();
 
@@ -128,7 +135,8 @@
             return $quizArray;
         }
 
-        public function add_quiz($newQuiz) {
+        //recibe un objeto Quiz y lo introduce en la base de datos
+        public function writeQuiz($newQuiz) {
             $this->connect();
 
             //statements
@@ -176,7 +184,8 @@
             return;
         }
 
-        public function add_attempt($id_quiz, $username, $score) {
+        // recibiendo un usuario, una puntuación y el ID de un quiz, crea un intento con esos valores
+        public function writeAttempt($id_quiz, $username, $score) {
             $this->connect();
 
             $attemptInsertStatement = "INSERT INTO attempt(user, score, id_quiz) VALUES (?, ?, ?)";
@@ -189,7 +198,9 @@
             $this->disconnect();
         }
 
-        public function read_attempts_for_quiz($id_quiz) {
+
+        // devuelve un array asociativo con los intentos que tiene un determinado cuestionario
+        public function readAttemptsForQuiz($id_quiz) {
             $this->connect();
 
             $attemptSelectQuery = "SELECT * FROM attempt WHERE id_quiz = ? ORDER BY SCORE DESC";

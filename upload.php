@@ -24,7 +24,7 @@ class QuizUploadReceiver {
         $this->validateQuiz($quiz);
 
         try {
-            $this->db->add_quiz($quiz);
+            $this->db->writeQuiz($quiz);
             echo "Quiz added successfully.";
         } catch (Exception $e) {
             echo "Database error: " . $e->getMessage() . "\n";
