@@ -60,6 +60,7 @@ class QuizManager {
     //devuelve un objeto quiz con sus preguntas y sus atributos. si no existe ninguno con la ID, devuelve directamente NULL.
     private function getSingleQuizById($id) {
         try {
+            echo "E";
             $quiz = $this->dbInterface->readQuizById($id);
             if ($quiz == NULL) {
                 return NULL;
@@ -138,6 +139,7 @@ class QuizManager {
 
     //imprime un cuestionario rellenable, con sus preguntas y la lógica de envío
     public function displaySingleQuizSection($id) {
+        echo "D";
         $quiz = $this->getSingleQuizById($id);
 
         echo "<section>";
