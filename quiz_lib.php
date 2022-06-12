@@ -227,10 +227,17 @@ class QuizManager {
         if (isset($_SESSION["username"])) {
             $this->recordQuizAttempt($id, $_SESSION["username"], $counter);
         } else {
-            echo "<p>No hemos podido obtener tu username. No hemos registrado tu puntuación.</p>";
+            echo "<p>We have not been able to retrieve your username. We have not registered your score.</p>";
         }
 
         $leaderboard = $this->getLeaderboard($id);
+
+        if (count($leaderboard) == 0) {
+            echo "<p>There are no scores registered for this quiz. Try it yourself!</p>";
+
+            echo "</section>";
+            return;
+        }
 
         $limit = 10;
         if (count($leaderboard) < $limit) {
