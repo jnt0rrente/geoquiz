@@ -254,9 +254,9 @@ class QuizManager {
                         <td>$username</td>
                         <td>$date</td>
                         <td>$score</td>
-                    </tr>
-                </table>";
+                    </tr>";
         }
+        echo "</table>";
 
         echo "</section>";
     }
