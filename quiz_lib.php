@@ -71,17 +71,21 @@ class QuizManager {
         }
 
         try {
+            echo "F";
             $readQuestionsArray = $this->dbInterface->readQuestionsByQuizId($id);
         } catch (Exception $e) {
             echo "Database error: " . $e->getMessage() . "\n";
             exit;
         }
         
+        echo "G";
         $quizQuestionsArray = array();
         foreach ($readQuestionsArray as $eachQuestion) {
+            echo "H";
             $options = array($eachQuestion["opt1"], $eachQuestion["opt2"], $eachQuestion["opt3"], $eachQuestion["opt4"]);
             $quizQuestionsArray[] = new Question($eachQuestion["text"], $options, $eachQuestion["correct_option"]);
         }
+        echo "I";
         return new Quiz($quiz["id"], $quiz["title"], $quiz["description"], $quizQuestionsArray);
     }
 
