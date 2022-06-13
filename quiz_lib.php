@@ -85,7 +85,7 @@ class QuizManager {
 
         $readRestrictionsArray = array();
         try {
-            $readRestrictionsArray = $this->dbInterface->readRestrictionsByQuizId($eachQuiz["id"]);
+            $readRestrictionsArray = $this->dbInterface->readRestrictionsByQuizId($id);
         } catch (Exception $e) {
             echo "Database error: " . $e->getMessage() . "\n";
             exit;
