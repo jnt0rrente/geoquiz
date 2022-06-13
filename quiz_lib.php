@@ -134,7 +134,7 @@ class QuizManager {
     public function showLogoutButton() {
         echo "
         <form action='#' method='post'>
-            <input type='submit' name='logout' value='Log out' $logoutAble />
+            <input type='submit' name='logout' value='Log out' />
         </form>
     ";
     }
@@ -299,7 +299,6 @@ class Quiz {
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
-        $this->date = $date;
         $this->questions = $questions;
         $this->restricted = $restricted;
     }
