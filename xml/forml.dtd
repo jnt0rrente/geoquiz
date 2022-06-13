@@ -4,7 +4,8 @@
 <!ELEMENT description (#PCDATA)>
 <!ELEMENT body (section+)>
 <!ELEMENT section (section+|question+)>
-<!ELEMENT question (option, option, option, option)
+<!ELEMENT question (option, option, option, option)>
+<!ELEMENT option EMPTY>
 <!ATTLIST section name CDATA #REQUIRED>
 <!ATTLIST question text CDATA #REQUIRED
                    accepted (a|b|c|d) #REQUIRED>
