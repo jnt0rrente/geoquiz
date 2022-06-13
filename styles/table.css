@@ -1,9 +1,9 @@
-/*Especificidad: 001*/
-table {
+/*Especificidad: 002*/
+section table {
     border: 1px solid #3b4252;
     border-collapse: collapse;
     text-align: center;
-    margin: 3em;
+    margin: 3.5em;
 }
 
 /*Especificidad: 001*/
