@@ -3,19 +3,19 @@ section table {
     border: 1px solid #3b4252;
     border-collapse: collapse;
     text-align: center;
-    margin: 3.5em;
+    margin: 2em;
 }
 
 /*Especificidad: 001*/
 th {
     border: 1px solid #3b4252;
-    padding: 0.6em;
+    padding: 2em;
 }
 
 /*Especificidad: 001*/
 td {
     border: 1px solid #3b4252;
-    padding: 1em;
+    padding: 2em;
 }
 
 /*Especificidad: 001*/
