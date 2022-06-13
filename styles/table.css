@@ -1,21 +1,20 @@
-/*Especificidad: 002*/
-section table {
+/*Especificidad: 001*/
+table {
     border: 1px solid #3b4252;
     border-collapse: collapse;
     text-align: center;
-    margin: 2em;
 }
 
 /*Especificidad: 001*/
 th {
     border: 1px solid #3b4252;
-    padding: 2em;
+    padding: 0.6em;
 }
 
 /*Especificidad: 001*/
 td {
     border: 1px solid #3b4252;
-    padding: 2em;
+    padding: 1em;
 }
 
 /*Especificidad: 001*/
