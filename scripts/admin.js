@@ -8,7 +8,6 @@ class UploadManager {
 
     read(files) { //lee un único archivo desde el html
         var file = files[0];
-        var content = "";
 
         if (!file.type.match(this.acceptedType)) {
             alert("mal tipo");
@@ -20,8 +19,10 @@ class UploadManager {
             try {
                 var fileContent = reader.result;
                 this.save(fileContent);
+                $("p:last").text("Upload status: File read correctly");
+                $("input[type=button]").prop("disabled", false);
             } catch (exception) {
-                console.error("FileReader error: " + exception.message);
+                $("p:last").text("Upload status: File reader error");
             }
         }.bind(this)
         reader.readAsText(file);
@@ -35,7 +36,11 @@ class UploadManager {
 
     //hace la llamada de AJAX para enviar el contenido del archivo al backend
     upload() {
-        var quiz = this.handler.parse(this.fileContent);
+        try {
+            var quiz = this.handler.parse(this.fileContent);
+        } catch (exception) {
+            $("p:last").text("Upload status: Parsing error");
+        }
         quiz.restrictions = this.getSelectedRestrictions();
 
         $.ajax({

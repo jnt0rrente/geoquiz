@@ -1,5 +1,8 @@
+/*Especificidad: 001*/
 body {
-    font-family: "Arial";
+    font-family: "Arial", serif;
+    font-size: 1.4em;
+
     background-color: #d5ccba;
     color: #20111b;
 
@@ -7,104 +10,109 @@ body {
     flex-direction: column;
 
     margin-top: 4em;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 20%;
+    margin-right: 20%;
     align-items: center;
-
-    width: 60em;
 }
 
-body section {
+/*Especificidad: 001*/
+section {
     text-align: left;
-    width: 50em;
+    width: 100%;
     float: left;
 
     display: flex;
     flex-direction: column;
 }
 
-body section section {
-    text-align: left;
-    width: 50em;
-    float: left;
-
-    display: flex;
-    flex-direction: column;
-}
-
-body img {
-    float: right;
+/*Especificidad: 001*/
+img {
     width: 16em;
     height: auto;
 }
 
+/*Especificidad: 001*/
 h1 {
     text-align: center;
     font-size: 3em;
+    background-color: #d5ccba;
     color: #212121;
     padding-bottom: 1em;
 }
 
+/*Especificidad: 001*/
 h2 {
     margin-top: 3em;
 }
 
+/*Especificidades: 001*/
 h3,
 h4 {
     margin-bottom: 0em;
 }
 
+/*Especificidad: 001*/
 nav {
     align-self: center;
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
+/*Especificidad: 002*/
 nav a {
-    padding: 0.7em;
+    margin: 1em;
     text-decoration: none;
+    background-color: #d5ccba;
     color: #0f5974;
 }
 
+/*Especificidad: 012*/
 nav a:last-child {
     font-weight: bold;
     text-decoration: underline;
+    background-color: #d5ccba;
     color: #640d0d;
 }
 
-footer {
-    text-align: right;
-}
-
+/*Especificidad: 002*/
 section label {
     float: left;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
-section input[type=button] {
-    width: 6em;
-    align-self: center;
-}
-
-section input[type=file] {
-    align-self: center;
-}
-
+/*Especificidad: 001*/
 form {
     display: flex;
     flex-direction: column;
-    width: 20em;
+    width: 100%;
     align-self: center;
 }
 
-form input[type=button] {
-    width: 8em;
+/*Especificidad: 002*/
+form label {
+    margin-top: 2em;
+}
+
+/*Especificidad: 011*/
+input[type=button] {
+    margin-top: 2em;
+    width: 10em;
     align-self: center;
 }
 
-form input[type=submit] {
+/*Especificidad: 011*/
+input[type=submit] {
     width: 6em;
     align-self: center;
-    margin-top: 1em;
+    margin-top: 2em;
 }
 
-form label {
-    padding-top: 0.5em;
+/*Especificidad: 011*/
+input[type=file] {
+    align-self: center;
+    margin: 2em;
 }

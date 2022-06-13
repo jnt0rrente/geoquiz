@@ -1,3 +1,4 @@
+/*Especificidad: 001*/
 fieldset {
     display: flex;
     flex-direction: column;
@@ -5,6 +6,8 @@ fieldset {
     margin-bottom: 1.5em;
 }
 
+/*Especificidad: 011*/
 input[type=radio] {
-    margin: 0.6em;
+    margin: 3em 1em;
+    padding: 1em;
 }

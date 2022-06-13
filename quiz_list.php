@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>GeoQuiz - Economic geology</title>
+    <meta charset="UTF-8" />
+    <title>GeoQuiz - All quizzes</title>
     <meta name="author" content="Juan Torrente" />
-    <meta name="keywords" content="admin, admin panel, upload">
-    <meta name="description" content="Administration tab for the GeoQuiz site." />
+    <meta name="keywords" content="quiz, list">
+    <meta name="description" content="All the quizzes on our site." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -28,8 +28,6 @@
         <a href="quiz_list.php" accesskey="q" tabindex="6">Quizzes</a>
     </nav>
 
-
-    <h2>Quizzes</h2>
     <?php
     session_start(); //para guardar y recuperar el username y su ubicación
     require_once("database.php");
@@ -49,25 +47,16 @@
         $_SESSION["region"] = $_POST["region"];
         $_SESSION["username"] = $_POST["username"];
 
-        echo "<section>";
-        $quizManager->showQuizzes($_POST["region"]);
-        $quizManager->showLogoutButton();
-        echo "</section>";
+        $quizManager->showQuizzesAndLogout($_SESSION["region"]);
+        
 
     } else if (isset($_SESSION["username"]) && isset($_SESSION["region"])) {
-        $username = $_SESSION["username"];
         $region = $_SESSION["region"];
 
-        echo "<section>";
-        $quizManager->showQuizzes($region);
-        $quizManager->showLogoutButton();
-        echo "</section>";
+        $quizManager->showQuizzesAndLogout($region);
         
     } else {
-        echo "<section>";
-        $quizManager->showLoginForm();
-        $quizManager->showLocationStatusSection();
-        echo "</section>";
+        $quizManager->showLoginAndLocation();
     }
 
     ?>

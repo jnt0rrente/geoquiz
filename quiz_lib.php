@@ -94,6 +94,24 @@ class QuizManager {
         return new Quiz($quiz["id"], $quiz["title"], $quiz["description"], $quizQuestionsArray, $readRestrictionsArray);
     }
 
+    //muestra la lista de quizzes y el botón de logout
+    public function showQuizzesAndLogout($region) {
+        echo "<section>";
+        echo "<h2>Quizzes</h2>";
+        $this->showQuizzes($region);
+        $this->showLogoutButton();
+        echo "</section>";
+    }
+
+    //muestra el login y el status de la localización
+    public function showLoginAndLocation() {
+        echo "<section>";
+        echo "<h2>Quizzes</h2>";
+        $this->showLoginForm();
+        $this->showLocationStatusSection();
+        echo "</section>";
+    }
+
     //imprime en el HTML los cuestionarios disponibles para el usuario. para ello, recibe un parámetro $region con la región en la que se encuentra el usuario.
     public function showQuizzes($region) {
         $username = $_SESSION['username'];
@@ -192,6 +210,7 @@ class QuizManager {
 
     //tras rellenar el cuestionario, imprime la página de resultados
     public function displayResultsForQuiz($id, $answers) {
+        echo "<section>";
         $correctAnswers = $this->getSolutionsForQuiz($id);
         $counter = 0;
 
@@ -202,17 +221,23 @@ class QuizManager {
         }
 
         $scoreString = $counter . "/" . count($correctAnswers);
-        echo "  <section>
-                    <h2> Results </h2>
-                    <p> You have scored: " . $scoreString  . "</p>";
+        echo "  <h2> Results </h2>
+                <p> You have scored: " . $scoreString  . "</p>";
 
         if (isset($_SESSION["username"])) {
             $this->recordQuizAttempt($id, $_SESSION["username"], $counter);
         } else {
-            echo "<p>No hemos podido obtener tu username. No hemos registrado tu puntuación.</p>";
+            echo "<p>We have not been able to retrieve your username. We have not registered your score.</p>";
         }
 
         $leaderboard = $this->getLeaderboard($id);
+
+        if (count($leaderboard) == 0) {
+            echo "<p>There are no scores registered for this quiz. Try it yourself!</p>";
+
+            echo "</section>";
+            return;
+        }
 
         $limit = 10;
         if (count($leaderboard) < $limit) {
@@ -238,6 +263,7 @@ class QuizManager {
                         <td>$score</td>
                     </tr>";
         }
+        echo "</table>";
 
         echo "</section>";
     }
